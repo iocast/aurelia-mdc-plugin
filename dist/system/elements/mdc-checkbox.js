@@ -68,7 +68,9 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
         defaultBindingMode: bindingMode.twoWay
       }), _dec3 = bindable({
         defaultBindingMode: bindingMode.twoWay
-      }), _dec4 = bindable(), _dec(_class = (_class2 = function () {
+      }), _dec4 = bindable({
+        defaultBindingMode: bindingMode.oneWay
+      }), _dec(_class = (_class2 = function () {
         function MdcCheckbox(element) {
           _classCallCheck(this, MdcCheckbox);
 

@@ -60,7 +60,9 @@ var MdcCheckbox = exports.MdcCheckbox = (_dec = (0, _aureliaFramework.inject)(_a
   defaultBindingMode: _aureliaFramework.bindingMode.twoWay
 }), _dec3 = (0, _aureliaFramework.bindable)({
   defaultBindingMode: _aureliaFramework.bindingMode.twoWay
-}), _dec4 = (0, _aureliaFramework.bindable)(), _dec(_class = (_class2 = function () {
+}), _dec4 = (0, _aureliaFramework.bindable)({
+  defaultBindingMode: _aureliaFramework.bindingMode.oneWay
+}), _dec(_class = (_class2 = function () {
   function MdcCheckbox(element) {
     _classCallCheck(this, MdcCheckbox);
 

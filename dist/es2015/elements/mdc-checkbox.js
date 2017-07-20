@@ -50,7 +50,9 @@ export let MdcCheckbox = (_dec = inject(DOM.Element), _dec2 = bindable({
   defaultBindingMode: bindingMode.twoWay
 }), _dec3 = bindable({
   defaultBindingMode: bindingMode.twoWay
-}), _dec4 = bindable(), _dec(_class = (_class2 = class MdcCheckbox {
+}), _dec4 = bindable({
+  defaultBindingMode: bindingMode.oneWay
+}), _dec(_class = (_class2 = class MdcCheckbox {
 
   constructor(element) {
     _initDefineProp(this, 'isChecked', _descriptor, this);

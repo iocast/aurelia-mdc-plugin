@@ -1,6 +1,6 @@
 <template class="mdc-checkbox">
 
-    <input type="checkbox" checked.bind="isChecked" change.delegate="handleChange($event)" class="mdc-checkbox__native-control">
+    <input type="checkbox" disabled.bind="isDisabled" checked.bind="isChecked" change.delegate="handleChange($event)" class="mdc-checkbox__native-control">
     <div class="mdc-checkbox__background">
         <svg class="mdc-checkbox__checkmark"
             viewBox="0 0 24 24">

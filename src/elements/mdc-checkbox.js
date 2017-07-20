@@ -10,7 +10,9 @@ export class MdcCheckbox {
   @bindable({
     defaultBindingMode: bindingMode.twoWay
   }) isIndeterminate = false;
-  @bindable() isDisabled = false;
+  @bindable({
+    defaultBindingMode: bindingMode.oneWay
+  }) isDisabled = false;
   mdcCheckbox;
 
   constructor(element) {
