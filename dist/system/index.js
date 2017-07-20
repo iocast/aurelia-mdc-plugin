@@ -1,9 +1,9 @@
 'use strict';
 
-System.register(['aurelia-pal', './config', './mdc-target', './helpers'], function (_export, _context) {
+System.register(['aurelia-pal', './config', './mdc-target', './elements/mdc-checkbox', './helpers'], function (_export, _context) {
     "use strict";
 
-    var PLATFORM, MdcConfig, MDC_TARGET_ATTR, MDC_INIT_ATTR, pluginConfig;
+    var PLATFORM, MdcConfig, MDC_TARGET_ATTR, MDC_INIT_ATTR, MdcTarget, MdcCheckbox, pluginConfig;
     function configure(config, callback) {
         pluginConfig = config.container.get(MdcConfig);
 
@@ -12,6 +12,7 @@ System.register(['aurelia-pal', './config', './mdc-target', './helpers'], functi
         }
 
         config.globalResources(PLATFORM.moduleName('./mdc-target'));
+        config.globalResources('./elements/mdc-checkbox');
 
         config.aurelia.resources.registerViewEngineHooks({
             beforeCompile: beforeViewCompiled
@@ -31,6 +32,7 @@ System.register(['aurelia-pal', './config', './mdc-target', './helpers'], functi
             item.setAttribute(MDC_INIT_ATTR, componentName);
         }
     }
+
     return {
         setters: [function (_aureliaPal) {
             PLATFORM = _aureliaPal.PLATFORM;
@@ -39,21 +41,21 @@ System.register(['aurelia-pal', './config', './mdc-target', './helpers'], functi
             MDC_TARGET_ATTR = _config.MDC_TARGET_ATTR;
             MDC_INIT_ATTR = _config.MDC_INIT_ATTR;
         }, function (_mdcTarget) {
+            MdcTarget = _mdcTarget.MdcTarget;
+        }, function (_elementsMdcCheckbox) {
+            MdcCheckbox = _elementsMdcCheckbox.MdcCheckbox;
+        }, function (_helpers) {
             var _exportObj = {};
-
-            for (var _key in _mdcTarget) {
-                if (_key !== "default" && _key !== "__esModule") _exportObj[_key] = _mdcTarget[_key];
-            }
+            _exportObj.ensureAttached = _helpers.ensureAttached;
 
             _export(_exportObj);
-        }, function (_helpers) {
-            var _exportObj2 = {};
-            _exportObj2.ensureAttached = _helpers.ensureAttached;
-
-            _export(_exportObj2);
         }],
         execute: function () {
             pluginConfig = void 0;
+
+            _export('MdcTarget', MdcTarget);
+
+            _export('MdcCheckbox', MdcCheckbox);
         }
     };
 });

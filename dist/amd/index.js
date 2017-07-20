@@ -1,19 +1,10 @@
-define(['exports', './mdc-target', './helpers', 'aurelia-pal', './config'], function (exports, _mdcTarget, _helpers, _aureliaPal, _config) {
+define(['exports', './helpers', 'aurelia-pal', './config', './mdc-target', './elements/mdc-checkbox'], function (exports, _helpers, _aureliaPal, _config, _mdcTarget, _mdcCheckbox) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.ensureAttached = undefined;
-    Object.keys(_mdcTarget).forEach(function (key) {
-        if (key === "default" || key === "__esModule") return;
-        Object.defineProperty(exports, key, {
-            enumerable: true,
-            get: function () {
-                return _mdcTarget[key];
-            }
-        });
-    });
+    exports.MdcCheckbox = exports.MdcTarget = exports.ensureAttached = undefined;
     Object.defineProperty(exports, 'ensureAttached', {
         enumerable: true,
         get: function () {
@@ -33,6 +24,7 @@ define(['exports', './mdc-target', './helpers', 'aurelia-pal', './config'], func
         }
 
         config.globalResources(_aureliaPal.PLATFORM.moduleName('./mdc-target'));
+        config.globalResources('./elements/mdc-checkbox');
 
         config.aurelia.resources.registerViewEngineHooks({
             beforeCompile: beforeViewCompiled
@@ -50,4 +42,7 @@ define(['exports', './mdc-target', './helpers', 'aurelia-pal', './config'], func
             item.setAttribute(_config.MDC_INIT_ATTR, componentName);
         }
     }
+
+    exports.MdcTarget = _mdcTarget.MdcTarget;
+    exports.MdcCheckbox = _mdcCheckbox.MdcCheckbox;
 });

@@ -1,7 +1,9 @@
 import { PLATFORM } from 'aurelia-pal';
 import { MdcConfig, MDC_TARGET_ATTR, MDC_INIT_ATTR } from './config';
 
-export * from './mdc-target';
+import { MdcTarget } from './mdc-target';
+import { MdcCheckbox } from './elements/mdc-checkbox';
+
 export { ensureAttached } from './helpers';
 
 let pluginConfig;
@@ -14,6 +16,7 @@ export function configure(config, callback) {
     }
 
     config.globalResources(PLATFORM.moduleName('./mdc-target'));
+    config.globalResources('./elements/mdc-checkbox');
 
     config.aurelia.resources.registerViewEngineHooks({
         beforeCompile: beforeViewCompiled
@@ -31,3 +34,5 @@ function beforeViewCompiled(content) {
         item.setAttribute(MDC_INIT_ATTR, componentName);
     }
 }
+
+export { MdcTarget, MdcCheckbox };

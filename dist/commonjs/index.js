@@ -3,19 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.ensureAttached = undefined;
-
-var _mdcTarget = require('./mdc-target');
-
-Object.keys(_mdcTarget).forEach(function (key) {
-    if (key === "default" || key === "__esModule") return;
-    Object.defineProperty(exports, key, {
-        enumerable: true,
-        get: function get() {
-            return _mdcTarget[key];
-        }
-    });
-});
+exports.MdcCheckbox = exports.MdcTarget = exports.ensureAttached = undefined;
 
 var _helpers = require('./helpers');
 
@@ -31,6 +19,10 @@ var _aureliaPal = require('aurelia-pal');
 
 var _config = require('./config');
 
+var _mdcTarget = require('./mdc-target');
+
+var _mdcCheckbox = require('./elements/mdc-checkbox');
+
 var pluginConfig = void 0;
 
 function configure(config, callback) {
@@ -41,6 +33,7 @@ function configure(config, callback) {
     }
 
     config.globalResources(_aureliaPal.PLATFORM.moduleName('./mdc-target'));
+    config.globalResources('./elements/mdc-checkbox');
 
     config.aurelia.resources.registerViewEngineHooks({
         beforeCompile: beforeViewCompiled
@@ -58,3 +51,6 @@ function beforeViewCompiled(content) {
         item.setAttribute(_config.MDC_INIT_ATTR, componentName);
     }
 }
+
+exports.MdcTarget = _mdcTarget.MdcTarget;
+exports.MdcCheckbox = _mdcCheckbox.MdcCheckbox;
