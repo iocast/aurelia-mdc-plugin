@@ -27,7 +27,10 @@ add mdc & plugin to one of your bundle's dependencies in *aurelia.json*.
 {
     "name": "aurelia-mdc-plugin",
     "path": "../node_modules/aurelia-mdc-plugin/dist/amd",
-    "main": "index"
+    "main": "index",
+    "resources": [
+      "elements/mdc-checkbox.html"
+    ]
 }
 ```
 
@@ -58,4 +61,42 @@ export function configure(aurelia) {
 </button>
 ```
 
-The plugin automaticaly adds *data-mdc-auto-init="MDCRipple"* to the button above and initializes it, so you do not have to add it to any of the components available.
+- Example `mdc-checkbox`
+
+Your view includes the checkbox. The plugin automatically adds the necessary *html* and *svg* snippets.
+
+```html
+<label>
+    <mdc-checkbox is-checked.bind="raisedButtons" is-indeterminate.bind="isIndeterminate" is-disabled.bind="isFirstCbDisabled" change.delegate="handleChange()"></mdc-checkbox>
+    Raised buttons
+</label>
+```
+
+In your model you need to provide the `boolean` flags
+
+```js
+export class Example {
+  // these flags are used
+  accentButtons = true;
+  raisedButtons = true;
+  isIndeterminate = true;
+  changeEventCount = 0;
+  isDisabled = true;
+
+  handleChange() {
+    this.changeEventCount++;
+  }
+
+  makeIndeterminate() {
+    this.isIndeterminate = true;
+  }
+
+  toggleCheckbox() {
+    this.raisedButtons = !this.raisedButtons;
+  }
+}
+```
+
+
+
+The plugin automaticaly adds `data-mdc-auto-init="MDCRipple"` to the button above and initializes it, so you do not have to add it to any of the components available.
