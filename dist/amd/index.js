@@ -1,10 +1,10 @@
-define(['exports', './helpers', 'aurelia-pal', './config', './mdc-target', './elements/mdc-checkbox'], function (exports, _helpers, _aureliaPal, _config, _mdcTarget, _mdcCheckbox) {
+define(['exports', './helpers', 'aurelia-pal', './config', './mdc-target', './elements/mdc-checkbox', './elements/mdc-datepicker'], function (exports, _helpers, _aureliaPal, _config, _mdcTarget, _mdcCheckbox, _mdcDatepicker) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.MdcCheckbox = exports.MdcTarget = exports.ensureAttached = undefined;
+    exports.MdcDatepicker = exports.MdcCheckbox = exports.MdcTarget = exports.ensureAttached = undefined;
     Object.defineProperty(exports, 'ensureAttached', {
         enumerable: true,
         get: function () {
@@ -25,6 +25,7 @@ define(['exports', './helpers', 'aurelia-pal', './config', './mdc-target', './el
 
         config.globalResources(_aureliaPal.PLATFORM.moduleName('./mdc-target'));
         config.globalResources('./elements/mdc-checkbox');
+        config.globalResources('./elements/mdc-datepicker');
 
         config.aurelia.resources.registerViewEngineHooks({
             beforeCompile: beforeViewCompiled
@@ -45,4 +46,5 @@ define(['exports', './helpers', 'aurelia-pal', './config', './mdc-target', './el
 
     exports.MdcTarget = _mdcTarget.MdcTarget;
     exports.MdcCheckbox = _mdcCheckbox.MdcCheckbox;
+    exports.MdcDatepicker = _mdcDatepicker.MdcDatepicker;
 });

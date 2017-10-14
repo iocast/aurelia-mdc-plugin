@@ -1,6 +1,7 @@
-import { inject, bindable, bindingMode, DOM } from 'aurelia-framework';
+import { inject, bindable, bindingMode, DOM, customElement } from 'aurelia-framework';
 import { checkbox } from 'material-components-web';
 
+@customElement('mdc-checkbox')
 @inject(DOM.Element)
 export class MdcCheckbox {
 

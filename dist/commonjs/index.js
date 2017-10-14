@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.MdcCheckbox = exports.MdcTarget = exports.ensureAttached = undefined;
+exports.MdcDatepicker = exports.MdcCheckbox = exports.MdcTarget = exports.ensureAttached = undefined;
 
 var _helpers = require('./helpers');
 
@@ -23,6 +23,8 @@ var _mdcTarget = require('./mdc-target');
 
 var _mdcCheckbox = require('./elements/mdc-checkbox');
 
+var _mdcDatepicker = require('./elements/mdc-datepicker');
+
 var pluginConfig = void 0;
 
 function configure(config, callback) {
@@ -34,6 +36,7 @@ function configure(config, callback) {
 
     config.globalResources(_aureliaPal.PLATFORM.moduleName('./mdc-target'));
     config.globalResources('./elements/mdc-checkbox');
+    config.globalResources('./elements/mdc-datepicker');
 
     config.aurelia.resources.registerViewEngineHooks({
         beforeCompile: beforeViewCompiled
@@ -54,3 +57,4 @@ function beforeViewCompiled(content) {
 
 exports.MdcTarget = _mdcTarget.MdcTarget;
 exports.MdcCheckbox = _mdcCheckbox.MdcCheckbox;
+exports.MdcDatepicker = _mdcDatepicker.MdcDatepicker;

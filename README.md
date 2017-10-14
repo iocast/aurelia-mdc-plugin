@@ -25,6 +25,11 @@ add mdc & plugin to one of your bundle's dependencies in *aurelia.json*.
     ]
 },
 {
+  "name": "moment",
+  "path": "../node_modules/moment",
+  "main": "moment"
+},
+{
     "name": "aurelia-mdc-plugin",
     "path": "../node_modules/aurelia-mdc-plugin/dist/amd",
     "main": "index",

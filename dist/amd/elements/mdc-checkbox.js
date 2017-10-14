@@ -55,15 +55,15 @@ define(['exports', 'aurelia-framework', 'material-components-web'], function (ex
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
   }
 
-  var _dec, _dec2, _dec3, _dec4, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
+  var _dec, _dec2, _dec3, _dec4, _dec5, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
 
-  var MdcCheckbox = exports.MdcCheckbox = (_dec = (0, _aureliaFramework.inject)(_aureliaFramework.DOM.Element), _dec2 = (0, _aureliaFramework.bindable)({
-    defaultBindingMode: _aureliaFramework.bindingMode.twoWay
-  }), _dec3 = (0, _aureliaFramework.bindable)({
+  var MdcCheckbox = exports.MdcCheckbox = (_dec = (0, _aureliaFramework.customElement)('mdc-checkbox'), _dec2 = (0, _aureliaFramework.inject)(_aureliaFramework.DOM.Element), _dec3 = (0, _aureliaFramework.bindable)({
     defaultBindingMode: _aureliaFramework.bindingMode.twoWay
   }), _dec4 = (0, _aureliaFramework.bindable)({
+    defaultBindingMode: _aureliaFramework.bindingMode.twoWay
+  }), _dec5 = (0, _aureliaFramework.bindable)({
     defaultBindingMode: _aureliaFramework.bindingMode.oneWay
-  }), _dec(_class = (_class2 = function () {
+  }), _dec(_class = _dec2(_class = (_class2 = function () {
     function MdcCheckbox(element) {
       _classCallCheck(this, MdcCheckbox);
 
@@ -104,20 +104,20 @@ define(['exports', 'aurelia-framework', 'material-components-web'], function (ex
     };
 
     return MdcCheckbox;
-  }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'isChecked', [_dec2], {
+  }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'isChecked', [_dec3], {
     enumerable: true,
     initializer: function initializer() {
       return false;
     }
-  }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'isIndeterminate', [_dec3], {
+  }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'isIndeterminate', [_dec4], {
     enumerable: true,
     initializer: function initializer() {
       return false;
     }
-  }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'isDisabled', [_dec4], {
+  }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'isDisabled', [_dec5], {
     enumerable: true,
     initializer: function initializer() {
       return false;
     }
-  })), _class2)) || _class);
+  })), _class2)) || _class) || _class);
 });

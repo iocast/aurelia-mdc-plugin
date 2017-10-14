@@ -1,0 +1,136 @@
+.mdc-datepicker__surface {
+    display: grid !important;
+    grid-template-areas: "head main" "head foot";
+    grid-template-columns: 200px 1fr;
+    width: fit-content !important;
+}
+
+.mdc-datepicker__header {
+    grid-area: head;
+    /*grid-row: span 2;*/
+    background-color: var(--mdc-theme-primary);
+}
+
+.mdc-datepicker__header--text {
+    align-self: flex-start;
+    align-items: start;
+    display: flex;
+    flex-flow: column;
+}
+
+.md-datapicker-typography--bold {
+    font-weight: 500;
+}
+
+.mdc-datapicker-typography--black {
+    color: var(--mdc-theme-text-primary-on-background) !important;
+}
+
+.mdc-datepicker__body {
+    grid-area: main;
+    /*
+    grid-row: 1;
+    grid-column: 2;
+    */
+    padding: 0 !important;
+}
+
+.mdc-datepicker__footer {
+    grid-area: foot;
+    /*
+    grid-column: 2;
+    grid-row: 2;
+    */
+}
+
+.mdc-datepicker__body--header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center
+}
+
+.mdc-typography--title {
+    flex: 1;
+    text-align: center;
+}
+
+.mdc-datepicker__body--header button {
+    background-color: transparent;
+    color: black;
+    box-shadow: none;
+}
+
+.mdc-datepicker__body--header button:hover {
+    background-color: red;
+}
+
+.mdc-datepicker__body--header button:active {
+    background-color: green;
+}
+
+.mdc-datepicker__body-content {
+    display: grid !important;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+}
+
+.mdc-datepicker__body-content>* {
+    padding: 5px;
+}
+
+.mdc-datapicker-carousel {
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+    height: 400px;
+}
+
+.mdc-datapicker-carousel__track {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.mdc-datapicker-carousel__track .mdc-datapicker-carousel__slide {
+    transition: transform 0.5s ease 0s;
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.previous {
+    transform: translateX(-100%);
+}
+
+.current {
+    transform: translateX(0%);
+}
+
+.next {
+    transform: translateX(100%);
+}
+
+.mdc-datapicker-carousel__slide {
+    height: 100%;
+    position: absolute;
+    overflow-y: auto;
+}
+
+
+/* phone */
+
+@media (max-width: 479px) {
+    .mdc-datepicker__surface {
+        display: grid !important;
+        grid-template-areas: "head" "main" "foot";
+        grid-template-columns: 1fr;
+        grid-template-rows: 10px 1fr 10px;
+        width: fit-content !important;
+    }
+}
