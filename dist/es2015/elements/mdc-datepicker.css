@@ -26,7 +26,7 @@
 }
 
 .mdc-datapicker-weekend {
-  background-color: var(--mdc-theme-primary-light);
+    background-color: var(--mdc-theme-primary-light);
 }
 
 .mdc-datepicker__body {
@@ -61,10 +61,33 @@
 }
 
 .mdc-datapicker-carousel {
+    display: flex;
+    flex-direction: row;
+
     overflow: hidden;
     text-align: center;
     position: relative;
-    height: 235px;
+    height: 265px;
+}
+
+.mdc-datapicker-carousel button {
+    color: var(--mdc-theme-text-icon-on-background);
+    background-color: var(--mdc-theme-background);
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.mdc-datapicker-carousel button:last-child {
+  margin-left: auto;
+}
+
+.mdc-datapicker-carousel button:hover {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+.mdc-datapicker-carousel button:focus {
+    box-shadow: none;
+    -webkit-box-shadow: none;
 }
 
 .mdc-datapicker-carousel__track {
@@ -78,11 +101,26 @@
 }
 
 .mdc-datapicker-carousel__track .mdc-datapicker-carousel__slide {
+    display: grid;
+    grid-template-areas: "head" "main";
+    grid-template-rows: 50px 1fr;
+
+    align-items: center;
+
     transition: transform 0.5s ease 0s;
-    display: block;
     top: 0;
     left: 0;
     right: 0;
+}
+
+
+.mdc-datepicker__body--header {
+  grid-area: head;
+  margin-bottom: 10px;
+}
+
+.mdc-datepicker__body-content {
+  grid-area: main;
 }
 
 .previous {
@@ -98,7 +136,7 @@
 }
 
 .hidden {
-  opacity: 0;
+    opacity: 0;
 }
 
 .mdc-datapicker-carousel__slide {
@@ -120,13 +158,11 @@
     }
 }
 
-
-
 @keyframes carousel-show-slide {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }

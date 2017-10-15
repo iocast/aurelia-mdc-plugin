@@ -2,6 +2,7 @@ import {
     inject,
     bindable,
     bindingMode,
+    computedFrom,
     DOM,
     customElement
 } from 'aurelia-framework';
@@ -9,7 +10,6 @@ import {
     dialog
 } from 'material-components-web';
 
-// TODO: locale as bindable attribute
 
 @customElement('mdc-datepicker')
 @inject(DOM.Element)
@@ -36,110 +36,91 @@ export class MdcDatepicker {
 
     attached() {
         this.mdcDatepickerDialog = new dialog.MDCDialog(this.datepickerDialog);
-        this.shiftLeft = 0;
+
+        let shift = 0;
         if (this.startWeekOn === 'monday') {
-            this.shiftLeft = 1;
+            shift = 1;
         } else if (this.startWeekOn === 'tuesday') {
-            this.shiftLeft = 2;
+            shift = 2;
         } else if (this.startWeekOn === 'wednesday') {
-            this.shiftLeft = 3;
+            shift = 3;
         } else if (this.startWeekOn === 'thursday') {
-            this.shiftLeft = 4;
+            shift = 4;
         } else if (this.startWeekOn === 'friday') {
-            this.shiftLeft = 5;
+            shift = 5;
         } else if (this.startWeekOn === 'saturday') {
-            this.shiftLeft = 6;
+            shift = 6;
         }
 
 
+        this.slideA = new DatePickerDate(new Date(), this.locale, shift, "current");
+        this.slideB = new DatePickerDate(new Date(Date.UTC(this.slideA.date.getFullYear(), this.slideA.date.getMonth() - 1, 1)), this.locale, shift, "previous");
+        this.slideC = new DatePickerDate(new Date(Date.UTC(this.slideA.date.getFullYear(), this.slideA.date.getMonth() + 1, 1)), this.locale, shift, "next");
 
-        this.weekdays = this.getWeekdays(this.locale, {
-            shiftLeft: this.shiftLeft
+
+        this.slideA.calculateCalendar({
+            empty: true
         });
-        this.selected = this.format(new Date(), this.locale);
-
-
-        this.modelA = this.format(new Date(), this.locale);
-        this.modelA.matrix = this.matrix(this.modelA.year, this.modelA.month, {
-            empty: true,
-            shiftLeft: this.shiftLeft
+        this.slideB.calculateCalendar({
+            empty: true
         });
-        this.modelA.matrixFlat = this.flatten(this.modelA.matrix);
-        this.modelA.position = "current";
-
-        this.modelB = this.format(new Date(Date.UTC(this.modelA.date.getFullYear(), this.modelA.date.getMonth() - 1, 1)), this.locale);
-        this.modelB.matrix = this.matrix(this.modelB.year, this.modelB.month, {
-            empty: true,
-            shiftLeft: this.shiftLeft
+        this.slideC.calculateCalendar({
+            empty: true
         });
-        this.modelB.matrixFlat = this.flatten(this.modelB.matrix);
-        this.modelB.position = "previous";
 
-        this.modelC = this.format(new Date(Date.UTC(this.modelA.date.getFullYear(), this.modelA.date.getMonth() + 1, 1)), this.locale);
-        this.modelC.matrix = this.matrix(this.modelC.year, this.modelC.month, {
-            empty: true,
-            shiftLeft: this.shiftLeft
-        });
-        this.modelC.matrixFlat = this.flatten(this.modelC.matrix);
-        this.modelC.position = "next";
+
+        this.selected = new DatePickerDate(new Date(), this.locale, shift);
     }
 
 
     next() {
-        this.modelA = this.getNextPosition(this.modelA);
-        this.modelB = this.getNextPosition(this.modelB);
-        this.modelC = this.getNextPosition(this.modelC);
+        this.slideA = this.getNextPosition(this.slideA);
+        this.slideB = this.getNextPosition(this.slideB);
+        this.slideC = this.getNextPosition(this.slideC);
     }
     previous() {
-        this.modelA = this.getPreviousPosition(this.modelA);
-        this.modelB = this.getPreviousPosition(this.modelB);
-        this.modelC = this.getPreviousPosition(this.modelC);
+        this.slideA = this.getPreviousPosition(this.slideA);
+        this.slideB = this.getPreviousPosition(this.slideB);
+        this.slideC = this.getPreviousPosition(this.slideC);
     }
 
     getNextPosition(model) {
-        if (model.position.includes('previous')) {
-            model = this.format(new Date(Date.UTC(model.date.getFullYear(), model.date.getMonth() + 3, 1)), this.locale);
-            model.matrix = this.matrix(model.year, model.month, {
-                empty: true,
-                shiftLeft: this.shiftLeft
-            });
-            model.matrixFlat = this.flatten(model.matrix);
-            model.position = "next hidden";
+        if (model.position === 'previous') {
+            model.date = new Date(Date.UTC(model.date.getFullYear(), model.date.getMonth() + 3, 1));
+            model.position = "next";
             return model;
-        } else if (model.position.includes('current')) {
-            model.position =  "previous";
+        } else if (model.position === 'current') {
+            model.position = "previous";
             return model;
-        } else if (model.position.includes('next')) {
-            model.position =  "current";
+        } else if (model.position === 'next') {
+            model.position = "current";
             return model;
         }
     }
     getPreviousPosition(model) {
-        if (model.position.includes('previous')) {
-            model.position =  "current";
+        if (model.position === 'previous') {
+            model.position = "current";
             return model;
-        } else if (model.position.includes('current')) {
-            model.position =  "next";
+        } else if (model.position === 'current') {
+            model.position = "next";
             return model;
-        } else if (model.position.includes('next')) {
-            model = this.format(new Date(Date.UTC(model.date.getFullYear(), model.date.getMonth() - 3, 1)), this.locale);
-            model.matrix = this.matrix(model.year, model.month, {
-                empty: true,
-                shiftLeft: this.shiftLeft
-            });
-            model.matrixFlat = this.flatten(model.matrix);
-            model.position =  "previous hidden";
+        } else if (model.position === 'next') {
+            model.date = new Date(Date.UTC(model.date.getFullYear(), model.date.getMonth() - 3, 1));
+            model.position = "previous";
             return model;
         }
     }
 
     show() {
 
-
-        console.log(this);
+        this.selected.refresh(this.locale);
+        this.slideA.refresh(this.locale);
+        this.slideB.refresh(this.locale);
+        this.slideC.refresh(this.locale);
 
         this.mdcDatepickerDialog.show();
 
+        console.log(this);
     }
 
     cancel() {
@@ -150,109 +131,162 @@ export class MdcDatepicker {
         this.mdcDatepickerDialog.close();
     }
 
+}
 
-    format(date, locale) {
-        locale = (locale) ? locale : 'en';
 
-        let formatted = {
-            date: date,
-            year: '',
-            month: '',
-            monthNarrow: '',
-            monthShort: '',
-            monthLong: '',
-            day: '',
-            weekdayLong: '',
-            weekdayNarrow: '',
-            weekdayShort: '',
-        };
 
-        for (let value of new Intl.DateTimeFormat(locale, {
+
+class DatePickerDate {
+
+    _date;
+    weekdays = [];
+    matrix = [];
+    matrixFlat = [];
+
+    matrixOptions = {
+        empty: false
+    }
+
+    _position = "";
+    styleClasses = "";
+
+    constructor(date, locale, shift, position) {
+        this.locale = (locale) ? locale : 'en';
+        this.shift = (shift) ? shift : 0;
+        this.position = position;
+        this.date = date;
+    }
+
+    @computedFrom("_position")
+    get date() {
+        return this._date;
+    }
+    set date(value) {
+        this._date = value;
+        this.refresh(this.locale, this.shift, this.position);
+    }
+
+    @computedFrom("_position")
+    get position() {
+        return this._position;
+    }
+    set position(value) {
+        this._calcualteStyle(value);
+        this._position = value;
+    }
+
+
+    calculateCalendar(options) {
+        this.matrixOptions = options;
+        this._weekdays();
+        this._matrix();
+        this._flatten();
+    }
+
+    refresh(locale, shift, position) {
+        this.locale = (locale) ? locale : this.locale;
+        this.shift = (shift) ? shift : this.shift;
+        this.position = (position) ? position : this.position;
+
+        this._format();
+
+        if (this.matrix.length > 0) {
+            this.calculateCalendar(this.matrixOptions);
+        }
+
+    }
+
+    _calcualteStyle(newPosition) {
+        if (!this.position) {
+            if (newPosition === 'previous') {
+                this.styleClasses = 'previous';
+            } else if (newPosition === 'current') {
+                this.styleClasses = 'current';
+            } else if (newPosition === 'next') {
+                this.styleClasses = 'next';
+            }
+            return
+        }
+
+        if (this.position === 'previous' && newPosition === 'next') {
+            this.styleClasses = 'next hidden';
+        } else if (this.position === 'current' && newPosition === 'previous') {
+            this.styleClasses = 'previous';
+        } else if (this.position === 'next' && newPosition === 'current') {
+            this.styleClasses = 'current';
+        } else if (this.position === 'previous' && newPosition === 'current') {
+            this.styleClasses = 'current';
+        } else if (this.position === 'current' && newPosition === 'next') {
+            this.styleClasses = 'next';
+        } else if (this.position === 'next' && newPosition === 'previous') {
+            this.styleClasses = 'previous hidden';
+        }
+    }
+
+    _format() {
+        for (let value of new Intl.DateTimeFormat(this.locale, {
                 weekday: 'long',
                 //era: 'long',
                 year: 'numeric',
                 month: 'numeric',
                 day: 'numeric'
-            }).formatToParts(date)) {
+            }).formatToParts(this.date)) {
             if (value.type === 'year') {
-                formatted.year = value.value;
+                this.year = value.value;
             } else if (value.type === 'month') {
-                formatted.month = value.value;
+                this.month = value.value;
             } else if (value.type === 'day') {
-                formatted.day = value.value;
+                this.day = value.value;
             } else if (value.type === 'weekday') {
-                formatted.weekdayLong = value.value;
+                this.weekdayLong = value.value;
             }
         }
 
-        for (let value of new Intl.DateTimeFormat(locale, {
+        for (let value of new Intl.DateTimeFormat(this.locale, {
                 weekday: 'narrow',
                 month: 'narrow'
-            }).formatToParts(date)) {
+            }).formatToParts(this.date)) {
             if (value.type === 'month') {
-                formatted.monthNarrow = value.value;
+                this.monthNarrow = value.value;
             } else if (value.type === 'weekday') {
-                formatted.weekdayNarrow = value.value;
+                this.weekdayNarrow = value.value;
             }
         }
 
-        for (let value of new Intl.DateTimeFormat(locale, {
+        for (let value of new Intl.DateTimeFormat(this.locale, {
                 weekday: 'short',
                 month: 'short'
-            }).formatToParts(date)) {
+            }).formatToParts(this.date)) {
             if (value.type === 'month') {
-                formatted.monthShort = value.value;
+                this.monthShort = value.value;
             } else if (value.type === 'weekday') {
-                formatted.weekdayShort = value.value;
+                this.weekdayShort = value.value;
             }
         }
 
-        for (let value of new Intl.DateTimeFormat(locale, {
+        for (let value of new Intl.DateTimeFormat(this.locale, {
                 month: 'long'
-            }).formatToParts(date)) {
+            }).formatToParts(this.date)) {
             if (value.type === 'month') {
-                formatted.monthLong = value.value;
+                this.monthLong = value.value;
             }
         }
 
-        return formatted;
+        return this;
     }
 
-    getWeekdays(locale, options) {
-        locale = (locale) ? locale : 'en';
+    _matrix() {
+        this.matrix = [];
 
-        let date = new Date();
-        date.setUTCDate(date.getUTCDate() - date.getUTCDay() - 1);
-        let weekdays = Array(7).fill().map(i => {
-            date.setUTCDate(date.getUTCDate() + 1);
-            return Intl.DateTimeFormat(locale, {
-                weekday: 'narrow'
-            }).format(date);
-        });
+        let startDate = new Date(Date.UTC(this.year, this.month - 1, 1));
+        let endDate = new Date(Date.UTC(this.year, this.month, 0));
 
-        if ("shiftLeft" in options && options.shiftLeft > 0) {
-            weekdays = weekdays.concat(weekdays.splice(0, options.shiftLeft));
-        }
+        let matrixStartDate = new Date(Date.UTC(this.year, this.month - 1, 1));
+        let matrixEndDate = new Date(Date.UTC(this.year, this.month, 0));
 
-        return weekdays;
-    }
 
-    matrix(year, month, options) {
-        let matrix = [];
-
-        let startDate = new Date(Date.UTC(year, month - 1, 1));
-        let endDate = new Date(Date.UTC(year, month, 0));
-
-        let matrixStartDate = new Date(Date.UTC(year, month - 1, 1));
-        let matrixEndDate = new Date(Date.UTC(year, month, 0));
-
-        let shiftLeft = 0;
-        if ("shiftLeft" in options && options.shiftLeft > 0) {
-            shiftLeft = options.shiftLeft;
-        }
-
-        matrixStartDate.setUTCDate(startDate.getUTCDate() - this.mod(startDate.getUTCDay() - shiftLeft, 7));
-        matrixEndDate.setUTCDate(endDate.getUTCDate() + (6 - this.mod(endDate.getUTCDay() - shiftLeft, 7)));
+        matrixStartDate.setUTCDate(startDate.getUTCDate() - this._mod(startDate.getUTCDay() - this.shift, 7));
+        matrixEndDate.setUTCDate(endDate.getUTCDate() + (6 - this._mod(endDate.getUTCDay() - this.shift, 7)));
 
         let currentDate = matrixStartDate;
         let counter = 0;
@@ -260,12 +294,12 @@ export class MdcDatepicker {
 
         while (currentDate <= matrixEndDate) {
             if (counter > 6) {
-                matrix.push(week);
+                this.matrix.push(week);
                 counter = 0;
                 week = [];
             }
 
-            if (options.empty && (currentDate < startDate || currentDate > endDate)) {
+            if (this.matrixOptions.empty && (currentDate < startDate || currentDate > endDate)) {
                 week.push("")
             } else {
                 week.push(currentDate.getDate());
@@ -275,20 +309,32 @@ export class MdcDatepicker {
             currentDate.setUTCDate(currentDate.getUTCDate() + 1);
         }
 
-        matrix.push(week);
-
-        return matrix;
+        this.matrix.push(week);
     }
 
-    flatten(matrix) {
-        return [].concat(...matrix)
+    _flatten() {
+        this.matrixFlat = [].concat(...this.matrix)
     }
 
 
+    _weekdays() {
+        let date = new Date();
+        date.setUTCDate(date.getUTCDate() - date.getUTCDay() - 1);
+        this.weekdays = Array(7).fill().map(i => {
+            date.setUTCDate(date.getUTCDate() + 1);
+            return Intl.DateTimeFormat(this.locale, {
+                weekday: 'narrow'
+            }).format(date);
+        });
 
-    mod(a, n) {
+        if (this.shift > 0) {
+            this.weekdays = this.weekdays.concat(this.weekdays.splice(0, this.shift));
+        }
+
+    }
+
+    _mod(a, n) {
         return a - (n * Math.floor(a / n));
     }
-
 
 }

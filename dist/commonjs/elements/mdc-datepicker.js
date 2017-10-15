@@ -5,7 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.MdcDatepicker = undefined;
 
-var _dec, _dec2, _dec3, _dec4, _class, _desc, _value, _class2, _descriptor, _descriptor2;
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _dec, _dec2, _dec3, _dec4, _class, _desc, _value, _class2, _descriptor, _descriptor2, _dec5, _dec6, _desc2, _value2, _class4;
 
 var _aureliaFramework = require('aurelia-framework');
 
@@ -77,106 +79,89 @@ var MdcDatepicker = exports.MdcDatepicker = (_dec = (0, _aureliaFramework.custom
 
     MdcDatepicker.prototype.attached = function attached() {
         this.mdcDatepickerDialog = new _materialComponentsWeb.dialog.MDCDialog(this.datepickerDialog);
-        this.shiftLeft = 0;
+
+        var shift = 0;
         if (this.startWeekOn === 'monday') {
-            this.shiftLeft = 1;
+            shift = 1;
         } else if (this.startWeekOn === 'tuesday') {
-            this.shiftLeft = 2;
+            shift = 2;
         } else if (this.startWeekOn === 'wednesday') {
-            this.shiftLeft = 3;
+            shift = 3;
         } else if (this.startWeekOn === 'thursday') {
-            this.shiftLeft = 4;
+            shift = 4;
         } else if (this.startWeekOn === 'friday') {
-            this.shiftLeft = 5;
+            shift = 5;
         } else if (this.startWeekOn === 'saturday') {
-            this.shiftLeft = 6;
+            shift = 6;
         }
 
-        this.weekdays = this.getWeekdays(this.locale, {
-            shiftLeft: this.shiftLeft
-        });
-        this.selected = this.format(new Date(), this.locale);
+        this.slideA = new DatePickerDate(new Date(), this.locale, shift, "current");
+        this.slideB = new DatePickerDate(new Date(Date.UTC(this.slideA.date.getFullYear(), this.slideA.date.getMonth() - 1, 1)), this.locale, shift, "previous");
+        this.slideC = new DatePickerDate(new Date(Date.UTC(this.slideA.date.getFullYear(), this.slideA.date.getMonth() + 1, 1)), this.locale, shift, "next");
 
-        this.modelA = this.format(new Date(), this.locale);
-        this.modelA.matrix = this.matrix(this.modelA.year, this.modelA.month, {
-            empty: true,
-            shiftLeft: this.shiftLeft
+        this.slideA.calculateCalendar({
+            empty: true
         });
-        this.modelA.matrixFlat = this.flatten(this.modelA.matrix);
-        this.modelA.position = "current";
+        this.slideB.calculateCalendar({
+            empty: true
+        });
+        this.slideC.calculateCalendar({
+            empty: true
+        });
 
-        this.modelB = this.format(new Date(Date.UTC(this.modelA.date.getFullYear(), this.modelA.date.getMonth() - 1, 1)), this.locale);
-        this.modelB.matrix = this.matrix(this.modelB.year, this.modelB.month, {
-            empty: true,
-            shiftLeft: this.shiftLeft
-        });
-        this.modelB.matrixFlat = this.flatten(this.modelB.matrix);
-        this.modelB.position = "previous";
-
-        this.modelC = this.format(new Date(Date.UTC(this.modelA.date.getFullYear(), this.modelA.date.getMonth() + 1, 1)), this.locale);
-        this.modelC.matrix = this.matrix(this.modelC.year, this.modelC.month, {
-            empty: true,
-            shiftLeft: this.shiftLeft
-        });
-        this.modelC.matrixFlat = this.flatten(this.modelC.matrix);
-        this.modelC.position = "next";
+        this.selected = new DatePickerDate(new Date(), this.locale, shift);
     };
 
     MdcDatepicker.prototype.next = function next() {
-        this.modelA = this.getNextPosition(this.modelA);
-        this.modelB = this.getNextPosition(this.modelB);
-        this.modelC = this.getNextPosition(this.modelC);
+        this.slideA = this.getNextPosition(this.slideA);
+        this.slideB = this.getNextPosition(this.slideB);
+        this.slideC = this.getNextPosition(this.slideC);
     };
 
     MdcDatepicker.prototype.previous = function previous() {
-        this.modelA = this.getPreviousPosition(this.modelA);
-        this.modelB = this.getPreviousPosition(this.modelB);
-        this.modelC = this.getPreviousPosition(this.modelC);
+        this.slideA = this.getPreviousPosition(this.slideA);
+        this.slideB = this.getPreviousPosition(this.slideB);
+        this.slideC = this.getPreviousPosition(this.slideC);
     };
 
     MdcDatepicker.prototype.getNextPosition = function getNextPosition(model) {
-        if (model.position.includes('previous')) {
-            model = this.format(new Date(Date.UTC(model.date.getFullYear(), model.date.getMonth() + 3, 1)), this.locale);
-            model.matrix = this.matrix(model.year, model.month, {
-                empty: true,
-                shiftLeft: this.shiftLeft
-            });
-            model.matrixFlat = this.flatten(model.matrix);
-            model.position = "next hidden";
+        if (model.position === 'previous') {
+            model.date = new Date(Date.UTC(model.date.getFullYear(), model.date.getMonth() + 3, 1));
+            model.position = "next";
             return model;
-        } else if (model.position.includes('current')) {
+        } else if (model.position === 'current') {
             model.position = "previous";
             return model;
-        } else if (model.position.includes('next')) {
+        } else if (model.position === 'next') {
             model.position = "current";
             return model;
         }
     };
 
     MdcDatepicker.prototype.getPreviousPosition = function getPreviousPosition(model) {
-        if (model.position.includes('previous')) {
+        if (model.position === 'previous') {
             model.position = "current";
             return model;
-        } else if (model.position.includes('current')) {
+        } else if (model.position === 'current') {
             model.position = "next";
             return model;
-        } else if (model.position.includes('next')) {
-            model = this.format(new Date(Date.UTC(model.date.getFullYear(), model.date.getMonth() - 3, 1)), this.locale);
-            model.matrix = this.matrix(model.year, model.month, {
-                empty: true,
-                shiftLeft: this.shiftLeft
-            });
-            model.matrixFlat = this.flatten(model.matrix);
-            model.position = "previous hidden";
+        } else if (model.position === 'next') {
+            model.date = new Date(Date.UTC(model.date.getFullYear(), model.date.getMonth() - 3, 1));
+            model.position = "previous";
             return model;
         }
     };
 
     MdcDatepicker.prototype.show = function show() {
 
-        console.log(this);
+        this.selected.refresh(this.locale);
+        this.slideA.refresh(this.locale);
+        this.slideB.refresh(this.locale);
+        this.slideC.refresh(this.locale);
 
         this.mdcDatepickerDialog.show();
+
+        console.log(this);
     };
 
     MdcDatepicker.prototype.cancel = function cancel() {
@@ -187,29 +172,87 @@ var MdcDatepicker = exports.MdcDatepicker = (_dec = (0, _aureliaFramework.custom
         this.mdcDatepickerDialog.close();
     };
 
-    MdcDatepicker.prototype.format = function format(date, locale) {
-        locale = locale ? locale : 'en';
+    return MdcDatepicker;
+}(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'locale', [_dec3], {
+    enumerable: true,
+    initializer: null
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'startWeekOn', [_dec4], {
+    enumerable: true,
+    initializer: null
+})), _class2)) || _class) || _class);
+var DatePickerDate = (_dec5 = (0, _aureliaFramework.computedFrom)("_position"), _dec6 = (0, _aureliaFramework.computedFrom)("_position"), (_class4 = function () {
+    function DatePickerDate(date, locale, shift, position) {
+        _classCallCheck(this, DatePickerDate);
 
-        var formatted = {
-            date: date,
-            year: '',
-            month: '',
-            monthNarrow: '',
-            monthShort: '',
-            monthLong: '',
-            day: '',
-            weekdayLong: '',
-            weekdayNarrow: '',
-            weekdayShort: ''
+        this.weekdays = [];
+        this.matrix = [];
+        this.matrixFlat = [];
+        this.matrixOptions = {
+            empty: false
         };
+        this._position = "";
+        this.styleClasses = "";
 
-        for (var _iterator = new Intl.DateTimeFormat(locale, {
+        this.locale = locale ? locale : 'en';
+        this.shift = shift ? shift : 0;
+        this.position = position;
+        this.date = date;
+    }
+
+    DatePickerDate.prototype.calculateCalendar = function calculateCalendar(options) {
+        this.matrixOptions = options;
+        this._weekdays();
+        this._matrix();
+        this._flatten();
+    };
+
+    DatePickerDate.prototype.refresh = function refresh(locale, shift, position) {
+        this.locale = locale ? locale : this.locale;
+        this.shift = shift ? shift : this.shift;
+        this.position = position ? position : this.position;
+
+        this._format();
+
+        if (this.matrix.length > 0) {
+            this.calculateCalendar(this.matrixOptions);
+        }
+    };
+
+    DatePickerDate.prototype._calcualteStyle = function _calcualteStyle(newPosition) {
+        if (!this.position) {
+            if (newPosition === 'previous') {
+                this.styleClasses = 'previous';
+            } else if (newPosition === 'current') {
+                this.styleClasses = 'current';
+            } else if (newPosition === 'next') {
+                this.styleClasses = 'next';
+            }
+            return;
+        }
+
+        if (this.position === 'previous' && newPosition === 'next') {
+            this.styleClasses = 'next hidden';
+        } else if (this.position === 'current' && newPosition === 'previous') {
+            this.styleClasses = 'previous';
+        } else if (this.position === 'next' && newPosition === 'current') {
+            this.styleClasses = 'current';
+        } else if (this.position === 'previous' && newPosition === 'current') {
+            this.styleClasses = 'current';
+        } else if (this.position === 'current' && newPosition === 'next') {
+            this.styleClasses = 'next';
+        } else if (this.position === 'next' && newPosition === 'previous') {
+            this.styleClasses = 'previous hidden';
+        }
+    };
+
+    DatePickerDate.prototype._format = function _format() {
+        for (var _iterator = new Intl.DateTimeFormat(this.locale, {
             weekday: 'long',
 
             year: 'numeric',
             month: 'numeric',
             day: 'numeric'
-        }).formatToParts(date), _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+        }).formatToParts(this.date), _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
             var _ref;
 
             if (_isArray) {
@@ -224,20 +267,20 @@ var MdcDatepicker = exports.MdcDatepicker = (_dec = (0, _aureliaFramework.custom
             var value = _ref;
 
             if (value.type === 'year') {
-                formatted.year = value.value;
+                this.year = value.value;
             } else if (value.type === 'month') {
-                formatted.month = value.value;
+                this.month = value.value;
             } else if (value.type === 'day') {
-                formatted.day = value.value;
+                this.day = value.value;
             } else if (value.type === 'weekday') {
-                formatted.weekdayLong = value.value;
+                this.weekdayLong = value.value;
             }
         }
 
-        for (var _iterator2 = new Intl.DateTimeFormat(locale, {
+        for (var _iterator2 = new Intl.DateTimeFormat(this.locale, {
             weekday: 'narrow',
             month: 'narrow'
-        }).formatToParts(date), _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
+        }).formatToParts(this.date), _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator]();;) {
             var _ref2;
 
             if (_isArray2) {
@@ -249,19 +292,19 @@ var MdcDatepicker = exports.MdcDatepicker = (_dec = (0, _aureliaFramework.custom
                 _ref2 = _i2.value;
             }
 
-            var _value2 = _ref2;
+            var _value3 = _ref2;
 
-            if (_value2.type === 'month') {
-                formatted.monthNarrow = _value2.value;
-            } else if (_value2.type === 'weekday') {
-                formatted.weekdayNarrow = _value2.value;
+            if (_value3.type === 'month') {
+                this.monthNarrow = _value3.value;
+            } else if (_value3.type === 'weekday') {
+                this.weekdayNarrow = _value3.value;
             }
         }
 
-        for (var _iterator3 = new Intl.DateTimeFormat(locale, {
+        for (var _iterator3 = new Intl.DateTimeFormat(this.locale, {
             weekday: 'short',
             month: 'short'
-        }).formatToParts(date), _isArray3 = Array.isArray(_iterator3), _i3 = 0, _iterator3 = _isArray3 ? _iterator3 : _iterator3[Symbol.iterator]();;) {
+        }).formatToParts(this.date), _isArray3 = Array.isArray(_iterator3), _i3 = 0, _iterator3 = _isArray3 ? _iterator3 : _iterator3[Symbol.iterator]();;) {
             var _ref3;
 
             if (_isArray3) {
@@ -273,18 +316,18 @@ var MdcDatepicker = exports.MdcDatepicker = (_dec = (0, _aureliaFramework.custom
                 _ref3 = _i3.value;
             }
 
-            var _value3 = _ref3;
+            var _value4 = _ref3;
 
-            if (_value3.type === 'month') {
-                formatted.monthShort = _value3.value;
-            } else if (_value3.type === 'weekday') {
-                formatted.weekdayShort = _value3.value;
+            if (_value4.type === 'month') {
+                this.monthShort = _value4.value;
+            } else if (_value4.type === 'weekday') {
+                this.weekdayShort = _value4.value;
             }
         }
 
-        for (var _iterator4 = new Intl.DateTimeFormat(locale, {
+        for (var _iterator4 = new Intl.DateTimeFormat(this.locale, {
             month: 'long'
-        }).formatToParts(date), _isArray4 = Array.isArray(_iterator4), _i4 = 0, _iterator4 = _isArray4 ? _iterator4 : _iterator4[Symbol.iterator]();;) {
+        }).formatToParts(this.date), _isArray4 = Array.isArray(_iterator4), _i4 = 0, _iterator4 = _isArray4 ? _iterator4 : _iterator4[Symbol.iterator]();;) {
             var _ref4;
 
             if (_isArray4) {
@@ -296,51 +339,27 @@ var MdcDatepicker = exports.MdcDatepicker = (_dec = (0, _aureliaFramework.custom
                 _ref4 = _i4.value;
             }
 
-            var _value4 = _ref4;
+            var _value5 = _ref4;
 
-            if (_value4.type === 'month') {
-                formatted.monthLong = _value4.value;
+            if (_value5.type === 'month') {
+                this.monthLong = _value5.value;
             }
         }
 
-        return formatted;
+        return this;
     };
 
-    MdcDatepicker.prototype.getWeekdays = function getWeekdays(locale, options) {
-        locale = locale ? locale : 'en';
+    DatePickerDate.prototype._matrix = function _matrix() {
+        this.matrix = [];
 
-        var date = new Date();
-        date.setUTCDate(date.getUTCDate() - date.getUTCDay() - 1);
-        var weekdays = Array(7).fill().map(function (i) {
-            date.setUTCDate(date.getUTCDate() + 1);
-            return Intl.DateTimeFormat(locale, {
-                weekday: 'narrow'
-            }).format(date);
-        });
+        var startDate = new Date(Date.UTC(this.year, this.month - 1, 1));
+        var endDate = new Date(Date.UTC(this.year, this.month, 0));
 
-        if ("shiftLeft" in options && options.shiftLeft > 0) {
-            weekdays = weekdays.concat(weekdays.splice(0, options.shiftLeft));
-        }
+        var matrixStartDate = new Date(Date.UTC(this.year, this.month - 1, 1));
+        var matrixEndDate = new Date(Date.UTC(this.year, this.month, 0));
 
-        return weekdays;
-    };
-
-    MdcDatepicker.prototype.matrix = function matrix(year, month, options) {
-        var matrix = [];
-
-        var startDate = new Date(Date.UTC(year, month - 1, 1));
-        var endDate = new Date(Date.UTC(year, month, 0));
-
-        var matrixStartDate = new Date(Date.UTC(year, month - 1, 1));
-        var matrixEndDate = new Date(Date.UTC(year, month, 0));
-
-        var shiftLeft = 0;
-        if ("shiftLeft" in options && options.shiftLeft > 0) {
-            shiftLeft = options.shiftLeft;
-        }
-
-        matrixStartDate.setUTCDate(startDate.getUTCDate() - this.mod(startDate.getUTCDay() - shiftLeft, 7));
-        matrixEndDate.setUTCDate(endDate.getUTCDate() + (6 - this.mod(endDate.getUTCDay() - shiftLeft, 7)));
+        matrixStartDate.setUTCDate(startDate.getUTCDate() - this._mod(startDate.getUTCDay() - this.shift, 7));
+        matrixEndDate.setUTCDate(endDate.getUTCDate() + (6 - this._mod(endDate.getUTCDay() - this.shift, 7)));
 
         var currentDate = matrixStartDate;
         var counter = 0;
@@ -348,12 +367,12 @@ var MdcDatepicker = exports.MdcDatepicker = (_dec = (0, _aureliaFramework.custom
 
         while (currentDate <= matrixEndDate) {
             if (counter > 6) {
-                matrix.push(week);
+                this.matrix.push(week);
                 counter = 0;
                 week = [];
             }
 
-            if (options.empty && (currentDate < startDate || currentDate > endDate)) {
+            if (this.matrixOptions.empty && (currentDate < startDate || currentDate > endDate)) {
                 week.push("");
             } else {
                 week.push(currentDate.getDate());
@@ -363,26 +382,55 @@ var MdcDatepicker = exports.MdcDatepicker = (_dec = (0, _aureliaFramework.custom
             currentDate.setUTCDate(currentDate.getUTCDate() + 1);
         }
 
-        matrix.push(week);
-
-        return matrix;
+        this.matrix.push(week);
     };
 
-    MdcDatepicker.prototype.flatten = function flatten(matrix) {
+    DatePickerDate.prototype._flatten = function _flatten() {
         var _ref5;
 
-        return (_ref5 = []).concat.apply(_ref5, matrix);
+        this.matrixFlat = (_ref5 = []).concat.apply(_ref5, this.matrix);
     };
 
-    MdcDatepicker.prototype.mod = function mod(a, n) {
+    DatePickerDate.prototype._weekdays = function _weekdays() {
+        var _this = this;
+
+        var date = new Date();
+        date.setUTCDate(date.getUTCDate() - date.getUTCDay() - 1);
+        this.weekdays = Array(7).fill().map(function (i) {
+            date.setUTCDate(date.getUTCDate() + 1);
+            return Intl.DateTimeFormat(_this.locale, {
+                weekday: 'narrow'
+            }).format(date);
+        });
+
+        if (this.shift > 0) {
+            this.weekdays = this.weekdays.concat(this.weekdays.splice(0, this.shift));
+        }
+    };
+
+    DatePickerDate.prototype._mod = function _mod(a, n) {
         return a - n * Math.floor(a / n);
     };
 
-    return MdcDatepicker;
-}(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'locale', [_dec3], {
-    enumerable: true,
-    initializer: null
-}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'startWeekOn', [_dec4], {
-    enumerable: true,
-    initializer: null
-})), _class2)) || _class) || _class);
+    _createClass(DatePickerDate, [{
+        key: 'date',
+        get: function get() {
+            return this._date;
+        },
+        set: function set(value) {
+            this._date = value;
+            this.refresh(this.locale, this.shift, this.position);
+        }
+    }, {
+        key: 'position',
+        get: function get() {
+            return this._position;
+        },
+        set: function set(value) {
+            this._calcualteStyle(value);
+            this._position = value;
+        }
+    }]);
+
+    return DatePickerDate;
+}(), (_applyDecoratedDescriptor(_class4.prototype, 'date', [_dec5], Object.getOwnPropertyDescriptor(_class4.prototype, 'date'), _class4.prototype), _applyDecoratedDescriptor(_class4.prototype, 'position', [_dec6], Object.getOwnPropertyDescriptor(_class4.prototype, 'position'), _class4.prototype)), _class4));

@@ -24,11 +24,9 @@
 
                         <div class="mdc-datapicker-carousel__track">
 
-                            <mdc-datepicker-slide model.bind="modelB" weekdays.bind="weekdays" shift-left.bind="shiftLeft"></mdc-datepicker-slide>
-
-                            <mdc-datepicker-slide model.bind="modelA" weekdays.bind="weekdays" shift-left.bind="shiftLeft"></mdc-datepicker-slide>
-
-                            <mdc-datepicker-slide model.bind="modelC" weekdays.bind="weekdays" shift-left.bind="shiftLeft"></mdc-datepicker-slide>
+                            <mdc-datepicker-slide slide.bind="slideB"></mdc-datepicker-slide>
+                            <mdc-datepicker-slide slide.bind="slideA"></mdc-datepicker-slide>
+                            <mdc-datepicker-slide slide.bind="slideC"></mdc-datepicker-slide>
 
                         </div>
 
@@ -36,8 +34,6 @@
                         <button class="mdc-fab mdc-fab--mini material-icons" aria-label="Favorite" data-demo-no-js="" click.delegate="previous()">
                             <span class="mdc-fab__icon">chevron_left</span>
                         </button>
-
-                        <span class="mdc-typography--title">${today.monthLong} ${today.year}</span>
 
                         <button class="mdc-fab mdc-fab--mini material-icons" aria-label="Favorite" data-demo-no-js="" click.delegate="next()">
                             <span class="mdc-fab__icon">chevron_right</span>
@@ -52,7 +48,7 @@
                 </footer>
                 </form>
             </div>
-            <div class="mdc-dialog__backdrop">hello</div>
+            <div class="mdc-dialog__backdrop"></div>
         </aside>
 
 
