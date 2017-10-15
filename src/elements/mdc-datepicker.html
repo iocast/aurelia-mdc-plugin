@@ -1,6 +1,7 @@
 <template>
 
     <require from="./mdc-datepicker.css"></require>
+    <require from="./mdc-datepicker-slide.html"></require>
 
     <div class="mdc-typography">
 
@@ -13,9 +14,9 @@
             <div class="mdc-dialog__surface mdc-datepicker__surface">
                 <header class="mdc-dialog__header mdc-datepicker__header">
                     <div class="mdc-datepicker__header--text">
-                        <span class="mdc-typography--headline">${today.year}</span>
-                        <span class="mdc-typography--display1 mdc-datapicker-typography--bold">${today.weekdayShort},</span>
-                        <span class="mdc-typography--display1 mdc-datapicker-typography--bold">${today.monthShort} ${today.day}</span>
+                        <span class="mdc-typography--headline">${selected.year}</span>
+                        <span class="mdc-typography--display1 mdc-datapicker-typography--bold">${selected.weekdayShort},</span>
+                        <span class="mdc-typography--display1 mdc-datapicker-typography--bold">${selected.monthShort} ${selected.day}</span>
                     </div>
                 </header>
                 <section id="mdc-datepicker-description" class="mdc-dialog__body mdc-datepicker__body">
@@ -23,123 +24,24 @@
 
                         <div class="mdc-datapicker-carousel__track">
 
-                            <div class="mdc-datapicker-carousel__slide previous">
+                            <mdc-datepicker-slide model.bind="modelB" weekdays.bind="weekdays" shift-left.bind="shiftLeft"></mdc-datepicker-slide>
 
-                                <div class="mdc-datepicker__body--header">
-                                    <button class="mdc-fab mdc-fab--mini material-icons" aria-label="Favorite" data-demo-no-js="">
-                                        <span class="mdc-fab__icon">chevron_left</span>
-                                    </button>
+                            <mdc-datepicker-slide model.bind="modelA" weekdays.bind="weekdays" shift-left.bind="shiftLeft"></mdc-datepicker-slide>
 
-                                    <span class="mdc-typography--title">September 2017</span>
-
-                                    <button class="mdc-fab mdc-fab--mini material-icons" aria-label="Favorite" data-demo-no-js="">
-                                        <span class="mdc-fab__icon">chevron_right</span>
-                                    </button>
-                                </div>
-
-                                <div class="mdc-datepicker__body-content">
-                                    <span>M</span>
-                                    <span>D</span>
-                                    <span>M</span>
-                                    <span>D</span>
-                                    <span>F</span>
-                                    <span>S</span>
-                                    <span>S</span>
-
-                                    <span class="mdc-datapicker-typography--black">a</span>
-                                    <span class="mdc-datapicker-typography--black">b</span>
-                                    <span class="mdc-datapicker-typography--black">c</span>
-                                    <span class="mdc-datapicker-typography--black">1</span>
-                                    <span class="mdc-datapicker-typography--black">1</span>
-                                    <span class="mdc-datapicker-typography--black">1</span>
-                                    <span class="mdc-datapicker-typography--black">1</span>
-                                    <span class="mdc-datapicker-typography--black">1</span>
-                                    <span class="mdc-datapicker-typography--black">31</span>
-                                    <span class="mdc-datapicker-typography--black">1</span>
-                                    <span class="mdc-datapicker-typography--black">23</span>
-                                    <span class="mdc-datapicker-typography--black">1</span>
-                                    <span class="mdc-datapicker-typography--black">1</span>
-                                    <span class="mdc-datapicker-typography--black">1</span>
-                                    <span class="mdc-datapicker-typography--black">1</span>
-                                    <span class="mdc-datapicker-typography--black">1</span>
-                                </div>
-
-                            </div>
-
-
-                            <div class="mdc-datapicker-carousel__slide current">
-
-                                <div class="mdc-datepicker__body--header">
-                                    <button class="mdc-fab mdc-fab--mini material-icons" aria-label="Favorite" data-demo-no-js="">
-                                        <span class="mdc-fab__icon">chevron_left</span>
-                                    </button>
-
-                                    <span class="mdc-typography--title">${today.monthLong} ${today.year}</span>
-
-                                    <button class="mdc-fab mdc-fab--mini material-icons" aria-label="Favorite" data-demo-no-js="">
-                                        <span class="mdc-fab__icon">chevron_right</span>
-                                    </button>
-                                </div>
-
-                                <div class="mdc-datepicker__body-content">
-                                    <span>M</span>
-                                    <span>D</span>
-                                    <span>M</span>
-                                    <span>D</span>
-                                    <span>F</span>
-                                    <span>S</span>
-                                    <span>S</span>
-
-                                    <span class="mdc-datapicker-typography--black" repeat.for="day of currentMonthMatrix">${day}</span>
-
-                                </div>
-
-                            </div>
-
-                            <div class="mdc-datapicker-carousel__slide next">
-
-                                <div class="mdc-datepicker__body--header">
-                                    <button class="mdc-fab mdc-fab--mini material-icons" aria-label="Favorite" data-demo-no-js="">
-                                        <span class="mdc-fab__icon">chevron_left</span>
-                                    </button>
-
-                                    <span class="mdc-typography--title">November 2017</span>
-
-                                    <button class="mdc-fab mdc-fab--mini material-icons" aria-label="Favorite" data-demo-no-js="">
-                                        <span class="mdc-fab__icon">chevron_right</span>
-                                    </button>
-                                </div>
-
-                                <div class="mdc-datepicker__body-content">
-                                    <span>M</span>
-                                    <span>D</span>
-                                    <span>M</span>
-                                    <span>D</span>
-                                    <span>F</span>
-                                    <span>S</span>
-                                    <span>S</span>
-
-                                    <span class="mdc-datapicker-typography--black">13</span>
-                                    <span class="mdc-datapicker-typography--black">14</span>
-                                    <span class="mdc-datapicker-typography--black">1</span>
-                                    <span class="mdc-datapicker-typography--black">1</span>
-                                    <span class="mdc-datapicker-typography--black">1</span>
-                                    <span class="mdc-datapicker-typography--black">1</span>
-                                    <span class="mdc-datapicker-typography--black">1</span>
-                                    <span class="mdc-datapicker-typography--black">1</span>
-                                    <span class="mdc-datapicker-typography--black">31</span>
-                                    <span class="mdc-datapicker-typography--black">1</span>
-                                    <span class="mdc-datapicker-typography--black">23</span>
-                                    <span class="mdc-datapicker-typography--black">1</span>
-                                    <span class="mdc-datapicker-typography--black">1</span>
-                                    <span class="mdc-datapicker-typography--black">1</span>
-                                    <span class="mdc-datapicker-typography--black">1</span>
-                                    <span class="mdc-datapicker-typography--black">1</span>
-                                </div>
-
-                            </div>
+                            <mdc-datepicker-slide model.bind="modelC" weekdays.bind="weekdays" shift-left.bind="shiftLeft"></mdc-datepicker-slide>
 
                         </div>
+
+
+                        <button class="mdc-fab mdc-fab--mini material-icons" aria-label="Favorite" data-demo-no-js="" click.delegate="previous()">
+                            <span class="mdc-fab__icon">chevron_left</span>
+                        </button>
+
+                        <span class="mdc-typography--title">${today.monthLong} ${today.year}</span>
+
+                        <button class="mdc-fab mdc-fab--mini material-icons" aria-label="Favorite" data-demo-no-js="" click.delegate="next()">
+                            <span class="mdc-fab__icon">chevron_right</span>
+                        </button>
 
                     </div>
 

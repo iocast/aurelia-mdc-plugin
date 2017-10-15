@@ -1,0 +1,16 @@
+<template bindable="model,weekdays,shiftLeft">
+
+  <div class="mdc-datapicker-carousel__slide" class.bind="model.position">
+
+      <div class="mdc-datepicker__body--header">
+          <span class="mdc-typography--title">${model.monthLong} ${model.year}</span>
+      </div>
+
+      <div class="mdc-datepicker__body-content">
+          <span repeat.for="day of weekdays" class.bind="$index % 7 === ( 7 - shiftLeft ) % 7 || $index % 7 === 6 - shiftLeft ? 'mdc-datapicker-weekend' : ''">${day}</span>
+          <span class="mdc-datapicker-typography--black" repeat.for="day of model.matrixFlat" class.bind="$index % 7 === ( 7 - shiftLeft ) % 7 || $index % 7 === 6 - shiftLeft ? 'mdc-datapicker-weekend' : ''">${day}</span>
+      </div>
+
+  </div>
+
+</template>

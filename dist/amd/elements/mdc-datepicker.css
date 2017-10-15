@@ -7,7 +7,6 @@
 
 .mdc-datepicker__header {
     grid-area: head;
-    /*grid-row: span 2;*/
     background-color: var(--mdc-theme-primary);
 }
 
@@ -26,21 +25,17 @@
     color: var(--mdc-theme-text-primary-on-background) !important;
 }
 
+.mdc-datapicker-weekend {
+  background-color: var(--mdc-theme-primary-light);
+}
+
 .mdc-datepicker__body {
     grid-area: main;
-    /*
-    grid-row: 1;
-    grid-column: 2;
-    */
     padding: 0 !important;
 }
 
 .mdc-datepicker__footer {
     grid-area: foot;
-    /*
-    grid-column: 2;
-    grid-row: 2;
-    */
 }
 
 .mdc-datepicker__body--header {
@@ -53,20 +48,6 @@
 .mdc-typography--title {
     flex: 1;
     text-align: center;
-}
-
-.mdc-datepicker__body--header button {
-    background-color: transparent;
-    color: black;
-    box-shadow: none;
-}
-
-.mdc-datepicker__body--header button:hover {
-    background-color: red;
-}
-
-.mdc-datepicker__body--header button:active {
-    background-color: green;
 }
 
 .mdc-datepicker__body-content {
@@ -83,7 +64,7 @@
     overflow: hidden;
     text-align: center;
     position: relative;
-    height: 400px;
+    height: 235px;
 }
 
 .mdc-datapicker-carousel__track {
@@ -116,6 +97,10 @@
     transform: translateX(100%);
 }
 
+.hidden {
+  opacity: 0;
+}
+
 .mdc-datapicker-carousel__slide {
     height: 100%;
     position: absolute;
@@ -133,4 +118,15 @@
         grid-template-rows: 10px 1fr 10px;
         width: fit-content !important;
     }
+}
+
+
+
+@keyframes carousel-show-slide {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
