@@ -1,16 +1,23 @@
 <template bindable="slide">
 
-  <div class="mdc-datapicker-carousel__slide" class.bind="slide.styleClasses">
+    <div class="mdc-datapicker-carousel__slide" class.bind="slide.styleClasses">
 
-      <div class="mdc-datepicker__body--header">
-          <span class="mdc-typography--title">${slide.monthLong} ${slide.year}</span>
-      </div>
+        <div class="mdc-datepicker__body--header">
+            <span class="mdc-typography--title">${slide.monthLong} ${slide.year}</span>
+        </div>
 
-      <div class="mdc-datepicker__body-content">
-          <span repeat.for="day of slide.weekdays" class.bind="$index % 7 === ( 7 - slide.shift ) % 7 || $index % 7 === 6 - slide.shift ? 'mdc-datapicker-weekend' : ''">${day}</span>
-          <span class="mdc-datapicker-typography--black" repeat.for="day of slide.matrixFlat" class.bind="$index % 7 === ( 7 - slide.shift ) % 7 || $index % 7 === 6 - slide.shift ? 'mdc-datapicker-weekend' : ''">${day}</span>
-      </div>
+        <div class="mdc-datepicker__body-content">
+            <div
+              repeat.for="value of slide.weekdays"
+              class.bind="$index % 7 === ( 7 - slide.shift ) % 7 || $index % 7 === 6 - slide.shift ? 'mdc-datapicker-weekend' : ''" >
+                <span>${value}</span>
+            </div>
 
-  </div>
+            <div class="mdc-datapicker-typography--black" repeat.for="value of slide.matrixFlat" class.bind="$index % 7 === ( 7 - slide.shift ) % 7 || $index % 7 === 6 - slide.shift ? 'mdc-datapicker-weekend' : ''">
+                <span class.bind="slide.selected.year === slide.year && slide.selected.month === slide.month && slide.selected.day === value ? 'mdc-datepicker-date__selected' : ''" click.delegate="slide.select(value)">${value}</span>
+            </div>
+        </div>
+
+    </div>
 
 </template>
