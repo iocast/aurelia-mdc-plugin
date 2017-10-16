@@ -78,6 +78,7 @@ define(['exports', 'aurelia-framework', 'material-components-web'], function (ex
     var MdcDatepicker = exports.MdcDatepicker = (_dec = (0, _aureliaFramework.customElement)('mdc-datepicker'), _dec2 = (0, _aureliaFramework.inject)(_aureliaFramework.DOM.Element), _dec3 = (0, _aureliaFramework.bindable)({
         attribute: 'locale',
         defaultBindingMode: _aureliaFramework.bindingMode.twoWay,
+        changeHandler: 'localeChangeHandler',
         defaultValue: 'en'
     }), _dec4 = (0, _aureliaFramework.bindable)({
         attribute: 'start-week-on',
@@ -140,6 +141,16 @@ define(['exports', 'aurelia-framework', 'material-components-web'], function (ex
             this.trackDOM.addEventListener("transitionend", function (event) {
                 _this.animating = false;
             }, false);
+        };
+
+        MdcDatepicker.prototype.localeChangeHandler = function localeChangeHandler(newValue, oldValue) {
+            if (this.selected) {
+                this.selected.refresh(newValue);
+                this.valueDOM.value = this.value;
+                this.valueDOM.dispatchEvent(new Event('change', {
+                    bubbles: true
+                }));
+            }
         };
 
         MdcDatepicker.prototype.next = function next() {

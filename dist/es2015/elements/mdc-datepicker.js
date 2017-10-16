@@ -49,6 +49,7 @@ import { dialog } from 'material-components-web';
 export let MdcDatepicker = (_dec = customElement('mdc-datepicker'), _dec2 = inject(DOM.Element), _dec3 = bindable({
     attribute: 'locale',
     defaultBindingMode: bindingMode.twoWay,
+    changeHandler: 'localeChangeHandler',
     defaultValue: 'en'
 }), _dec4 = bindable({
     attribute: 'start-week-on',
@@ -123,6 +124,16 @@ export let MdcDatepicker = (_dec = customElement('mdc-datepicker'), _dec2 = inje
     }
     set value(value) {
         this._value = value;
+    }
+
+    localeChangeHandler(newValue, oldValue) {
+        if (this.selected) {
+            this.selected.refresh(newValue);
+            this.valueDOM.value = this.value;
+            this.valueDOM.dispatchEvent(new Event('change', {
+                bubbles: true
+            }));
+        }
     }
 
     next() {
@@ -237,17 +248,17 @@ let DatePickerDate = (_dec7 = computedFrom("_position"), _dec8 = computedFrom("_
         this._position = value;
     }
 
-    select(day) {
-        if (this.selected) {
-            this.selected.date = new Date(Date.UTC(this.date.getFullYear(), this.date.getMonth(), day));
-        }
-    }
-
     get locale() {
         return this._locale;
     }
     set locale(value) {
         this._locale = value;
+    }
+
+    select(day) {
+        if (this.selected) {
+            this.selected.date = new Date(Date.UTC(this.date.getFullYear(), this.date.getMonth(), day));
+        }
     }
 
     calculateCalendar(options) {

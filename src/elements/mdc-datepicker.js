@@ -18,6 +18,7 @@ export class MdcDatepicker {
     @bindable({
         attribute: 'locale',
         defaultBindingMode: bindingMode.twoWay,
+        changeHandler: 'localeChangeHandler',
         defaultValue: 'en'
     }) locale;
 
@@ -78,7 +79,7 @@ export class MdcDatepicker {
         });
 
         this.trackDOM.addEventListener("transitionend", event => {
-          this.animating = false;
+            this.animating = false;
         }, false);
     }
 
@@ -98,8 +99,18 @@ export class MdcDatepicker {
         this._value = value;
     }
 
+    localeChangeHandler(newValue, oldValue) {
+        if (this.selected) {
+            this.selected.refresh(newValue);
+            this.valueDOM.value = this.value;
+            this.valueDOM.dispatchEvent(new Event('change', {
+                bubbles: true
+            }));
+        }
+    }
+
     next() {
-        if(this.animating) return;
+        if (this.animating) return;
 
         this.animating = true;
 
@@ -108,7 +119,7 @@ export class MdcDatepicker {
         this.slideC = this.getNextPosition(this.slideC);
     }
     previous() {
-        if(this.animating) return;
+        if (this.animating) return;
 
         this.animating = true;
 
@@ -211,12 +222,6 @@ class DatePickerDate {
         this._position = value;
     }
 
-    select(day) {
-        if (this.selected) {
-            this.selected.date = new Date(Date.UTC(this.date.getFullYear(), this.date.getMonth(), day));
-        }
-    }
-
     @computedFrom("_locale")
     get locale() {
         return this._locale;
@@ -225,6 +230,11 @@ class DatePickerDate {
         this._locale = value;
     }
 
+    select(day) {
+        if (this.selected) {
+            this.selected.date = new Date(Date.UTC(this.date.getFullYear(), this.date.getMonth(), day));
+        }
+    }
 
     calculateCalendar(options) {
         this.matrixOptions = options;
