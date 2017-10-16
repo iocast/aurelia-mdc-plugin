@@ -27,6 +27,11 @@ export class MdcDatepicker {
         defaultValue: 'sunday'
     }) startWeekOn;
 
+    @bindable({
+        attribute: 'value',
+        defaultBindingMode: bindingMode.twoWay
+    }) _value;
+
     datepickerDialog;
     mdcDatepickerDialog;
 
@@ -52,7 +57,7 @@ export class MdcDatepicker {
             shift = 6;
         }
 
-        this.selected = new DatePickerDate(new Date(), this.locale, shift);
+        this.selected = new DatePickerDate((this._value) ? this._value : new Date(), this.locale, shift);
 
 
         this.slideA = new DatePickerDate(new Date(), this.locale, shift, "current", this.selected);
@@ -72,6 +77,21 @@ export class MdcDatepicker {
 
     }
 
+    @computedFrom("_value")
+    get value() {
+        if (this._value) {
+            return this._value.toLocaleDateString(this.locale, {
+                weekday: "short",
+                year: "numeric",
+                month: "short",
+                day: "numeric"
+            })
+        }
+        return "";
+    }
+    set value(value) {
+        this._value = value;
+    }
 
     next() {
         this.slideA = this.getNextPosition(this.slideA);
@@ -112,14 +132,14 @@ export class MdcDatepicker {
     }
 
     show() {
-        this.selected.refresh(this.locale);
+        this.selected.locale = this.locale;
+        this.selected.date = (this._value) ? this._value : new Date();
+
         this.slideA.refresh(this.locale);
         this.slideB.refresh(this.locale);
         this.slideC.refresh(this.locale);
 
         this.mdcDatepickerDialog.show();
-
-        console.log(this);
     }
 
     cancel() {
@@ -127,6 +147,7 @@ export class MdcDatepicker {
     }
 
     ok() {
+        this.value = this.selected.date;
         this.mdcDatepickerDialog.close();
     }
 
@@ -181,6 +202,14 @@ class DatePickerDate {
         if (this.selected) {
             this.selected.date = new Date(Date.UTC(this.date.getFullYear(), this.date.getMonth(), day));
         }
+    }
+
+    @computedFrom("_locale")
+    get locale() {
+        return this._locale;
+    }
+    set locale(value) {
+        this._locale = value;
     }
 
 

@@ -1,4 +1,4 @@
-var _dec, _dec2, _dec3, _dec4, _class, _desc, _value, _class2, _descriptor, _descriptor2, _dec5, _dec6, _desc2, _value2, _class4;
+var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _dec7, _dec8, _dec9, _desc2, _value2, _class4;
 
 function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -54,12 +54,17 @@ export let MdcDatepicker = (_dec = customElement('mdc-datepicker'), _dec2 = inje
     attribute: 'start-week-on',
     defaultBindingMode: bindingMode.twoWay,
     defaultValue: 'sunday'
-}), _dec(_class = _dec2(_class = (_class2 = class MdcDatepicker {
+}), _dec5 = bindable({
+    attribute: 'value',
+    defaultBindingMode: bindingMode.twoWay
+}), _dec6 = computedFrom("_value"), _dec(_class = _dec2(_class = (_class2 = class MdcDatepicker {
 
     constructor(element) {
         _initDefineProp(this, 'locale', _descriptor, this);
 
         _initDefineProp(this, 'startWeekOn', _descriptor2, this);
+
+        _initDefineProp(this, '_value', _descriptor3, this);
 
         this.element = element;
     }
@@ -82,7 +87,7 @@ export let MdcDatepicker = (_dec = customElement('mdc-datepicker'), _dec2 = inje
             shift = 6;
         }
 
-        this.selected = new DatePickerDate(new Date(), this.locale, shift);
+        this.selected = new DatePickerDate(this._value ? this._value : new Date(), this.locale, shift);
 
         this.slideA = new DatePickerDate(new Date(), this.locale, shift, "current", this.selected);
         this.slideB = new DatePickerDate(new Date(Date.UTC(this.slideA.date.getFullYear(), this.slideA.date.getMonth() - 1, 1)), this.locale, shift, "previous", this.selected);
@@ -97,6 +102,21 @@ export let MdcDatepicker = (_dec = customElement('mdc-datepicker'), _dec2 = inje
         this.slideC.calculateCalendar({
             empty: true
         });
+    }
+
+    get value() {
+        if (this._value) {
+            return this._value.toLocaleDateString(this.locale, {
+                weekday: "short",
+                year: "numeric",
+                month: "short",
+                day: "numeric"
+            });
+        }
+        return "";
+    }
+    set value(value) {
+        this._value = value;
     }
 
     next() {
@@ -138,14 +158,14 @@ export let MdcDatepicker = (_dec = customElement('mdc-datepicker'), _dec2 = inje
     }
 
     show() {
-        this.selected.refresh(this.locale);
+        this.selected.locale = this.locale;
+        this.selected.date = this._value ? this._value : new Date();
+
         this.slideA.refresh(this.locale);
         this.slideB.refresh(this.locale);
         this.slideC.refresh(this.locale);
 
         this.mdcDatepickerDialog.show();
-
-        console.log(this);
     }
 
     cancel() {
@@ -153,6 +173,7 @@ export let MdcDatepicker = (_dec = customElement('mdc-datepicker'), _dec2 = inje
     }
 
     ok() {
+        this.value = this.selected.date;
         this.mdcDatepickerDialog.close();
     }
 
@@ -162,9 +183,12 @@ export let MdcDatepicker = (_dec = customElement('mdc-datepicker'), _dec2 = inje
 }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'startWeekOn', [_dec4], {
     enumerable: true,
     initializer: null
-})), _class2)) || _class) || _class);
+}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, '_value', [_dec5], {
+    enumerable: true,
+    initializer: null
+}), _applyDecoratedDescriptor(_class2.prototype, 'value', [_dec6], Object.getOwnPropertyDescriptor(_class2.prototype, 'value'), _class2.prototype)), _class2)) || _class) || _class);
 
-let DatePickerDate = (_dec5 = computedFrom("_position"), _dec6 = computedFrom("_position"), (_class4 = class DatePickerDate {
+let DatePickerDate = (_dec7 = computedFrom("_position"), _dec8 = computedFrom("_position"), _dec9 = computedFrom("_locale"), (_class4 = class DatePickerDate {
 
     constructor(date, locale, shift, position, selected) {
         this.weekdays = [];
@@ -203,6 +227,13 @@ let DatePickerDate = (_dec5 = computedFrom("_position"), _dec6 = computedFrom("_
         if (this.selected) {
             this.selected.date = new Date(Date.UTC(this.date.getFullYear(), this.date.getMonth(), day));
         }
+    }
+
+    get locale() {
+        return this._locale;
+    }
+    set locale(value) {
+        this._locale = value;
     }
 
     calculateCalendar(options) {
@@ -362,4 +393,4 @@ let DatePickerDate = (_dec5 = computedFrom("_position"), _dec6 = computedFrom("_
         return a - n * Math.floor(a / n);
     }
 
-}, (_applyDecoratedDescriptor(_class4.prototype, 'date', [_dec5], Object.getOwnPropertyDescriptor(_class4.prototype, 'date'), _class4.prototype), _applyDecoratedDescriptor(_class4.prototype, 'position', [_dec6], Object.getOwnPropertyDescriptor(_class4.prototype, 'position'), _class4.prototype)), _class4));
+}, (_applyDecoratedDescriptor(_class4.prototype, 'date', [_dec7], Object.getOwnPropertyDescriptor(_class4.prototype, 'date'), _class4.prototype), _applyDecoratedDescriptor(_class4.prototype, 'position', [_dec8], Object.getOwnPropertyDescriptor(_class4.prototype, 'position'), _class4.prototype), _applyDecoratedDescriptor(_class4.prototype, 'locale', [_dec9], Object.getOwnPropertyDescriptor(_class4.prototype, 'locale'), _class4.prototype)), _class4));

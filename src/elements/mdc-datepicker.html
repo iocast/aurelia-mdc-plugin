@@ -6,6 +6,7 @@
     <div class="mdc-typography">
 
         <div class="mdc-textfield mdc-textfield--upgraded" click.delegate="show()">
+            <input type="text" class="mdc-textfield__input" value.bind="value" readonly>
             <slot></slot>
         </div>
 
@@ -43,8 +44,8 @@
 
                 </section>
                 <footer class="mdc-dialog__footer mdc-datepicker__footer">
-                    <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--cancel" click.trigger="close">Cancel</button>
-                    <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept" click.trigger="ok">OK</button>
+                    <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--cancel" click.delegate="cancel()">Cancel</button>
+                    <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept" click.delegate="ok()">OK</button>
                 </footer>
                 </form>
             </div>

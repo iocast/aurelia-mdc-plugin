@@ -63,7 +63,7 @@
     overflow: hidden;
     text-align: center;
     position: relative;
-    height: 345px;
+    height: 310px;
 }
 
 .mdc-datapicker-carousel button {
@@ -115,6 +115,7 @@
 
 .mdc-datepicker__body-content {
     grid-area: main;
+    align-self: flex-start;
 }
 
 .mdc-datepicker__body-content span {

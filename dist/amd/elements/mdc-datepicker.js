@@ -6,6 +6,22 @@ define(['exports', 'aurelia-framework', 'material-components-web'], function (ex
     });
     exports.MdcDatepicker = undefined;
 
+    function _initDefineProp(target, property, descriptor, context) {
+        if (!descriptor) return;
+        Object.defineProperty(target, property, {
+            enumerable: descriptor.enumerable,
+            configurable: descriptor.configurable,
+            writable: descriptor.writable,
+            value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
+        });
+    }
+
+    function _classCallCheck(instance, Constructor) {
+        if (!(instance instanceof Constructor)) {
+            throw new TypeError("Cannot call a class as a function");
+        }
+    }
+
     var _createClass = function () {
         function defineProperties(target, props) {
             for (var i = 0; i < props.length; i++) {
@@ -23,22 +39,6 @@ define(['exports', 'aurelia-framework', 'material-components-web'], function (ex
             return Constructor;
         };
     }();
-
-    function _initDefineProp(target, property, descriptor, context) {
-        if (!descriptor) return;
-        Object.defineProperty(target, property, {
-            enumerable: descriptor.enumerable,
-            configurable: descriptor.configurable,
-            writable: descriptor.writable,
-            value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
-        });
-    }
-
-    function _classCallCheck(instance, Constructor) {
-        if (!(instance instanceof Constructor)) {
-            throw new TypeError("Cannot call a class as a function");
-        }
-    }
 
     function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
         var desc = {};
@@ -73,7 +73,7 @@ define(['exports', 'aurelia-framework', 'material-components-web'], function (ex
         throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
     }
 
-    var _dec, _dec2, _dec3, _dec4, _class, _desc, _value, _class2, _descriptor, _descriptor2, _dec5, _dec6, _desc2, _value2, _class4;
+    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _dec7, _dec8, _dec9, _desc2, _value2, _class4;
 
     var MdcDatepicker = exports.MdcDatepicker = (_dec = (0, _aureliaFramework.customElement)('mdc-datepicker'), _dec2 = (0, _aureliaFramework.inject)(_aureliaFramework.DOM.Element), _dec3 = (0, _aureliaFramework.bindable)({
         attribute: 'locale',
@@ -83,13 +83,18 @@ define(['exports', 'aurelia-framework', 'material-components-web'], function (ex
         attribute: 'start-week-on',
         defaultBindingMode: _aureliaFramework.bindingMode.twoWay,
         defaultValue: 'sunday'
-    }), _dec(_class = _dec2(_class = (_class2 = function () {
+    }), _dec5 = (0, _aureliaFramework.bindable)({
+        attribute: 'value',
+        defaultBindingMode: _aureliaFramework.bindingMode.twoWay
+    }), _dec6 = (0, _aureliaFramework.computedFrom)("_value"), _dec(_class = _dec2(_class = (_class2 = function () {
         function MdcDatepicker(element) {
             _classCallCheck(this, MdcDatepicker);
 
             _initDefineProp(this, 'locale', _descriptor, this);
 
             _initDefineProp(this, 'startWeekOn', _descriptor2, this);
+
+            _initDefineProp(this, '_value', _descriptor3, this);
 
             this.element = element;
         }
@@ -112,7 +117,7 @@ define(['exports', 'aurelia-framework', 'material-components-web'], function (ex
                 shift = 6;
             }
 
-            this.selected = new DatePickerDate(new Date(), this.locale, shift);
+            this.selected = new DatePickerDate(this._value ? this._value : new Date(), this.locale, shift);
 
             this.slideA = new DatePickerDate(new Date(), this.locale, shift, "current", this.selected);
             this.slideB = new DatePickerDate(new Date(Date.UTC(this.slideA.date.getFullYear(), this.slideA.date.getMonth() - 1, 1)), this.locale, shift, "previous", this.selected);
@@ -170,14 +175,14 @@ define(['exports', 'aurelia-framework', 'material-components-web'], function (ex
         };
 
         MdcDatepicker.prototype.show = function show() {
-            this.selected.refresh(this.locale);
+            this.selected.locale = this.locale;
+            this.selected.date = this._value ? this._value : new Date();
+
             this.slideA.refresh(this.locale);
             this.slideB.refresh(this.locale);
             this.slideC.refresh(this.locale);
 
             this.mdcDatepickerDialog.show();
-
-            console.log(this);
         };
 
         MdcDatepicker.prototype.cancel = function cancel() {
@@ -185,8 +190,27 @@ define(['exports', 'aurelia-framework', 'material-components-web'], function (ex
         };
 
         MdcDatepicker.prototype.ok = function ok() {
+            this.value = this.selected.date;
             this.mdcDatepickerDialog.close();
         };
+
+        _createClass(MdcDatepicker, [{
+            key: 'value',
+            get: function get() {
+                if (this._value) {
+                    return this._value.toLocaleDateString(this.locale, {
+                        weekday: "short",
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric"
+                    });
+                }
+                return "";
+            },
+            set: function set(value) {
+                this._value = value;
+            }
+        }]);
 
         return MdcDatepicker;
     }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'locale', [_dec3], {
@@ -195,8 +219,11 @@ define(['exports', 'aurelia-framework', 'material-components-web'], function (ex
     }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'startWeekOn', [_dec4], {
         enumerable: true,
         initializer: null
-    })), _class2)) || _class) || _class);
-    var DatePickerDate = (_dec5 = (0, _aureliaFramework.computedFrom)("_position"), _dec6 = (0, _aureliaFramework.computedFrom)("_position"), (_class4 = function () {
+    }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, '_value', [_dec5], {
+        enumerable: true,
+        initializer: null
+    }), _applyDecoratedDescriptor(_class2.prototype, 'value', [_dec6], Object.getOwnPropertyDescriptor(_class2.prototype, 'value'), _class2.prototype)), _class2)) || _class) || _class);
+    var DatePickerDate = (_dec7 = (0, _aureliaFramework.computedFrom)("_position"), _dec8 = (0, _aureliaFramework.computedFrom)("_position"), _dec9 = (0, _aureliaFramework.computedFrom)("_locale"), (_class4 = function () {
         function DatePickerDate(date, locale, shift, position, selected) {
             _classCallCheck(this, DatePickerDate);
 
@@ -453,8 +480,16 @@ define(['exports', 'aurelia-framework', 'material-components-web'], function (ex
                 this._calcualteStyle(value);
                 this._position = value;
             }
+        }, {
+            key: 'locale',
+            get: function get() {
+                return this._locale;
+            },
+            set: function set(value) {
+                this._locale = value;
+            }
         }]);
 
         return DatePickerDate;
-    }(), (_applyDecoratedDescriptor(_class4.prototype, 'date', [_dec5], Object.getOwnPropertyDescriptor(_class4.prototype, 'date'), _class4.prototype), _applyDecoratedDescriptor(_class4.prototype, 'position', [_dec6], Object.getOwnPropertyDescriptor(_class4.prototype, 'position'), _class4.prototype)), _class4));
+    }(), (_applyDecoratedDescriptor(_class4.prototype, 'date', [_dec7], Object.getOwnPropertyDescriptor(_class4.prototype, 'date'), _class4.prototype), _applyDecoratedDescriptor(_class4.prototype, 'position', [_dec8], Object.getOwnPropertyDescriptor(_class4.prototype, 'position'), _class4.prototype), _applyDecoratedDescriptor(_class4.prototype, 'locale', [_dec9], Object.getOwnPropertyDescriptor(_class4.prototype, 'locale'), _class4.prototype)), _class4));
 });
