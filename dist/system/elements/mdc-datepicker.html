@@ -5,8 +5,9 @@
 
     <div class="mdc-typography">
 
-        <div class="mdc-textfield mdc-textfield--upgraded" click.delegate="show()">
-            <input type="text" class="mdc-textfield__input" value.bind="value" readonly>
+        <div class="mdc-textfield mdc-textfield--upgraded">
+            <input type="text" class="mdc-textfield__input mdc-datepicker__input" value.bind="value" click.delegate="show()" readonly
+            >
             <slot></slot>
         </div>
 
