@@ -35,6 +35,8 @@ export class MdcDatepicker {
     datepickerDialog;
     mdcDatepickerDialog;
 
+    animating = false;
+
     constructor(element) {
         this.element = element;
     }
@@ -75,6 +77,9 @@ export class MdcDatepicker {
             empty: true
         });
 
+        this.trackDOM.addEventListener("transitionend", event => {
+          this.animating = false;
+        }, false);
     }
 
     @computedFrom("_value")
@@ -94,11 +99,19 @@ export class MdcDatepicker {
     }
 
     next() {
+        if(this.animating) return;
+
+        this.animating = true;
+
         this.slideA = this.getNextPosition(this.slideA);
         this.slideB = this.getNextPosition(this.slideB);
         this.slideC = this.getNextPosition(this.slideC);
     }
     previous() {
+        if(this.animating) return;
+
+        this.animating = true;
+
         this.slideA = this.getPreviousPosition(this.slideA);
         this.slideB = this.getPreviousPosition(this.slideB);
         this.slideC = this.getPreviousPosition(this.slideC);

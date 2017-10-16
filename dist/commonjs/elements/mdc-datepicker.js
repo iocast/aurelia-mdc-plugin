@@ -79,10 +79,14 @@ var MdcDatepicker = exports.MdcDatepicker = (_dec = (0, _aureliaFramework.custom
 
         _initDefineProp(this, '_value', _descriptor3, this);
 
+        this.animating = false;
+
         this.element = element;
     }
 
     MdcDatepicker.prototype.attached = function attached() {
+        var _this = this;
+
         this.mdcDatepickerDialog = new _materialComponentsWeb.dialog.MDCDialog(this.datepickerDialog);
 
         var shift = 0;
@@ -115,15 +119,27 @@ var MdcDatepicker = exports.MdcDatepicker = (_dec = (0, _aureliaFramework.custom
         this.slideC.calculateCalendar({
             empty: true
         });
+
+        this.trackDOM.addEventListener("transitionend", function (event) {
+            _this.animating = false;
+        }, false);
     };
 
     MdcDatepicker.prototype.next = function next() {
+        if (this.animating) return;
+
+        this.animating = true;
+
         this.slideA = this.getNextPosition(this.slideA);
         this.slideB = this.getNextPosition(this.slideB);
         this.slideC = this.getNextPosition(this.slideC);
     };
 
     MdcDatepicker.prototype.previous = function previous() {
+        if (this.animating) return;
+
+        this.animating = true;
+
         this.slideA = this.getPreviousPosition(this.slideA);
         this.slideB = this.getPreviousPosition(this.slideB);
         this.slideC = this.getPreviousPosition(this.slideC);
@@ -425,13 +441,13 @@ var DatePickerDate = (_dec7 = (0, _aureliaFramework.computedFrom)("_position"), 
     };
 
     DatePickerDate.prototype._weekdays = function _weekdays() {
-        var _this = this;
+        var _this2 = this;
 
         var date = new Date();
         date.setUTCDate(date.getUTCDate() - date.getUTCDay() - 1);
         this.weekdays = Array(7).fill().map(function (i) {
             date.setUTCDate(date.getUTCDate() + 1);
-            return Intl.DateTimeFormat(_this.locale, {
+            return Intl.DateTimeFormat(_this2.locale, {
                 weekday: 'narrow'
             }).format(date);
         });

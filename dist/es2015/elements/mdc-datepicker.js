@@ -66,6 +66,8 @@ export let MdcDatepicker = (_dec = customElement('mdc-datepicker'), _dec2 = inje
 
         _initDefineProp(this, '_value', _descriptor3, this);
 
+        this.animating = false;
+
         this.element = element;
     }
 
@@ -102,6 +104,10 @@ export let MdcDatepicker = (_dec = customElement('mdc-datepicker'), _dec2 = inje
         this.slideC.calculateCalendar({
             empty: true
         });
+
+        this.trackDOM.addEventListener("transitionend", event => {
+            this.animating = false;
+        }, false);
     }
 
     get value() {
@@ -120,11 +126,19 @@ export let MdcDatepicker = (_dec = customElement('mdc-datepicker'), _dec2 = inje
     }
 
     next() {
+        if (this.animating) return;
+
+        this.animating = true;
+
         this.slideA = this.getNextPosition(this.slideA);
         this.slideB = this.getNextPosition(this.slideB);
         this.slideC = this.getNextPosition(this.slideC);
     }
     previous() {
+        if (this.animating) return;
+
+        this.animating = true;
+
         this.slideA = this.getPreviousPosition(this.slideA);
         this.slideB = this.getPreviousPosition(this.slideB);
         this.slideC = this.getPreviousPosition(this.slideC);
