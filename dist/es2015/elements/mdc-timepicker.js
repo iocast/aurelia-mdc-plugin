@@ -102,13 +102,16 @@ export let MdcTimepicker = (_dec = customElement('mdc-timepicker'), _dec2 = inje
         this.selected.selectHours(hours);
     }
 
+    toggleView() {
+        this.selected.toggleView();
+    }
+
     togglePeriod() {
         this.selected.togglePeriod();
     }
 
     show() {
         this.selected.locale = this.locale;
-        console.log(this._value);
         this.selected.date = this._value ? this._value : new Date();
 
         this.mdcTimepickerDialog.show();
@@ -211,6 +214,13 @@ let TimepickerTime = (_dec6 = computedFrom("_date"), _dec7 = computedFrom("_loca
             this.date.setUTCHours(this.date.getUTCHours() - 12);
         }
         this.refresh();
+    }
+
+    toggleView() {
+        this._calculateStyles({
+            set: false,
+            hour: this.styles.views.hour ? false : true
+        });
     }
 
     refresh(locale) {

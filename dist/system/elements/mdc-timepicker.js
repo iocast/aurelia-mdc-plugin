@@ -129,13 +129,16 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                     this.selected.selectHours(hours);
                 };
 
+                MdcTimepicker.prototype.toggleView = function toggleView() {
+                    this.selected.toggleView();
+                };
+
                 MdcTimepicker.prototype.togglePeriod = function togglePeriod() {
                     this.selected.togglePeriod();
                 };
 
                 MdcTimepicker.prototype.show = function show() {
                     this.selected.locale = this.locale;
-                    console.log(this._value);
                     this.selected.date = this._value ? this._value : new Date();
 
                     this.mdcTimepickerDialog.show();
@@ -239,6 +242,13 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                         this.date.setUTCHours(this.date.getUTCHours() - 12);
                     }
                     this.refresh();
+                };
+
+                TimepickerTime.prototype.toggleView = function toggleView() {
+                    this._calculateStyles({
+                        set: false,
+                        hour: this.styles.views.hour ? false : true
+                    });
                 };
 
                 TimepickerTime.prototype.refresh = function refresh(locale) {

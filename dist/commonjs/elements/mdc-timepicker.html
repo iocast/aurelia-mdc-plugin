@@ -14,7 +14,11 @@
             <div class="mdc-dialog__surface mdc-timepicker__surface">
                 <header class="mdc-dialog__header mdc-timepicker__header">
                     <div class="mdc-datapicker-typography--bold mdc-timepicker__header-text">
-                        <span class="mdc-typography--display3">${selected.hour}:${selected.minute}</span>
+                        <div class="mdc-typography--display3 mdc-timepicker__header-time" click.delegate="toggleView()">
+                          <span class.bind="selected.styles.views.hour ? 'mdc-timepicker--deselected' : ''">${selected.hour}</span>
+                          <span class="mdc-timepicker--deselected">:</span>
+                          <span class.bind="selected.styles.views.minute ? 'mdc-timepicker--deselected' : ''">${selected.minute}</span>
+                        </div>
                         <div class="mdc-typography--subheading2 mdc-timepicker-typography--bold mdc-timepicker__header-period" if.bind="selected.period" click.delegate="togglePeriod()">
                             <span class.bind="selected.period.toLowerCase() === 'pm' ? '' : 'mdc-timepicker--deselected'">PM</span>
                             <span class.bind="selected.period.toLowerCase() === 'am' ? '' : 'mdc-timepicker--deselected'">AM</span>
@@ -42,7 +46,7 @@
                             <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-40"><span click.delegate="selectMinutes(40)">40</span></div>
                             <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-45"><span click.delegate="selectMinutes(45)">45</span></div>
                             <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-50"><span click.delegate="selectMinutes(50)">50</span></div>
-                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-55"><span click.delegate="selectMinutes(54)">55</span></div>
+                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-55"><span click.delegate="selectMinutes(55)">55</span></div>
                             <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-0"><span click.delegate="selectMinutes(0)">00</span></div>
                         </div>
 

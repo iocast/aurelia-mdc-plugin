@@ -80,6 +80,10 @@ export class MdcTimepicker {
         this.selected.selectHours(hours);
     }
 
+    toggleView() {
+        this.selected.toggleView();
+    }
+
     togglePeriod() {
         this.selected.togglePeriod();
     }
@@ -189,6 +193,13 @@ class TimepickerTime {
             this.date.setUTCHours(this.date.getUTCHours() - 12);
         }
         this.refresh();
+    }
+
+    toggleView() {
+        this._calculateStyles({
+            set: false,
+            hour: (this.styles.views.hour) ? false : true
+        });
     }
 
     refresh(locale) {

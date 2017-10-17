@@ -13,7 +13,7 @@
 }
 
 .mdc-timepicker--deselected {
-  color: var(--mdc-theme-primary-light);
+    color: var(--mdc-theme-primary-light);
 }
 
 .mdc-timepicker__surface {
@@ -39,10 +39,18 @@
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
+.mdc-timepicker__header-time {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    cursor: pointer;
+}
+
 .mdc-timepicker__header-period {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
+    cursor: pointer;
 }
 
 .mdc-timepicker__body {

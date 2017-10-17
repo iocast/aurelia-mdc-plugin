@@ -103,13 +103,16 @@ var MdcTimepicker = exports.MdcTimepicker = (_dec = (0, _aureliaFramework.custom
         this.selected.selectHours(hours);
     };
 
+    MdcTimepicker.prototype.toggleView = function toggleView() {
+        this.selected.toggleView();
+    };
+
     MdcTimepicker.prototype.togglePeriod = function togglePeriod() {
         this.selected.togglePeriod();
     };
 
     MdcTimepicker.prototype.show = function show() {
         this.selected.locale = this.locale;
-        console.log(this._value);
         this.selected.date = this._value ? this._value : new Date();
 
         this.mdcTimepickerDialog.show();
@@ -210,6 +213,13 @@ var TimepickerTime = (_dec6 = (0, _aureliaFramework.computedFrom)("_date"), _dec
             this.date.setUTCHours(this.date.getUTCHours() - 12);
         }
         this.refresh();
+    };
+
+    TimepickerTime.prototype.toggleView = function toggleView() {
+        this._calculateStyles({
+            set: false,
+            hour: this.styles.views.hour ? false : true
+        });
     };
 
     TimepickerTime.prototype.refresh = function refresh(locale) {
