@@ -1,19 +1,19 @@
-## aurelia-mdc-plugin
+# aurelia-mdc-plugin
 
 [![NPM](https://nodei.co/npm/aurelia-mdc-plugin.png?compact=true)](https://nodei.co/npm/aurelia-mdc-plugin/)
 
-## Aurelia CLI:
+# Aurelia CLI:
 
-- Install:
+## Install:
 
 ```bash
 npm i -S material-components-web
 npm i -S aurelia-mdc-plugin
 ```
 
-- Bundle:
+### Bundle:
 
-add mdc & plugin to one of your bundle's dependencies in *aurelia.json*.
+add **material-components-web** and **aurelia-mdc-plugin** to one of your bundle's dependencies in _aurelia.json_.
 
 ```json
 {
@@ -25,23 +25,16 @@ add mdc & plugin to one of your bundle's dependencies in *aurelia.json*.
     ]
 },
 {
-  "name": "moment",
-  "path": "../node_modules/moment",
-  "main": "moment"
-},
-{
     "name": "aurelia-mdc-plugin",
     "path": "../node_modules/aurelia-mdc-plugin/dist/amd",
     "main": "index",
-    "resources": [
-      "elements/mdc-checkbox.html"
-    ]
+    "resources": ["**/*.{html,css}"]
 }
 ```
 
-- Register the plugin:
+### Register the plugin:
 
-```js
+```javascript
 export function configure(aurelia) {
     ...
     aurelia.use.plugin('aurelia-mdc-plugin');
@@ -49,13 +42,15 @@ export function configure(aurelia) {
 }
 ```
 
-- import the css:
+### import the css:
 
 ```html
 <require from="material-components-web/material-components-web.css"></require>
 ```
 
-- Use it!
+## Use it!
+
+### General usage
 
 ```html
 <button class="mdc-button
@@ -66,9 +61,14 @@ export function configure(aurelia) {
 </button>
 ```
 
-- Example `mdc-checkbox`
+The plugin automaticaly adds `data-mdc-auto-init="MDCRipple"` to the button above and initializes it, so you do not have to add it to any of the components available.
 
-Your view includes the checkbox. The plugin automatically adds the necessary *html* and *svg* snippets.
+
+### Custom Elements
+
+`mdc-checkbox`
+
+Your view includes the checkbox. The plugin automatically adds the necessary _html_ and _svg_ snippets.
 
 ```html
 <label>
@@ -77,9 +77,9 @@ Your view includes the checkbox. The plugin automatically adds the necessary *ht
 </label>
 ```
 
-In your model you need to provide the `boolean` flags
+Your model needs to provide the `boolean` flags
 
-```js
+```javascript
 export class Example {
   // these flags are used
   accentButtons = true;
@@ -102,6 +102,18 @@ export class Example {
 }
 ```
 
+`mdc-datepicker`
 
+```html
+<mdc-datepicker locale.bind="locale" start-week-on="monday" value.bind="testDate">
+  <label class="mdc-textfield__label">Date</label>
+</mdc-datepicker>
+```
 
-The plugin automaticaly adds `data-mdc-auto-init="MDCRipple"` to the button above and initializes it, so you do not have to add it to any of the components available.
+`mdc-timepicker`
+
+```html
+<mdc-timepicker locale.bind="locale" value.bind="testDate">
+  <label class="mdc-textfield__label">Time</label>
+</mdc-timepicker>
+```
