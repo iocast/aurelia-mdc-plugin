@@ -27,7 +27,7 @@
                 </header>
                 <section id="mdc-timepicker-description" class="mdc-dialog__body mdc-timepicker__body">
 
-                    <div class="mdc-timepicker-circular__surface">
+                    <div ref="domCircularSurface" class="mdc-timepicker-circular__surface" class.bind="selected.styles.surface">
 
                         <div ref="domNeedle" class="mdc-timepicker__view-needle" class.bind="selected.styles.needle">
                           <span class="mdc-timepicker__view-needle__dot"></span>

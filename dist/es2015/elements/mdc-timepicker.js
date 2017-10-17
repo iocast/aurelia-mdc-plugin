@@ -139,6 +139,7 @@ let TimepickerTime = (_dec6 = computedFrom("_date"), _dec7 = computedFrom("_loca
 
     constructor(date, locale) {
         this.styles = {
+            surface: "",
             needle: "",
             views: {
                 hour: "",
@@ -233,14 +234,17 @@ let TimepickerTime = (_dec6 = computedFrom("_date"), _dec7 = computedFrom("_loca
         if (options.hour && options.set || !options.hour && !options.set) {
             let hourPosition = parseInt(this.hour) % 12 * 5;
 
+            this.styles.surface = `mdc-timepicker-circular--rotate-to-${hourPosition}`;
             this.styles.needle = `mdc-timepicker__view-circular__cell--rotate-to-${hourPosition}`;
             if (!this.period && (parseInt(this.hour) > 12 || parseInt(this.hour) === 0)) {
+                this.styles.surface += ' mdc-timepicker__view-needle__pm';
                 this.styles.needle += ' mdc-timepicker__view-needle__pm';
             }
 
             this.styles.views.hour = '';
             this.styles.views.minute = 'mdc-timepicker--hidden';
         } else {
+            this.styles.surface = `mdc-timepicker-circular--rotate-to-${parseInt(this.minute)}`;
             this.styles.needle = `mdc-timepicker__view-circular__cell--rotate-to-${parseInt(this.minute)}`;
 
             this.styles.views.hour = 'mdc-timepicker--hidden';

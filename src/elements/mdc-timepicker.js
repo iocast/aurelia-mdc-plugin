@@ -30,6 +30,7 @@ export class MdcTimepicker {
     timepickerDialog;
     mdcTimepickerDialog;
 
+    domCircularSurface;
     domNeedle;
     domMinuteView;
     domHourView;
@@ -115,6 +116,7 @@ class TimepickerTime {
     _locale;
 
     styles = {
+        surface: "",
         needle: "",
         views: {
             hour: "",
@@ -212,8 +214,10 @@ class TimepickerTime {
         if (options.hour && options.set || !options.hour && !options.set) {
             let hourPosition = (parseInt(this.hour) % 12) * 5;
 
+            this.styles.surface = `mdc-timepicker-circular--rotate-to-${hourPosition}`;
             this.styles.needle = `mdc-timepicker__view-circular__cell--rotate-to-${hourPosition}`;
             if (!this.period && (parseInt(this.hour) > 12 || parseInt(this.hour) === 0)) {
+                this.styles.surface += ' mdc-timepicker__view-needle__pm';
                 this.styles.needle += ' mdc-timepicker__view-needle__pm';
             }
 
@@ -221,6 +225,7 @@ class TimepickerTime {
             this.styles.views.minute = 'mdc-timepicker--hidden';
 
         } else {
+            this.styles.surface = `mdc-timepicker-circular--rotate-to-${parseInt(this.minute)}`;
             this.styles.needle = `mdc-timepicker__view-circular__cell--rotate-to-${parseInt(this.minute)}`;
 
             this.styles.views.hour = 'mdc-timepicker--hidden';
