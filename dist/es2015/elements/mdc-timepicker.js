@@ -108,6 +108,7 @@ export let MdcTimepicker = (_dec = customElement('mdc-timepicker'), _dec2 = inje
 
     show() {
         this.selected.locale = this.locale;
+        console.log(this._value);
         this.selected.date = this._value ? this._value : new Date();
 
         this.mdcTimepickerDialog.show();
@@ -154,7 +155,7 @@ let TimepickerTime = (_dec6 = computedFrom("_date"), _dec7 = computedFrom("_loca
         this._origDate = value;
         this._date = new Date(value.getTime());
         this.refresh(this.locale);
-        this.setHours(this.hour);
+        this.setHours(parseInt(this.hour));
     }
 
     get originalDate() {
@@ -169,8 +170,11 @@ let TimepickerTime = (_dec6 = computedFrom("_date"), _dec7 = computedFrom("_loca
     }
 
     setHours(hours) {
+        if (hours < 12 && this.period && this.period.toLowerCase() === 'pm') {
+            hours += 12;
+        }
         this.date.setHours(hours);
-        this._format();
+        this.refresh();
         this._calculateStyles({
             set: true,
             hour: true
@@ -178,7 +182,7 @@ let TimepickerTime = (_dec6 = computedFrom("_date"), _dec7 = computedFrom("_loca
     }
     setMinutes(minutes) {
         this.date.setMinutes(minutes);
-        this._format();
+        this.refresh();
         this._calculateStyles({
             set: true,
             hour: false
@@ -202,10 +206,17 @@ let TimepickerTime = (_dec6 = computedFrom("_date"), _dec7 = computedFrom("_loca
 
     togglePeriod() {
         if (this.period.toLowerCase() === 'am') {
-            this.setHours(this.date.getHours() + 12);
+            this.date.setUTCHours(this.date.getUTCHours() + 12);
         } else {
-            this.setHours(this.date.getHours() - 12);
+            this.date.setUTCHours(this.date.getUTCHours() - 12);
         }
+        this.refresh();
+    }
+
+    refresh(locale) {
+        this.locale = locale ? locale : this.locale;
+
+        this._format();
     }
 
     _calculateStyles(options) {
@@ -225,12 +236,6 @@ let TimepickerTime = (_dec6 = computedFrom("_date"), _dec7 = computedFrom("_loca
             this.styles.views.hour = 'mdc-timepicker--hidden';
             this.styles.views.minute = '';
         }
-    }
-
-    refresh(locale) {
-        this.locale = locale ? locale : this.locale;
-
-        this._format();
     }
 
     _format() {

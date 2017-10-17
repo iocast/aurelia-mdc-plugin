@@ -109,6 +109,7 @@ var MdcTimepicker = exports.MdcTimepicker = (_dec = (0, _aureliaFramework.custom
 
     MdcTimepicker.prototype.show = function show() {
         this.selected.locale = this.locale;
+        console.log(this._value);
         this.selected.date = this._value ? this._value : new Date();
 
         this.mdcTimepickerDialog.show();
@@ -166,8 +167,11 @@ var TimepickerTime = (_dec6 = (0, _aureliaFramework.computedFrom)("_date"), _dec
     }
 
     TimepickerTime.prototype.setHours = function setHours(hours) {
+        if (hours < 12 && this.period && this.period.toLowerCase() === 'pm') {
+            hours += 12;
+        }
         this.date.setHours(hours);
-        this._format();
+        this.refresh();
         this._calculateStyles({
             set: true,
             hour: true
@@ -176,7 +180,7 @@ var TimepickerTime = (_dec6 = (0, _aureliaFramework.computedFrom)("_date"), _dec
 
     TimepickerTime.prototype.setMinutes = function setMinutes(minutes) {
         this.date.setMinutes(minutes);
-        this._format();
+        this.refresh();
         this._calculateStyles({
             set: true,
             hour: false
@@ -201,10 +205,17 @@ var TimepickerTime = (_dec6 = (0, _aureliaFramework.computedFrom)("_date"), _dec
 
     TimepickerTime.prototype.togglePeriod = function togglePeriod() {
         if (this.period.toLowerCase() === 'am') {
-            this.setHours(this.date.getHours() + 12);
+            this.date.setUTCHours(this.date.getUTCHours() + 12);
         } else {
-            this.setHours(this.date.getHours() - 12);
+            this.date.setUTCHours(this.date.getUTCHours() - 12);
         }
+        this.refresh();
+    };
+
+    TimepickerTime.prototype.refresh = function refresh(locale) {
+        this.locale = locale ? locale : this.locale;
+
+        this._format();
     };
 
     TimepickerTime.prototype._calculateStyles = function _calculateStyles(options) {
@@ -224,12 +235,6 @@ var TimepickerTime = (_dec6 = (0, _aureliaFramework.computedFrom)("_date"), _dec
             this.styles.views.hour = 'mdc-timepicker--hidden';
             this.styles.views.minute = '';
         }
-    };
-
-    TimepickerTime.prototype.refresh = function refresh(locale) {
-        this.locale = locale ? locale : this.locale;
-
-        this._format();
     };
 
     TimepickerTime.prototype._format = function _format() {
@@ -270,7 +275,7 @@ var TimepickerTime = (_dec6 = (0, _aureliaFramework.computedFrom)("_date"), _dec
             this._origDate = value;
             this._date = new Date(value.getTime());
             this.refresh(this.locale);
-            this.setHours(this.hour);
+            this.setHours(parseInt(this.hour));
         }
     }, {
         key: 'originalDate',

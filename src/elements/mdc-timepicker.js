@@ -132,7 +132,7 @@ class TimepickerTime {
         this._origDate = value;
         this._date = new Date(value.getTime());
         this.refresh(this.locale);
-        this.setHours(this.hour);
+        this.setHours(parseInt(this.hour));
     }
 
     get originalDate() {
@@ -148,8 +148,11 @@ class TimepickerTime {
     }
 
     setHours(hours) {
+        if (hours < 12 && this.period && this.period.toLowerCase() === 'pm') {
+            hours += 12;
+        }
         this.date.setHours(hours);
-        this._format();
+        this.refresh();
         this._calculateStyles({
             set: true,
             hour: true
@@ -157,7 +160,7 @@ class TimepickerTime {
     }
     setMinutes(minutes) {
         this.date.setMinutes(minutes);
-        this._format();
+        this.refresh();
         this._calculateStyles({
             set: true,
             hour: false
@@ -181,10 +184,17 @@ class TimepickerTime {
 
     togglePeriod() {
         if (this.period.toLowerCase() === 'am') {
-            this.setHours(this.date.getHours() + 12);
+            this.date.setUTCHours(this.date.getUTCHours() + 12);
         } else {
-            this.setHours(this.date.getHours() - 12);
+            this.date.setUTCHours(this.date.getUTCHours() - 12);
         }
+        this.refresh();
+    }
+
+    refresh(locale) {
+        this.locale = (locale) ? locale : this.locale;
+
+        this._format();
     }
 
     _calculateStyles(options) {
@@ -205,12 +215,6 @@ class TimepickerTime {
             this.styles.views.hour = 'mdc-timepicker--hidden';
             this.styles.views.minute = '';
         }
-    }
-
-    refresh(locale) {
-        this.locale = (locale) ? locale : this.locale;
-
-        this._format();
     }
 
     _format() {
