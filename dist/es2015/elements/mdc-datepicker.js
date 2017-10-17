@@ -90,11 +90,11 @@ export let MdcDatepicker = (_dec = customElement('mdc-datepicker'), _dec2 = inje
             shift = 6;
         }
 
-        this.selected = new DatePickerDate(this._value ? this._value : new Date(), this.locale, shift);
+        this.selected = new DatepickerDate(this._value ? this._value : new Date(), this.locale, shift);
 
-        this.slideA = new DatePickerDate(new Date(), this.locale, shift, "current", this.selected);
-        this.slideB = new DatePickerDate(new Date(Date.UTC(this.slideA.date.getFullYear(), this.slideA.date.getMonth() - 1, 1)), this.locale, shift, "previous", this.selected);
-        this.slideC = new DatePickerDate(new Date(Date.UTC(this.slideA.date.getFullYear(), this.slideA.date.getMonth() + 1, 1)), this.locale, shift, "next", this.selected);
+        this.slideA = new DatepickerDate(new Date(), this.locale, shift, "current", this.selected);
+        this.slideB = new DatepickerDate(new Date(Date.UTC(this.slideA.date.getFullYear(), this.slideA.date.getMonth() - 1, 1)), this.locale, shift, "previous", this.selected);
+        this.slideC = new DatepickerDate(new Date(Date.UTC(this.slideA.date.getFullYear(), this.slideA.date.getMonth() + 1, 1)), this.locale, shift, "next", this.selected);
 
         this.slideA.calculateCalendar({
             empty: true
@@ -194,6 +194,7 @@ export let MdcDatepicker = (_dec = customElement('mdc-datepicker'), _dec2 = inje
     }
 
     cancel() {
+        this.value = this.selected.originalDate;
         this.mdcDatepickerDialog.close();
     }
 
@@ -213,7 +214,7 @@ export let MdcDatepicker = (_dec = customElement('mdc-datepicker'), _dec2 = inje
     initializer: null
 }), _applyDecoratedDescriptor(_class2.prototype, 'value', [_dec6], Object.getOwnPropertyDescriptor(_class2.prototype, 'value'), _class2.prototype)), _class2)) || _class) || _class);
 
-let DatePickerDate = (_dec7 = computedFrom("_position"), _dec8 = computedFrom("_position"), _dec9 = computedFrom("_locale"), (_class4 = class DatePickerDate {
+let DatepickerDate = (_dec7 = computedFrom("_date"), _dec8 = computedFrom("_position"), _dec9 = computedFrom("_locale"), (_class4 = class DatepickerDate {
 
     constructor(date, locale, shift, position, selected) {
         this.weekdays = [];
@@ -228,23 +229,41 @@ let DatePickerDate = (_dec7 = computedFrom("_position"), _dec8 = computedFrom("_
         this.locale = locale ? locale : 'en';
         this.shift = shift ? shift : 0;
         this.position = position;
-        this.date = date;
+        this._origDate = date;
+        this.date = new Date(date.getTime());
         this.selected = selected;
     }
 
     get date() {
+        this._date.setUTCHours(this.originalDate.getUTCHours());
+        this._date.setUTCMinutes(this.originalDate.getUTCMinutes());
+        this._date.setUTCSeconds(this.originalDate.getUTCSeconds());
+        this._date.setUTCMilliseconds(this.originalDate.getUTCMilliseconds());
         return this._date;
     }
     set date(value) {
-        this._date = value;
+        this._origDate = value;
+        this._date = new Date(value.getTime());
         this.refresh(this.locale, this.shift, this.position);
+    }
+
+    setDate(year, month, day) {
+        this._date.setFullYear(year);
+        this._date.setMonth(month);
+        this._date.setDate(day);
+
+        this.refresh(this.locale, this.shift, this.position);
+    }
+
+    get originalDate() {
+        return this._origDate;
     }
 
     get position() {
         return this._position;
     }
     set position(value) {
-        this._calcualteStyle(value);
+        this._calculateStyles(value);
         this._position = value;
     }
 
@@ -257,7 +276,7 @@ let DatePickerDate = (_dec7 = computedFrom("_position"), _dec8 = computedFrom("_
 
     select(day) {
         if (this.selected) {
-            this.selected.date = new Date(Date.UTC(this.date.getFullYear(), this.date.getMonth(), day));
+            this.selected.setDate(this.date.getFullYear(), this.date.getMonth(), day);
         }
     }
 
@@ -280,7 +299,7 @@ let DatePickerDate = (_dec7 = computedFrom("_position"), _dec8 = computedFrom("_
         }
     }
 
-    _calcualteStyle(newPosition) {
+    _calculateStyles(newPosition) {
         if (!this.position) {
             if (newPosition === 'previous') {
                 this.styleClasses = 'previous';

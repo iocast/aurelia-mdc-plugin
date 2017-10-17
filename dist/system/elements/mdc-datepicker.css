@@ -8,6 +8,14 @@
     user-select: none;
 }
 
+.md-datapicker-typography--bold {
+    font-weight: 500;
+}
+
+.mdc-datapicker-typography--black {
+    color: var(--mdc-theme-text-primary-on-background) !important;
+}
+
 .mdc-datepicker__surface {
     display: grid !important;
     grid-template-areas: "head main" "head foot";
@@ -26,14 +34,6 @@
     align-items: start;
     display: flex;
     flex-flow: column;
-}
-
-.md-datapicker-typography--bold {
-    font-weight: 500;
-}
-
-.mdc-datapicker-typography--black {
-    color: var(--mdc-theme-text-primary-on-background) !important;
 }
 
 .mdc-datapicker-weekend {

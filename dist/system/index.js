@@ -1,9 +1,9 @@
 'use strict';
 
-System.register(['aurelia-pal', './config', './mdc-target', './elements/mdc-checkbox', './elements/mdc-datepicker', './helpers'], function (_export, _context) {
+System.register(['aurelia-pal', './config', './mdc-target', './elements/mdc-checkbox', './elements/mdc-datepicker', './elements/mdc-timepicker', './helpers'], function (_export, _context) {
     "use strict";
 
-    var PLATFORM, MdcConfig, MDC_TARGET_ATTR, MDC_INIT_ATTR, MdcTarget, MdcCheckbox, MdcDatepicker, pluginConfig;
+    var PLATFORM, MdcConfig, MDC_TARGET_ATTR, MDC_INIT_ATTR, MdcTarget, MdcCheckbox, MdcDatepicker, MdcTimepicker, pluginConfig;
     function configure(config, callback) {
         pluginConfig = config.container.get(MdcConfig);
 
@@ -14,6 +14,7 @@ System.register(['aurelia-pal', './config', './mdc-target', './elements/mdc-chec
         config.globalResources(PLATFORM.moduleName('./mdc-target'));
         config.globalResources('./elements/mdc-checkbox');
         config.globalResources('./elements/mdc-datepicker');
+        config.globalResources('./elements/mdc-timepicker');
 
         config.aurelia.resources.registerViewEngineHooks({
             beforeCompile: beforeViewCompiled
@@ -47,6 +48,8 @@ System.register(['aurelia-pal', './config', './mdc-target', './elements/mdc-chec
             MdcCheckbox = _elementsMdcCheckbox.MdcCheckbox;
         }, function (_elementsMdcDatepicker) {
             MdcDatepicker = _elementsMdcDatepicker.MdcDatepicker;
+        }, function (_elementsMdcTimepicker) {
+            MdcTimepicker = _elementsMdcTimepicker.MdcTimepicker;
         }, function (_helpers) {
             var _exportObj = {};
             _exportObj.ensureAttached = _helpers.ensureAttached;
@@ -61,6 +64,8 @@ System.register(['aurelia-pal', './config', './mdc-target', './elements/mdc-chec
             _export('MdcCheckbox', MdcCheckbox);
 
             _export('MdcDatepicker', MdcDatepicker);
+
+            _export('MdcTimepicker', MdcTimepicker);
         }
     };
 });

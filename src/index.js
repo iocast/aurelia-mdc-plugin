@@ -4,6 +4,7 @@ import { MdcConfig, MDC_TARGET_ATTR, MDC_INIT_ATTR } from './config';
 import { MdcTarget } from './mdc-target';
 import { MdcCheckbox } from './elements/mdc-checkbox';
 import { MdcDatepicker } from './elements/mdc-datepicker';
+import { MdcTimepicker } from './elements/mdc-timepicker';
 
 export { ensureAttached } from './helpers';
 
@@ -19,6 +20,7 @@ export function configure(config, callback) {
     config.globalResources(PLATFORM.moduleName('./mdc-target'));
     config.globalResources('./elements/mdc-checkbox');
     config.globalResources('./elements/mdc-datepicker');
+    config.globalResources('./elements/mdc-timepicker');
 
     config.aurelia.resources
         .registerViewEngineHooks({
@@ -42,5 +44,6 @@ function beforeViewCompiled(content) {
 export {
     MdcTarget,
     MdcCheckbox,
-    MdcDatepicker
+    MdcDatepicker,
+    MdcTimepicker
 };

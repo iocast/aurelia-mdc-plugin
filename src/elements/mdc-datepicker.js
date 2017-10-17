@@ -60,12 +60,12 @@ export class MdcDatepicker {
             shift = 6;
         }
 
-        this.selected = new DatePickerDate((this._value) ? this._value : new Date(), this.locale, shift);
+        this.selected = new DatepickerDate((this._value) ? this._value : new Date(), this.locale, shift);
 
 
-        this.slideA = new DatePickerDate(new Date(), this.locale, shift, "current", this.selected);
-        this.slideB = new DatePickerDate(new Date(Date.UTC(this.slideA.date.getFullYear(), this.slideA.date.getMonth() - 1, 1)), this.locale, shift, "previous", this.selected);
-        this.slideC = new DatePickerDate(new Date(Date.UTC(this.slideA.date.getFullYear(), this.slideA.date.getMonth() + 1, 1)), this.locale, shift, "next", this.selected);
+        this.slideA = new DatepickerDate(new Date(), this.locale, shift, "current", this.selected);
+        this.slideB = new DatepickerDate(new Date(Date.UTC(this.slideA.date.getFullYear(), this.slideA.date.getMonth() - 1, 1)), this.locale, shift, "previous", this.selected);
+        this.slideC = new DatepickerDate(new Date(Date.UTC(this.slideA.date.getFullYear(), this.slideA.date.getMonth() + 1, 1)), this.locale, shift, "next", this.selected);
 
 
         this.slideA.calculateCalendar({
@@ -167,6 +167,7 @@ export class MdcDatepicker {
     }
 
     cancel() {
+        this.value = this.selected.originalDate;
         this.mdcDatepickerDialog.close();
     }
 
@@ -181,8 +182,9 @@ export class MdcDatepicker {
 
 
 
-class DatePickerDate {
+class DatepickerDate {
 
+    _origDate;
     _date;
     weekdays = [];
     matrix = [];
@@ -199,18 +201,36 @@ class DatePickerDate {
         this.locale = (locale) ? locale : 'en';
         this.shift = (shift) ? shift : 0;
         this.position = position;
-        this.date = date;
+        this._origDate = date;
+        this.date = new Date(date.getTime());
         this.selected = selected;
     }
 
 
-    @computedFrom("_position")
+    @computedFrom("_date")
     get date() {
+        this._date.setUTCHours(this.originalDate.getUTCHours());
+        this._date.setUTCMinutes(this.originalDate.getUTCMinutes());
+        this._date.setUTCSeconds(this.originalDate.getUTCSeconds());
+        this._date.setUTCMilliseconds(this.originalDate.getUTCMilliseconds());
         return this._date;
     }
     set date(value) {
-        this._date = value;
+        this._origDate = value;
+        this._date = new Date(value.getTime());
         this.refresh(this.locale, this.shift, this.position);
+    }
+
+    setDate(year, month, day) {
+      this._date.setFullYear(year);
+      this._date.setMonth(month);
+      this._date.setDate(day);
+
+      this.refresh(this.locale, this.shift, this.position);
+    }
+
+    get originalDate() {
+        return this._origDate;
     }
 
     @computedFrom("_position")
@@ -218,7 +238,7 @@ class DatePickerDate {
         return this._position;
     }
     set position(value) {
-        this._calcualteStyle(value);
+        this._calculateStyles(value);
         this._position = value;
     }
 
@@ -232,7 +252,7 @@ class DatePickerDate {
 
     select(day) {
         if (this.selected) {
-            this.selected.date = new Date(Date.UTC(this.date.getFullYear(), this.date.getMonth(), day));
+            this.selected.setDate(this.date.getFullYear(), this.date.getMonth(), day);
         }
     }
 
@@ -256,7 +276,7 @@ class DatePickerDate {
 
     }
 
-    _calcualteStyle(newPosition) {
+    _calculateStyles(newPosition) {
         if (!this.position) {
             if (newPosition === 'previous') {
                 this.styleClasses = 'previous';
