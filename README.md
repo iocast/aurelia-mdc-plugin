@@ -105,7 +105,7 @@ export class Example {
 `mdc-datepicker`
 
 ```html
-<mdc-datepicker locale.bind="locale" start-week-on="monday" value.bind="testDate">
+<mdc-datepicker locale.bind="en" start-week-on="monday" value.bind="testDate">
   <label class="mdc-textfield__label">Date</label>
 </mdc-datepicker>
 ```
@@ -113,7 +113,7 @@ export class Example {
 `mdc-timepicker`
 
 ```html
-<mdc-timepicker locale.bind="locale" value.bind="testDate">
+<mdc-timepicker locale.bind="de" value.bind="testDate">
   <label class="mdc-textfield__label">Time</label>
 </mdc-timepicker>
 ```
