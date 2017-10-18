@@ -3,7 +3,7 @@
 System.register(['aurelia-framework', 'material-components-web'], function (_export, _context) {
     "use strict";
 
-    var inject, bindable, bindingMode, computedFrom, DOM, customElement, dialog, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _class, _desc, _value, _class2, _descriptor, _descriptor2, _dec6, _dec7, _desc2, _value2, _class4, MdcTimepicker, TimepickerTime;
+    var inject, bindable, bindingMode, computedFrom, DOM, customElement, dialog, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _class, _desc, _value, _class2, _descriptor, _descriptor2, _dec6, _dec7, _desc2, _value2, _class5, MdcTimepicker, TimepickerDragger, TimepickerTime;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -109,6 +109,8 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                     this.mdcTimepickerDialog = new dialog.MDCDialog(this.timepickerDialog);
 
                     this.selected = new TimepickerTime(this._value ? this._value : new Date(), this.locale);
+
+                    this.dragger = new TimepickerDragger(this.domCircularSurface, this.domNeedle, this.domNeedleDragger, this.selected);
                 };
 
                 MdcTimepicker.prototype.localeChangeHandler = function localeChangeHandler(newValue, oldValue) {
@@ -135,6 +137,56 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
 
                 MdcTimepicker.prototype.togglePeriod = function togglePeriod() {
                     this.selected.togglePeriod();
+                };
+
+                MdcTimepicker.prototype.draggerStart = function draggerStart(evt) {
+                    evt.preventDefault();
+                    evt.stopPropagation();
+
+                    if (evt instanceof TouchEvent) {
+                        if (evt.touches.length === 1) {
+                            this.dragger.start(evt.touches[0]);
+                        }
+                    } else if (evt instanceof MouseEvent) {
+                        this.dragger.start(evt);
+                    }
+                };
+
+                MdcTimepicker.prototype.draggerMove = function draggerMove(evt) {
+                    evt.preventDefault();
+                    evt.stopPropagation();
+
+                    if (evt instanceof TouchEvent) {
+                        if (evt.touches.length === 1) {
+                            this.dragger.move(evt.touches[0]);
+                        }
+                    } else if (evt instanceof MouseEvent) {
+                        this.dragger.move(evt);
+                    }
+                };
+
+                MdcTimepicker.prototype.draggerOut = function draggerOut(evt) {
+                    evt.preventDefault();
+                    evt.stopPropagation();
+
+                    if (evt instanceof TouchEvent) {
+                        if (evt.touches.length === 1) {
+                            this.dragger.out(evt.touches[0]);
+                        }
+                    } else if (evt instanceof MouseEvent) {
+                        this.dragger.out(evt);
+                    }
+                };
+
+                MdcTimepicker.prototype.draggerStop = function draggerStop(evt) {
+                    evt.preventDefault();
+                    evt.stopPropagation();
+
+                    if (evt instanceof TouchEvent) {
+                        this.dragger.stop();
+                    } else if (evt instanceof MouseEvent) {
+                        this.dragger.stop(evt);
+                    }
                 };
 
                 MdcTimepicker.prototype.show = function show() {
@@ -181,7 +233,97 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
 
             _export('MdcTimepicker', MdcTimepicker);
 
-            TimepickerTime = (_dec6 = computedFrom("_date"), _dec7 = computedFrom("_locale"), (_class4 = function () {
+            TimepickerDragger = function () {
+                function TimepickerDragger(surface, needle, dragger, time) {
+                    var _this = this;
+
+                    _classCallCheck(this, TimepickerDragger);
+
+                    this.dragging = false;
+
+                    this.surface = surface;
+                    this.needle = needle;
+                    this.dragger = dragger;
+                    this.time = time;
+
+                    this.needle.addEventListener("transitionend", function (event) {
+                        _this._setToNeedle();
+                    }, false);
+                }
+
+                TimepickerDragger.prototype.start = function start(evt) {
+                    this.needleTransition = this.needle.style.transition;
+                    this.needle.style.transition = "unset";
+                    this.dragging = true;
+                };
+
+                TimepickerDragger.prototype.stop = function stop() {
+                    this.needle.style.transition = this.needleTransition;
+
+                    this._setToNeedle();
+
+                    this.dragging = false;
+                };
+
+                TimepickerDragger.prototype.out = function out(evt) {
+                    var offset = 20;
+                    var hOffset = this.surface.getBoundingClientRect();
+
+                    var xCurrent = evt.clientX - hOffset.left - hOffset.width / 2;
+                    var yCurrent = evt.clientY - hOffset.top - hOffset.height / 2;
+
+                    var xDragger = parseInt(this.dragger.style.left);
+                    var yDragger = parseInt(this.dragger.style.top);
+
+                    if (xCurrent > xDragger - offset && xCurrent < xDragger + offset && yCurrent > yDragger - offset && yCurrent < yDragger + offset) {
+                        this.dragger.setAttribute('style', 'left:' + xCurrent + 'px;top:' + yCurrent + 'px');
+                        this.move(evt);
+                        return;
+                    }
+
+                    this.stop(evt);
+                };
+
+                TimepickerDragger.prototype.move = function move(evt) {
+                    var _this2 = this;
+
+                    if (!this.dragging) return;
+
+                    window.requestAnimationFrame(function () {
+                        var hOffset = _this2.surface.getBoundingClientRect();
+
+                        var xPos = evt.clientX - hOffset.left - hOffset.width / 2;
+                        var yPos = evt.clientY - hOffset.top - hOffset.height / 2;
+
+                        var cOffset = _this2.needle.querySelector('.mdc-timepicker__view-needle__circle').getBoundingClientRect();
+                        _this2.dragger.setAttribute('style', 'left:' + (evt.clientX - hOffset.left - cOffset.width / 2) + 'px;top:' + (evt.clientY - hOffset.top - cOffset.height / 2) + 'px');
+
+                        var angle = Math.atan2(-yPos, xPos) * (180 / Math.PI) - 90;
+
+                        if (angle < 0) {
+                            angle = 360 + angle;
+                        }
+
+                        var min = Math.round((360 - angle) / 6);
+
+                        if (min > 59) {
+                            min = 0;
+                        }
+
+                        _this2.time.setMinutes(min);
+                    });
+                };
+
+                TimepickerDragger.prototype._setToNeedle = function _setToNeedle() {
+                    var hOffset = this.surface.getBoundingClientRect();
+                    var cOffset = this.needle.querySelector('.mdc-timepicker__view-needle__circle').getBoundingClientRect();
+                    this.dragger.setAttribute('style', 'left:' + (cOffset.left - hOffset.left) + 'px;top:' + (cOffset.top - hOffset.top) + 'px');
+                };
+
+                return TimepickerDragger;
+            }();
+
+            TimepickerTime = (_dec6 = computedFrom("_date"), _dec7 = computedFrom("_locale"), (_class5 = function () {
                 function TimepickerTime(date, locale) {
                     _classCallCheck(this, TimepickerTime);
 
@@ -336,7 +478,7 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                 }]);
 
                 return TimepickerTime;
-            }(), (_applyDecoratedDescriptor(_class4.prototype, 'date', [_dec6], Object.getOwnPropertyDescriptor(_class4.prototype, 'date'), _class4.prototype), _applyDecoratedDescriptor(_class4.prototype, 'locale', [_dec7], Object.getOwnPropertyDescriptor(_class4.prototype, 'locale'), _class4.prototype)), _class4));
+            }(), (_applyDecoratedDescriptor(_class5.prototype, 'date', [_dec6], Object.getOwnPropertyDescriptor(_class5.prototype, 'date'), _class5.prototype), _applyDecoratedDescriptor(_class5.prototype, 'locale', [_dec7], Object.getOwnPropertyDescriptor(_class5.prototype, 'locale'), _class5.prototype)), _class5));
         }
     };
 });

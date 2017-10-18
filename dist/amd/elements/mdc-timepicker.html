@@ -50,6 +50,17 @@
                             <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-0"><span click.delegate="selectMinutes(0)">00</span></div>
                         </div>
 
+                        <div ref="domNeedleDragger" class="mdc-timepicker__view-needle-dragger"
+                          mousedown.trigger="draggerStart($event)"
+                          touchstart.trigger="draggerStart($event)"
+                          mousemove.trigger="draggerMove($event)"
+                          touchmove.trigger="draggerMove($event)"
+                          mouseup.trigger="draggerStop($event)"
+                          touchend.trigger="draggerStop($event)"
+                          mouseleave.trigger="draggerOut($event)"
+                          touchleave.trigger="draggerOut($event)"
+                        ></div>
+
                         <div ref="domHourView" class="mdc-timepicker__view-circular" class.bind="selected.styles.views.hour">
                             <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-5"><span click.delegate="selectHours(1)">1</span></div>
                             <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-10"><span click.delegate="selectHours(2)">2</span></div>

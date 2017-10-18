@@ -1,4 +1,4 @@
-var _dec, _dec2, _dec3, _dec4, _dec5, _class, _desc, _value, _class2, _descriptor, _descriptor2, _dec6, _dec7, _desc2, _value2, _class4;
+var _dec, _dec2, _dec3, _dec4, _dec5, _class, _desc, _value, _class2, _descriptor, _descriptor2, _dec6, _dec7, _desc2, _value2, _class5;
 
 function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -70,6 +70,8 @@ export let MdcTimepicker = (_dec = customElement('mdc-timepicker'), _dec2 = inje
         this.mdcTimepickerDialog = new dialog.MDCDialog(this.timepickerDialog);
 
         this.selected = new TimepickerTime(this._value ? this._value : new Date(), this.locale);
+
+        this.dragger = new TimepickerDragger(this.domCircularSurface, this.domNeedle, this.domNeedleDragger, this.selected);
     }
 
     get value() {
@@ -110,6 +112,53 @@ export let MdcTimepicker = (_dec = customElement('mdc-timepicker'), _dec2 = inje
         this.selected.togglePeriod();
     }
 
+    draggerStart(evt) {
+        evt.preventDefault();
+        evt.stopPropagation();
+
+        if (evt instanceof TouchEvent) {
+            if (evt.touches.length === 1) {
+                this.dragger.start(evt.touches[0]);
+            }
+        } else if (evt instanceof MouseEvent) {
+            this.dragger.start(evt);
+        }
+    }
+    draggerMove(evt) {
+        evt.preventDefault();
+        evt.stopPropagation();
+
+        if (evt instanceof TouchEvent) {
+            if (evt.touches.length === 1) {
+                this.dragger.move(evt.touches[0]);
+            }
+        } else if (evt instanceof MouseEvent) {
+            this.dragger.move(evt);
+        }
+    }
+    draggerOut(evt) {
+        evt.preventDefault();
+        evt.stopPropagation();
+
+        if (evt instanceof TouchEvent) {
+            if (evt.touches.length === 1) {
+                this.dragger.out(evt.touches[0]);
+            }
+        } else if (evt instanceof MouseEvent) {
+            this.dragger.out(evt);
+        }
+    }
+    draggerStop(evt) {
+        evt.preventDefault();
+        evt.stopPropagation();
+
+        if (evt instanceof TouchEvent) {
+            this.dragger.stop();
+        } else if (evt instanceof MouseEvent) {
+            this.dragger.stop(evt);
+        }
+    }
+
     show() {
         this.selected.locale = this.locale;
         this.selected.date = this._value ? this._value : new Date();
@@ -135,7 +184,90 @@ export let MdcTimepicker = (_dec = customElement('mdc-timepicker'), _dec2 = inje
     initializer: null
 }), _applyDecoratedDescriptor(_class2.prototype, 'value', [_dec5], Object.getOwnPropertyDescriptor(_class2.prototype, 'value'), _class2.prototype)), _class2)) || _class) || _class);
 
-let TimepickerTime = (_dec6 = computedFrom("_date"), _dec7 = computedFrom("_locale"), (_class4 = class TimepickerTime {
+let TimepickerDragger = class TimepickerDragger {
+
+    constructor(surface, needle, dragger, time) {
+        this.dragging = false;
+
+        this.surface = surface;
+        this.needle = needle;
+        this.dragger = dragger;
+        this.time = time;
+
+        this.needle.addEventListener("transitionend", event => {
+            this._setToNeedle();
+        }, false);
+    }
+
+    start(evt) {
+        this.needleTransition = this.needle.style.transition;
+        this.needle.style.transition = "unset";
+        this.dragging = true;
+    }
+
+    stop() {
+        this.needle.style.transition = this.needleTransition;
+
+        this._setToNeedle();
+
+        this.dragging = false;
+    }
+
+    out(evt) {
+        const offset = 20;
+        const hOffset = this.surface.getBoundingClientRect();
+
+        const xCurrent = evt.clientX - hOffset.left - hOffset.width / 2;
+        const yCurrent = evt.clientY - hOffset.top - hOffset.height / 2;
+
+        const xDragger = parseInt(this.dragger.style.left);
+        const yDragger = parseInt(this.dragger.style.top);
+
+        if (xCurrent > xDragger - offset && xCurrent < xDragger + offset && yCurrent > yDragger - offset && yCurrent < yDragger + offset) {
+            this.dragger.setAttribute('style', `left:${xCurrent}px;top:${yCurrent}px`);
+            this.move(evt);
+            return;
+        }
+
+        this.stop(evt);
+    }
+
+    move(evt) {
+        if (!this.dragging) return;
+
+        window.requestAnimationFrame(() => {
+            const hOffset = this.surface.getBoundingClientRect();
+
+            const xPos = evt.clientX - hOffset.left - hOffset.width / 2;
+            const yPos = evt.clientY - hOffset.top - hOffset.height / 2;
+
+            const cOffset = this.needle.querySelector('.mdc-timepicker__view-needle__circle').getBoundingClientRect();
+            this.dragger.setAttribute('style', `left:${evt.clientX - hOffset.left - cOffset.width / 2}px;top:${evt.clientY - hOffset.top - cOffset.height / 2}px`);
+
+            let angle = Math.atan2(-yPos, xPos) * (180 / Math.PI) - 90;
+
+            if (angle < 0) {
+                angle = 360 + angle;
+            }
+
+            let min = Math.round((360 - angle) / 6);
+
+            if (min > 59) {
+                min = 0;
+            }
+
+            this.time.setMinutes(min);
+        });
+    }
+
+    _setToNeedle() {
+        const hOffset = this.surface.getBoundingClientRect();
+        const cOffset = this.needle.querySelector('.mdc-timepicker__view-needle__circle').getBoundingClientRect();
+        this.dragger.setAttribute('style', `left:${cOffset.left - hOffset.left}px;top:${cOffset.top - hOffset.top}px`);
+    }
+
+};
+let TimepickerTime = (_dec6 = computedFrom("_date"), _dec7 = computedFrom("_locale"), (_class5 = class TimepickerTime {
 
     constructor(date, locale) {
         this.styles = {
@@ -268,4 +400,4 @@ let TimepickerTime = (_dec6 = computedFrom("_date"), _dec7 = computedFrom("_loca
         }
     }
 
-}, (_applyDecoratedDescriptor(_class4.prototype, 'date', [_dec6], Object.getOwnPropertyDescriptor(_class4.prototype, 'date'), _class4.prototype), _applyDecoratedDescriptor(_class4.prototype, 'locale', [_dec7], Object.getOwnPropertyDescriptor(_class4.prototype, 'locale'), _class4.prototype)), _class4));
+}, (_applyDecoratedDescriptor(_class5.prototype, 'date', [_dec6], Object.getOwnPropertyDescriptor(_class5.prototype, 'date'), _class5.prototype), _applyDecoratedDescriptor(_class5.prototype, 'locale', [_dec7], Object.getOwnPropertyDescriptor(_class5.prototype, 'locale'), _class5.prototype)), _class5));
