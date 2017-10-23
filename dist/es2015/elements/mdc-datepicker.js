@@ -44,7 +44,7 @@ function _initializerWarningHelper(descriptor, context) {
 }
 
 import { inject, bindable, bindingMode, computedFrom, DOM, customElement } from 'aurelia-framework';
-import { dialog } from 'material-components-web';
+import { dialog, textfield } from 'material-components-web';
 
 export let MdcDatepicker = (_dec = customElement('mdc-datepicker'), _dec2 = inject(DOM.Element), _dec3 = bindable({
     attribute: 'locale',
@@ -57,7 +57,8 @@ export let MdcDatepicker = (_dec = customElement('mdc-datepicker'), _dec2 = inje
     defaultValue: 'sunday'
 }), _dec5 = bindable({
     attribute: 'value',
-    defaultBindingMode: bindingMode.twoWay
+    defaultBindingMode: bindingMode.twoWay,
+    changeHandler: 'valueChangeHandler'
 }), _dec6 = computedFrom("_value"), _dec(_class = _dec2(_class = (_class2 = class MdcDatepicker {
 
     constructor(element) {
@@ -74,6 +75,7 @@ export let MdcDatepicker = (_dec = customElement('mdc-datepicker'), _dec2 = inje
 
     attached() {
         this.mdcDatepickerDialog = new dialog.MDCDialog(this.datepickerDialog);
+        this.mdcValueDOM = new textfield.MDCTextfield(this.valueDOM);
 
         let shift = 0;
         if (this.startWeekOn === 'monday') {
@@ -129,10 +131,21 @@ export let MdcDatepicker = (_dec = customElement('mdc-datepicker'), _dec2 = inje
     localeChangeHandler(newValue, oldValue) {
         if (this.selected) {
             this.selected.refresh(newValue);
-            this.valueDOM.value = this.value;
-            this.valueDOM.dispatchEvent(new Event('change', {
+            this.mdcValueDOM.getDefaultFoundation().adapter_.getNativeInput().value = this.value;
+            this.mdcValueDOM.getDefaultFoundation().adapter_.getNativeInput().dispatchEvent(new Event('change', {
                 bubbles: true
             }));
+        }
+    }
+
+    valueChangeHandler(newValue, oldValue) {
+        this._value = newValue;
+
+        if (this.mdcValueDOM) {
+            this.mdcValueDOM.getDefaultFoundation().adapter_.removeClassFromLabel('mdc-textfield__label--float-above');
+            if (newValue instanceof Date) {
+                this.mdcValueDOM.getDefaultFoundation().adapter_.addClassToLabel('mdc-textfield__label--float-above');
+            }
         }
     }
 

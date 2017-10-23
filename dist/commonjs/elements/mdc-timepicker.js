@@ -65,7 +65,8 @@ var MdcTimepicker = exports.MdcTimepicker = (_dec = (0, _aureliaFramework.custom
     defaultValue: 'en'
 }), _dec4 = (0, _aureliaFramework.bindable)({
     attribute: 'value',
-    defaultBindingMode: _aureliaFramework.bindingMode.twoWay
+    defaultBindingMode: _aureliaFramework.bindingMode.twoWay,
+    changeHandler: 'valueChangeHandler'
 }), _dec5 = (0, _aureliaFramework.computedFrom)("_value"), _dec(_class = _dec2(_class = (_class2 = function () {
     function MdcTimepicker(element) {
         _classCallCheck(this, MdcTimepicker);
@@ -81,6 +82,7 @@ var MdcTimepicker = exports.MdcTimepicker = (_dec = (0, _aureliaFramework.custom
 
     MdcTimepicker.prototype.attached = function attached() {
         this.mdcTimepickerDialog = new _materialComponentsWeb.dialog.MDCDialog(this.timepickerDialog);
+        this.mdcValueDOM = new _materialComponentsWeb.textfield.MDCTextfield(this.valueDOM);
 
         this.selected = new TimepickerTime(this._value ? this._value : new Date(), this.locale);
 
@@ -90,10 +92,21 @@ var MdcTimepicker = exports.MdcTimepicker = (_dec = (0, _aureliaFramework.custom
     MdcTimepicker.prototype.localeChangeHandler = function localeChangeHandler(newValue, oldValue) {
         if (this.selected) {
             this.selected.refresh(newValue);
-            this.valueDOM.value = this.value;
-            this.valueDOM.dispatchEvent(new Event('change', {
+            this.mdcValueDOM.getDefaultFoundation().adapter_.getNativeInput().value = this.value;
+            this.mdcValueDOM.getDefaultFoundation().adapter_.getNativeInput().dispatchEvent(new Event('change', {
                 bubbles: true
             }));
+        }
+    };
+
+    MdcTimepicker.prototype.valueChangeHandler = function valueChangeHandler(newValue, oldValue) {
+        this._value = newValue;
+
+        if (this.mdcValueDOM) {
+            this.mdcValueDOM.getDefaultFoundation().adapter_.removeClassFromLabel('mdc-textfield__label--float-above');
+            if (newValue instanceof Date) {
+                this.mdcValueDOM.getDefaultFoundation().adapter_.addClassToLabel('mdc-textfield__label--float-above');
+            }
         }
     };
 

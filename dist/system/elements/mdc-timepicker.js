@@ -3,7 +3,7 @@
 System.register(['aurelia-framework', 'material-components-web'], function (_export, _context) {
     "use strict";
 
-    var inject, bindable, bindingMode, computedFrom, DOM, customElement, dialog, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _class, _desc, _value, _class2, _descriptor, _descriptor2, _dec6, _dec7, _desc2, _value2, _class5, MdcTimepicker, TimepickerDragger, TimepickerTime;
+    var inject, bindable, bindingMode, computedFrom, DOM, customElement, dialog, textfield, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _class, _desc, _value, _class2, _descriptor, _descriptor2, _dec6, _dec7, _desc2, _value2, _class5, MdcTimepicker, TimepickerDragger, TimepickerTime;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -64,6 +64,7 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
             customElement = _aureliaFramework.customElement;
         }, function (_materialComponentsWeb) {
             dialog = _materialComponentsWeb.dialog;
+            textfield = _materialComponentsWeb.textfield;
         }],
         execute: function () {
             _createClass = function () {
@@ -91,7 +92,8 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                 defaultValue: 'en'
             }), _dec4 = bindable({
                 attribute: 'value',
-                defaultBindingMode: bindingMode.twoWay
+                defaultBindingMode: bindingMode.twoWay,
+                changeHandler: 'valueChangeHandler'
             }), _dec5 = computedFrom("_value"), _dec(_class = _dec2(_class = (_class2 = function () {
                 function MdcTimepicker(element) {
                     _classCallCheck(this, MdcTimepicker);
@@ -107,6 +109,7 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
 
                 MdcTimepicker.prototype.attached = function attached() {
                     this.mdcTimepickerDialog = new dialog.MDCDialog(this.timepickerDialog);
+                    this.mdcValueDOM = new textfield.MDCTextfield(this.valueDOM);
 
                     this.selected = new TimepickerTime(this._value ? this._value : new Date(), this.locale);
 
@@ -116,10 +119,21 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                 MdcTimepicker.prototype.localeChangeHandler = function localeChangeHandler(newValue, oldValue) {
                     if (this.selected) {
                         this.selected.refresh(newValue);
-                        this.valueDOM.value = this.value;
-                        this.valueDOM.dispatchEvent(new Event('change', {
+                        this.mdcValueDOM.getDefaultFoundation().adapter_.getNativeInput().value = this.value;
+                        this.mdcValueDOM.getDefaultFoundation().adapter_.getNativeInput().dispatchEvent(new Event('change', {
                             bubbles: true
                         }));
+                    }
+                };
+
+                MdcTimepicker.prototype.valueChangeHandler = function valueChangeHandler(newValue, oldValue) {
+                    this._value = newValue;
+
+                    if (this.mdcValueDOM) {
+                        this.mdcValueDOM.getDefaultFoundation().adapter_.removeClassFromLabel('mdc-textfield__label--float-above');
+                        if (newValue instanceof Date) {
+                            this.mdcValueDOM.getDefaultFoundation().adapter_.addClassToLabel('mdc-textfield__label--float-above');
+                        }
                     }
                 };
 

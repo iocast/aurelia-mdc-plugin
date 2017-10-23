@@ -69,7 +69,8 @@ var MdcDatepicker = exports.MdcDatepicker = (_dec = (0, _aureliaFramework.custom
     defaultValue: 'sunday'
 }), _dec5 = (0, _aureliaFramework.bindable)({
     attribute: 'value',
-    defaultBindingMode: _aureliaFramework.bindingMode.twoWay
+    defaultBindingMode: _aureliaFramework.bindingMode.twoWay,
+    changeHandler: 'valueChangeHandler'
 }), _dec6 = (0, _aureliaFramework.computedFrom)("_value"), _dec(_class = _dec2(_class = (_class2 = function () {
     function MdcDatepicker(element) {
         _classCallCheck(this, MdcDatepicker);
@@ -89,6 +90,7 @@ var MdcDatepicker = exports.MdcDatepicker = (_dec = (0, _aureliaFramework.custom
         var _this = this;
 
         this.mdcDatepickerDialog = new _materialComponentsWeb.dialog.MDCDialog(this.datepickerDialog);
+        this.mdcValueDOM = new _materialComponentsWeb.textfield.MDCTextfield(this.valueDOM);
 
         var shift = 0;
         if (this.startWeekOn === 'monday') {
@@ -129,10 +131,21 @@ var MdcDatepicker = exports.MdcDatepicker = (_dec = (0, _aureliaFramework.custom
     MdcDatepicker.prototype.localeChangeHandler = function localeChangeHandler(newValue, oldValue) {
         if (this.selected) {
             this.selected.refresh(newValue);
-            this.valueDOM.value = this.value;
-            this.valueDOM.dispatchEvent(new Event('change', {
+            this.mdcValueDOM.getDefaultFoundation().adapter_.getNativeInput().value = this.value;
+            this.mdcValueDOM.getDefaultFoundation().adapter_.getNativeInput().dispatchEvent(new Event('change', {
                 bubbles: true
             }));
+        }
+    };
+
+    MdcDatepicker.prototype.valueChangeHandler = function valueChangeHandler(newValue, oldValue) {
+        this._value = newValue;
+
+        if (this.mdcValueDOM) {
+            this.mdcValueDOM.getDefaultFoundation().adapter_.removeClassFromLabel('mdc-textfield__label--float-above');
+            if (newValue instanceof Date) {
+                this.mdcValueDOM.getDefaultFoundation().adapter_.addClassToLabel('mdc-textfield__label--float-above');
+            }
         }
     };
 

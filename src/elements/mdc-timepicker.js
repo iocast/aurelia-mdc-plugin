@@ -7,7 +7,8 @@ import {
     customElement
 } from 'aurelia-framework';
 import {
-    dialog
+    dialog,
+    textfield
 } from 'material-components-web';
 
 
@@ -24,11 +25,15 @@ export class MdcTimepicker {
 
     @bindable({
         attribute: 'value',
-        defaultBindingMode: bindingMode.twoWay
+        defaultBindingMode: bindingMode.twoWay,
+        changeHandler: 'valueChangeHandler'
     }) _value;
 
     timepickerDialog;
     mdcTimepickerDialog;
+
+    valueDOM;
+    mdcValueDOM;
 
     domCircularSurface;
     domNeedle;
@@ -44,6 +49,7 @@ export class MdcTimepicker {
 
     attached() {
         this.mdcTimepickerDialog = new dialog.MDCDialog(this.timepickerDialog);
+        this.mdcValueDOM = new textfield.MDCTextfield(this.valueDOM);
 
         this.selected = new TimepickerTime((this._value) ? this._value : new Date(), this.locale);
 
@@ -70,10 +76,27 @@ export class MdcTimepicker {
     localeChangeHandler(newValue, oldValue) {
         if (this.selected) {
             this.selected.refresh(newValue);
+            this.mdcValueDOM.getDefaultFoundation().adapter_.getNativeInput().value = this.value;
+            this.mdcValueDOM.getDefaultFoundation().adapter_.getNativeInput().dispatchEvent(new Event('change', {
+                bubbles: true
+            }));
+            /*
             this.valueDOM.value = this.value;
             this.valueDOM.dispatchEvent(new Event('change', {
                 bubbles: true
             }));
+            */
+        }
+    }
+
+    valueChangeHandler(newValue, oldValue) {
+        this._value = newValue;
+
+        if (this.mdcValueDOM) {
+            this.mdcValueDOM.getDefaultFoundation().adapter_.removeClassFromLabel('mdc-textfield__label--float-above');
+            if (newValue instanceof Date) {
+                this.mdcValueDOM.getDefaultFoundation().adapter_.addClassToLabel('mdc-textfield__label--float-above');
+            }
         }
     }
 

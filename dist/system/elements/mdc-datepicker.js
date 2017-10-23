@@ -3,7 +3,7 @@
 System.register(['aurelia-framework', 'material-components-web'], function (_export, _context) {
     "use strict";
 
-    var inject, bindable, bindingMode, computedFrom, DOM, customElement, dialog, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _dec7, _dec8, _dec9, _desc2, _value2, _class4, MdcDatepicker, DatepickerDate;
+    var inject, bindable, bindingMode, computedFrom, DOM, customElement, dialog, textfield, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _dec7, _dec8, _dec9, _desc2, _value2, _class4, MdcDatepicker, DatepickerDate;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -64,6 +64,7 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
             customElement = _aureliaFramework.customElement;
         }, function (_materialComponentsWeb) {
             dialog = _materialComponentsWeb.dialog;
+            textfield = _materialComponentsWeb.textfield;
         }],
         execute: function () {
             _createClass = function () {
@@ -95,7 +96,8 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                 defaultValue: 'sunday'
             }), _dec5 = bindable({
                 attribute: 'value',
-                defaultBindingMode: bindingMode.twoWay
+                defaultBindingMode: bindingMode.twoWay,
+                changeHandler: 'valueChangeHandler'
             }), _dec6 = computedFrom("_value"), _dec(_class = _dec2(_class = (_class2 = function () {
                 function MdcDatepicker(element) {
                     _classCallCheck(this, MdcDatepicker);
@@ -115,6 +117,7 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                     var _this = this;
 
                     this.mdcDatepickerDialog = new dialog.MDCDialog(this.datepickerDialog);
+                    this.mdcValueDOM = new textfield.MDCTextfield(this.valueDOM);
 
                     var shift = 0;
                     if (this.startWeekOn === 'monday') {
@@ -155,10 +158,21 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                 MdcDatepicker.prototype.localeChangeHandler = function localeChangeHandler(newValue, oldValue) {
                     if (this.selected) {
                         this.selected.refresh(newValue);
-                        this.valueDOM.value = this.value;
-                        this.valueDOM.dispatchEvent(new Event('change', {
+                        this.mdcValueDOM.getDefaultFoundation().adapter_.getNativeInput().value = this.value;
+                        this.mdcValueDOM.getDefaultFoundation().adapter_.getNativeInput().dispatchEvent(new Event('change', {
                             bubbles: true
                         }));
+                    }
+                };
+
+                MdcDatepicker.prototype.valueChangeHandler = function valueChangeHandler(newValue, oldValue) {
+                    this._value = newValue;
+
+                    if (this.mdcValueDOM) {
+                        this.mdcValueDOM.getDefaultFoundation().adapter_.removeClassFromLabel('mdc-textfield__label--float-above');
+                        if (newValue instanceof Date) {
+                            this.mdcValueDOM.getDefaultFoundation().adapter_.addClassToLabel('mdc-textfield__label--float-above');
+                        }
                     }
                 };
 

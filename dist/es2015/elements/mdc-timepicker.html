@@ -4,8 +4,8 @@
 
     <div class="mdc-typography">
 
-        <div class="mdc-textfield mdc-textfield--upgraded">
-            <input ref="valueDOM" type="text" class="mdc-textfield__input mdc-timepicker__input" value.bind="value" click.delegate="show()" readonly>
+        <div ref="valueDOM" class="mdc-textfield mdc-textfield--upgraded">
+            <input type="text" class="mdc-textfield__input mdc-timepicker__input" value.bind="value" click.delegate="show()" readonly>
             <slot></slot>
         </div>
 

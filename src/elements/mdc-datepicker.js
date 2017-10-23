@@ -7,7 +7,8 @@ import {
     customElement
 } from 'aurelia-framework';
 import {
-    dialog
+    dialog,
+    textfield
 } from 'material-components-web';
 
 
@@ -30,11 +31,15 @@ export class MdcDatepicker {
 
     @bindable({
         attribute: 'value',
-        defaultBindingMode: bindingMode.twoWay
+        defaultBindingMode: bindingMode.twoWay,
+        changeHandler: 'valueChangeHandler'
     }) _value;
 
     datepickerDialog;
     mdcDatepickerDialog;
+
+    valueDOM;
+    mdcValueDOM;
 
     animating = false;
 
@@ -44,6 +49,7 @@ export class MdcDatepicker {
 
     attached() {
         this.mdcDatepickerDialog = new dialog.MDCDialog(this.datepickerDialog);
+        this.mdcValueDOM = new textfield.MDCTextfield(this.valueDOM);
 
         let shift = 0;
         if (this.startWeekOn === 'monday') {
@@ -102,10 +108,27 @@ export class MdcDatepicker {
     localeChangeHandler(newValue, oldValue) {
         if (this.selected) {
             this.selected.refresh(newValue);
+            this.mdcValueDOM.getDefaultFoundation().adapter_.getNativeInput().value = this.value;
+            this.mdcValueDOM.getDefaultFoundation().adapter_.getNativeInput().dispatchEvent(new Event('change', {
+                bubbles: true
+            }));
+            /*
             this.valueDOM.value = this.value;
             this.valueDOM.dispatchEvent(new Event('change', {
                 bubbles: true
             }));
+            */
+        }
+    }
+
+    valueChangeHandler(newValue, oldValue) {
+        this._value = newValue;
+
+        if (this.mdcValueDOM) {
+            this.mdcValueDOM.getDefaultFoundation().adapter_.removeClassFromLabel('mdc-textfield__label--float-above');
+            if (newValue instanceof Date) {
+                this.mdcValueDOM.getDefaultFoundation().adapter_.addClassToLabel('mdc-textfield__label--float-above');
+            }
         }
     }
 
@@ -222,11 +245,11 @@ class DatepickerDate {
     }
 
     setDate(year, month, day) {
-      this._date.setFullYear(year);
-      this._date.setMonth(month);
-      this._date.setDate(day);
+        this._date.setFullYear(year);
+        this._date.setMonth(month);
+        this._date.setDate(day);
 
-      this.refresh(this.locale, this.shift, this.position);
+        this.refresh(this.locale, this.shift, this.position);
     }
 
     get originalDate() {
