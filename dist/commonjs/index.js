@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.MdcTimepicker = exports.MdcDatepicker = exports.MdcCheckbox = exports.MdcTarget = exports.ensureAttached = undefined;
+exports.MdcAutocomplete = exports.MdcTimepicker = exports.MdcDatepicker = exports.MdcCheckbox = exports.MdcTarget = exports.ensureAttached = undefined;
 
 var _helpers = require('./helpers');
 
@@ -27,6 +27,8 @@ var _mdcDatepicker = require('./elements/mdc-datepicker');
 
 var _mdcTimepicker = require('./elements/mdc-timepicker');
 
+var _mdcAutocomplete = require('./elements/mdc-autocomplete');
+
 var pluginConfig = void 0;
 
 function configure(config, callback) {
@@ -40,6 +42,7 @@ function configure(config, callback) {
     config.globalResources('./elements/mdc-checkbox');
     config.globalResources('./elements/mdc-datepicker');
     config.globalResources('./elements/mdc-timepicker');
+    config.globalResources('./elements/mdc-autocomplete');
 
     config.aurelia.resources.registerViewEngineHooks({
         beforeCompile: beforeViewCompiled
@@ -62,3 +65,4 @@ exports.MdcTarget = _mdcTarget.MdcTarget;
 exports.MdcCheckbox = _mdcCheckbox.MdcCheckbox;
 exports.MdcDatepicker = _mdcDatepicker.MdcDatepicker;
 exports.MdcTimepicker = _mdcTimepicker.MdcTimepicker;
+exports.MdcAutocomplete = _mdcAutocomplete.MdcAutocomplete;
