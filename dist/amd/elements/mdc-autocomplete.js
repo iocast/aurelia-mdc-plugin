@@ -102,25 +102,30 @@ define(['exports', 'aurelia-framework', 'material-components-web'], function (ex
         throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
     }
 
-    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
+    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4;
 
     var MdcAutocomplete = exports.MdcAutocomplete = (_dec = (0, _aureliaFramework.customElement)('mdc-autocomplete'), _dec2 = (0, _aureliaFramework.inject)(_aureliaFramework.DOM.Element), _dec3 = (0, _aureliaFramework.bindable)({
         defaultBindingMode: _aureliaFramework.bindingMode.twoWay
     }), _dec4 = (0, _aureliaFramework.bindable)({
+        attribute: 'render-item',
         defaultBindingMode: _aureliaFramework.bindingMode.twoWay
     }), _dec5 = (0, _aureliaFramework.bindable)({
+        defaultBindingMode: _aureliaFramework.bindingMode.twoWay
+    }), _dec6 = (0, _aureliaFramework.bindable)({
         attribute: 'value',
         defaultBindingMode: _aureliaFramework.bindingMode.twoWay,
         changeHandler: 'valueChangeHandler'
-    }), _dec6 = (0, _aureliaFramework.computedFrom)("_value"), _dec(_class = _dec2(_class = (_class2 = function () {
+    }), _dec7 = (0, _aureliaFramework.computedFrom)("_value"), _dec(_class = _dec2(_class = (_class2 = function () {
         function MdcAutocomplete(element) {
             _classCallCheck(this, MdcAutocomplete);
 
             _initDefineProp(this, 'lookup', _descriptor, this);
 
-            _initDefineProp(this, 'select', _descriptor2, this);
+            _initDefineProp(this, 'renderItem', _descriptor2, this);
 
-            _initDefineProp(this, '_value', _descriptor3, this);
+            _initDefineProp(this, 'select', _descriptor3, this);
+
+            _initDefineProp(this, '_value', _descriptor4, this);
 
             this.listItems = [];
             this.selectionEvent = false;
@@ -175,13 +180,17 @@ define(['exports', 'aurelia-framework', 'material-components-web'], function (ex
             return valueChangeHandler;
         }();
 
+        MdcAutocomplete.prototype.renderListItem = function renderListItem(value) {
+            return this.renderItem({ item: value });
+        };
+
         MdcAutocomplete.prototype.selectItem = function selectItem(value) {
             this.selectionEvent = true;
             this._value = value.description;
             this.simpleMenuDOM.classList.remove('mdc-simple-menu--open');
             this.simpleMenuDOM.style.transform = "scale(0, 0)";
 
-            if (typeof this.select === 'function') this.select({ selection: value });
+            if (typeof this.select === 'function') this.select({ item: value });
         };
 
         _createClass(MdcAutocomplete, [{
@@ -198,11 +207,14 @@ define(['exports', 'aurelia-framework', 'material-components-web'], function (ex
     }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'lookup', [_dec3], {
         enumerable: true,
         initializer: null
-    }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'select', [_dec4], {
+    }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'renderItem', [_dec4], {
         enumerable: true,
         initializer: null
-    }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, '_value', [_dec5], {
+    }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'select', [_dec5], {
         enumerable: true,
         initializer: null
-    }), _applyDecoratedDescriptor(_class2.prototype, 'value', [_dec6], Object.getOwnPropertyDescriptor(_class2.prototype, 'value'), _class2.prototype)), _class2)) || _class) || _class);
+    }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, '_value', [_dec6], {
+        enumerable: true,
+        initializer: null
+    }), _applyDecoratedDescriptor(_class2.prototype, 'value', [_dec7], Object.getOwnPropertyDescriptor(_class2.prototype, 'value'), _class2.prototype)), _class2)) || _class) || _class);
 });

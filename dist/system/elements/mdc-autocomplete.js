@@ -3,7 +3,7 @@
 System.register(['aurelia-framework', 'material-components-web'], function (_export, _context) {
     "use strict";
 
-    var inject, bindable, bindingMode, DOM, customElement, computedFrom, checkbox, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, MdcAutocomplete;
+    var inject, bindable, bindingMode, DOM, customElement, computedFrom, checkbox, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, MdcAutocomplete;
 
     function _asyncToGenerator(fn) {
         return function () {
@@ -116,20 +116,25 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
             _export('MdcAutocomplete', MdcAutocomplete = (_dec = customElement('mdc-autocomplete'), _dec2 = inject(DOM.Element), _dec3 = bindable({
                 defaultBindingMode: bindingMode.twoWay
             }), _dec4 = bindable({
+                attribute: 'render-item',
                 defaultBindingMode: bindingMode.twoWay
             }), _dec5 = bindable({
+                defaultBindingMode: bindingMode.twoWay
+            }), _dec6 = bindable({
                 attribute: 'value',
                 defaultBindingMode: bindingMode.twoWay,
                 changeHandler: 'valueChangeHandler'
-            }), _dec6 = computedFrom("_value"), _dec(_class = _dec2(_class = (_class2 = function () {
+            }), _dec7 = computedFrom("_value"), _dec(_class = _dec2(_class = (_class2 = function () {
                 function MdcAutocomplete(element) {
                     _classCallCheck(this, MdcAutocomplete);
 
                     _initDefineProp(this, 'lookup', _descriptor, this);
 
-                    _initDefineProp(this, 'select', _descriptor2, this);
+                    _initDefineProp(this, 'renderItem', _descriptor2, this);
 
-                    _initDefineProp(this, '_value', _descriptor3, this);
+                    _initDefineProp(this, 'select', _descriptor3, this);
+
+                    _initDefineProp(this, '_value', _descriptor4, this);
 
                     this.listItems = [];
                     this.selectionEvent = false;
@@ -184,13 +189,17 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                     return valueChangeHandler;
                 }();
 
+                MdcAutocomplete.prototype.renderListItem = function renderListItem(value) {
+                    return this.renderItem({ item: value });
+                };
+
                 MdcAutocomplete.prototype.selectItem = function selectItem(value) {
                     this.selectionEvent = true;
                     this._value = value.description;
                     this.simpleMenuDOM.classList.remove('mdc-simple-menu--open');
                     this.simpleMenuDOM.style.transform = "scale(0, 0)";
 
-                    if (typeof this.select === 'function') this.select({ selection: value });
+                    if (typeof this.select === 'function') this.select({ item: value });
                 };
 
                 _createClass(MdcAutocomplete, [{
@@ -207,13 +216,16 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
             }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'lookup', [_dec3], {
                 enumerable: true,
                 initializer: null
-            }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'select', [_dec4], {
+            }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'renderItem', [_dec4], {
                 enumerable: true,
                 initializer: null
-            }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, '_value', [_dec5], {
+            }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'select', [_dec5], {
                 enumerable: true,
                 initializer: null
-            }), _applyDecoratedDescriptor(_class2.prototype, 'value', [_dec6], Object.getOwnPropertyDescriptor(_class2.prototype, 'value'), _class2.prototype)), _class2)) || _class) || _class));
+            }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, '_value', [_dec6], {
+                enumerable: true,
+                initializer: null
+            }), _applyDecoratedDescriptor(_class2.prototype, 'value', [_dec7], Object.getOwnPropertyDescriptor(_class2.prototype, 'value'), _class2.prototype)), _class2)) || _class) || _class));
 
             _export('MdcAutocomplete', MdcAutocomplete);
         }

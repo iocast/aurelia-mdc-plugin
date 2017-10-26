@@ -10,6 +10,11 @@ export class MdcAutocomplete {
     }) lookup;
 
     @bindable({
+        attribute: 'render-item',
+        defaultBindingMode: bindingMode.twoWay
+    }) renderItem;
+
+    @bindable({
         defaultBindingMode: bindingMode.twoWay
     }) select;
 
@@ -48,6 +53,10 @@ export class MdcAutocomplete {
         }
     }
 
+    renderListItem(value) {
+        return this.renderItem({ item: value });
+    }
+
     selectItem(value) {
         this.selectionEvent = true;
         this._value = value.description;
@@ -55,7 +64,7 @@ export class MdcAutocomplete {
         this.simpleMenuDOM.style.transform = "scale(0, 0)";
 
         if (typeof this.select === 'function')
-            this.select({ selection: value });
+            this.select({ item: value });
     }
 
 

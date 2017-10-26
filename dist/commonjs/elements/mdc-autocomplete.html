@@ -9,7 +9,7 @@
     <div class="mdc-menu-anchor">
         <div ref="simpleMenuDOM" class="mdc-simple-menu" style="top: -10px;">
             <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
-                <li repeat.for="item of listItems" class="mdc-list-item" role="menuitem" tabindex="0" click.delegate="selectItem(item)">${item.description}</li>
+                <li repeat.for="item of listItems" class="mdc-list-item" role="menuitem" tabindex="0" click.delegate="selectItem(item)">${renderListItem(item)}</li>
             </ul>
         </div>
     </div>
