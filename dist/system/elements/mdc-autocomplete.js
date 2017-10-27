@@ -193,14 +193,33 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                     return this.renderItem({ item: value });
                 };
 
-                MdcAutocomplete.prototype.selectItem = function selectItem(value) {
-                    this.selectionEvent = true;
-                    this._value = value.description;
-                    this.simpleMenuDOM.classList.remove('mdc-simple-menu--open');
-                    this.simpleMenuDOM.style.transform = "scale(0, 0)";
+                MdcAutocomplete.prototype.selectItem = function () {
+                    var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(value) {
+                        return regeneratorRuntime.wrap(function _callee2$(_context3) {
+                            while (1) {
+                                switch (_context3.prev = _context3.next) {
+                                    case 0:
+                                        this.selectionEvent = true;
+                                        this._value = this.renderItem({ item: value });
+                                        this.simpleMenuDOM.classList.remove('mdc-simple-menu--open');
+                                        this.simpleMenuDOM.style.transform = "scale(0, 0)";
 
-                    if (typeof this.select === 'function') this.select({ item: value });
-                };
+                                        this.select({ item: value });
+
+                                    case 5:
+                                    case 'end':
+                                        return _context3.stop();
+                                }
+                            }
+                        }, _callee2, this);
+                    }));
+
+                    function selectItem(_x3) {
+                        return _ref2.apply(this, arguments);
+                    }
+
+                    return selectItem;
+                }();
 
                 _createClass(MdcAutocomplete, [{
                     key: 'value',

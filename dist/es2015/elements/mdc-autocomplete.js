@@ -104,12 +104,16 @@ export let MdcAutocomplete = (_dec = customElement('mdc-autocomplete'), _dec2 = 
     }
 
     selectItem(value) {
-        this.selectionEvent = true;
-        this._value = value.description;
-        this.simpleMenuDOM.classList.remove('mdc-simple-menu--open');
-        this.simpleMenuDOM.style.transform = "scale(0, 0)";
+        var _this2 = this;
 
-        if (typeof this.select === 'function') this.select({ item: value });
+        return _asyncToGenerator(function* () {
+            _this2.selectionEvent = true;
+            _this2._value = _this2.renderItem({ item: value });
+            _this2.simpleMenuDOM.classList.remove('mdc-simple-menu--open');
+            _this2.simpleMenuDOM.style.transform = "scale(0, 0)";
+
+            _this2.select({ item: value });
+        })();
     }
 
     get value() {

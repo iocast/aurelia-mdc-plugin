@@ -57,14 +57,13 @@ export class MdcAutocomplete {
         return this.renderItem({ item: value });
     }
 
-    selectItem(value) {
+    async selectItem(value) {
         this.selectionEvent = true;
-        this._value = value.description;
+        this._value = this.renderItem({ item: value });
         this.simpleMenuDOM.classList.remove('mdc-simple-menu--open');
         this.simpleMenuDOM.style.transform = "scale(0, 0)";
 
-        if (typeof this.select === 'function')
-            this.select({ item: value });
+        this.select({ item: value });
     }
 
 
