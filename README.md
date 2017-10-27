@@ -50,7 +50,7 @@ export function configure(aurelia) {
 
 ## Use it!
 
-### General usage
+### General usage
 
 ```html
 <button class="mdc-button
@@ -63,8 +63,7 @@ export function configure(aurelia) {
 
 The plugin automaticaly adds `data-mdc-auto-init="MDCRipple"` to the button above and initializes it, so you do not have to add it to any of the components available.
 
-
-### Custom Elements
+### Custom Elements
 
 `mdc-checkbox`
 
@@ -116,4 +115,43 @@ export class Example {
 <mdc-timepicker locale.bind="de" value.bind="testDate">
   <label class="mdc-textfield__label">Time</label>
 </mdc-timepicker>
+```
+
+`mdc-autocomplete`
+
+```html
+<mdc-autocomplete value.bind="currentValue" lookup.call="onChangeLookupEvent(newValue, oldValue)" render-item.call="renderListItemEvent(item)" select.call="onSelectionEvent(item)">
+  <label class="mdc-textfield__label">Autocomplete Label</label>
+</mdc-autocomplete>
+```
+
+```javascript
+export class YourModel {
+  ...
+  async onChangeLookupEvent(newValue, oldValue) {
+    // or call your service
+    return new Promise((resolve, reject) => {
+      resolve([
+        {
+          id: 'DBv-1ADov-123',
+          description: 'Item 1'
+        },
+        {
+          id: 'H40-8Vd2v-1Dg',
+          description: 'Item 2'
+        }
+      ]);
+    });
+  }
+
+  renderListItemEvent(item) {
+    return item.description;
+  }
+
+  async onSelectionEvent(item) {
+    let data = await this.service.getDetails(item.id);
+    // do something
+  }
+  ...
+}
 ```
