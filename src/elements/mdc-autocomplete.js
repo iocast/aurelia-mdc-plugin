@@ -23,7 +23,7 @@ export class MdcAutocomplete {
         defaultBindingMode: bindingMode.twoWay,
         changeHandler: 'valueChangeHandler'
     }) _value;
-
+    
     listItems = [];
     selectionEvent = false;
 
@@ -41,6 +41,7 @@ export class MdcAutocomplete {
         this.element.setValue = (value) => {
           this.setValue(value);
         }
+
     }
 
     async valueChangeHandler(newValue, oldValue) {
