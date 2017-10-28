@@ -120,7 +120,7 @@ export class Example {
 `mdc-autocomplete`
 
 ```html
-<mdc-autocomplete value.bind="currentValue" lookup.call="onChangeLookupEvent(newValue, oldValue)" render-item.call="renderListItemEvent(item)" select.call="onSelectionEvent(item)">
+<mdc-autocomplete ref="valueDOM" value.bind="currentValue" lookup.call="onChangeLookupEvent(newValue, oldValue)" render-item.call="renderListItemEvent(item)" select.call="onSelectionEvent(item)">
   <label class="mdc-textfield__label">Autocomplete Label</label>
 </mdc-autocomplete>
 ```
@@ -155,3 +155,5 @@ export class YourModel {
   ...
 }
 ```
+
+you can use `setValue(value)` on the element to set a value without triggering the lookup event.

@@ -1,15 +1,5 @@
-import {
-    inject,
-    bindable,
-    bindingMode,
-    computedFrom,
-    DOM,
-    customElement
-} from 'aurelia-framework';
-import {
-    dialog,
-    textfield
-} from 'material-components-web';
+import { inject, bindable, bindingMode, computedFrom, DOM, customElement } from 'aurelia-framework';
+import { dialog, textfield } from 'material-components-web';
 
 
 @customElement('mdc-datepicker')

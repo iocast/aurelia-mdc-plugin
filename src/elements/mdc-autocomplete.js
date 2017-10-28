@@ -1,5 +1,5 @@
 import { inject, bindable, bindingMode, DOM, customElement, computedFrom } from 'aurelia-framework';
-import { checkbox } from 'material-components-web';
+import { textfield } from 'material-components-web';
 
 @customElement('mdc-autocomplete')
 @inject(DOM.Element)
@@ -28,13 +28,20 @@ export class MdcAutocomplete {
     selectionEvent = false;
 
     valueDOM;
+    mdcValueDOM;
     simpleMenuDOM
 
     constructor(element) {
         this.element = element;
     }
 
-    attached() {}
+    attached() {
+        this.mdcValueDOM = new textfield.MDCTextfield(this.valueDOM);
+
+        this.element.setValue = (value) => {
+          this.setValue(value);
+        }
+    }
 
     async valueChangeHandler(newValue, oldValue) {
         if (!this.simpleMenuDOM || this.selectionEvent) {
@@ -73,6 +80,16 @@ export class MdcAutocomplete {
     }
     set value(value) {
         this._value = value;
+    }
+
+    setValue(value) {
+        this.selectionEvent = true;
+        this._value = value;
+        this.mdcValueDOM.getDefaultFoundation().adapter_.removeClassFromLabel('mdc-textfield__label--float-above');
+
+        if (this._value) {
+            this.mdcValueDOM.getDefaultFoundation().adapter_.addClassToLabel('mdc-textfield__label--float-above');
+        }
     }
 
 }

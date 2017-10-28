@@ -133,7 +133,15 @@ define(['exports', 'aurelia-framework', 'material-components-web'], function (ex
             this.element = element;
         }
 
-        MdcAutocomplete.prototype.attached = function attached() {};
+        MdcAutocomplete.prototype.attached = function attached() {
+            var _this = this;
+
+            this.mdcValueDOM = new _materialComponentsWeb.textfield.MDCTextfield(this.valueDOM);
+
+            this.element.setValue = function (value) {
+                _this.setValue(value);
+            };
+        };
 
         MdcAutocomplete.prototype.valueChangeHandler = function () {
             var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(newValue, oldValue) {
@@ -211,6 +219,16 @@ define(['exports', 'aurelia-framework', 'material-components-web'], function (ex
 
             return selectItem;
         }();
+
+        MdcAutocomplete.prototype.setValue = function setValue(value) {
+            this.selectionEvent = true;
+            this._value = value;
+            this.mdcValueDOM.getDefaultFoundation().adapter_.removeClassFromLabel('mdc-textfield__label--float-above');
+
+            if (this._value) {
+                this.mdcValueDOM.getDefaultFoundation().adapter_.addClassToLabel('mdc-textfield__label--float-above');
+            }
+        };
 
         _createClass(MdcAutocomplete, [{
             key: 'value',

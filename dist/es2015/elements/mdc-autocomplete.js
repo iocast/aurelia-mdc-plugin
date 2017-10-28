@@ -46,7 +46,7 @@ function _initializerWarningHelper(descriptor, context) {
 }
 
 import { inject, bindable, bindingMode, DOM, customElement, computedFrom } from 'aurelia-framework';
-import { checkbox } from 'material-components-web';
+import { textfield } from 'material-components-web';
 
 export let MdcAutocomplete = (_dec = customElement('mdc-autocomplete'), _dec2 = inject(DOM.Element), _dec3 = bindable({
     defaultBindingMode: bindingMode.twoWay
@@ -76,7 +76,13 @@ export let MdcAutocomplete = (_dec = customElement('mdc-autocomplete'), _dec2 = 
         this.element = element;
     }
 
-    attached() {}
+    attached() {
+        this.mdcValueDOM = new textfield.MDCTextfield(this.valueDOM);
+
+        this.element.setValue = value => {
+            this.setValue(value);
+        };
+    }
 
     valueChangeHandler(newValue, oldValue) {
         var _this = this;
@@ -121,6 +127,16 @@ export let MdcAutocomplete = (_dec = customElement('mdc-autocomplete'), _dec2 = 
     }
     set value(value) {
         this._value = value;
+    }
+
+    setValue(value) {
+        this.selectionEvent = true;
+        this._value = value;
+        this.mdcValueDOM.getDefaultFoundation().adapter_.removeClassFromLabel('mdc-textfield__label--float-above');
+
+        if (this._value) {
+            this.mdcValueDOM.getDefaultFoundation().adapter_.addClassToLabel('mdc-textfield__label--float-above');
+        }
     }
 
 }, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'lookup', [_dec3], {
