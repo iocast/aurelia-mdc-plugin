@@ -1,3 +1,7 @@
+.mdc-datepicker {
+    display: inline-block;
+}
+
 .mdc-datepicker__input {
     cursor: pointer;
     -webkit-touch-callout: none;

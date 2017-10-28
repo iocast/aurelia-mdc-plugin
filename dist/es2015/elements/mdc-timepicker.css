@@ -1,3 +1,7 @@
+.mdc-timepicker {
+    display: inline-block;
+}
+
 .mdc-timepicker__input {
     cursor: pointer;
     -webkit-touch-callout: none;
@@ -155,7 +159,6 @@
     margin: 0px;
 }
 
-
 .mdc-timepicker-circular--rotate-to-59.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-0§>span {
     color: var(--mdc-theme-text-primary-on-primary);
 }
@@ -179,7 +182,6 @@
 .mdc-timepicker-circular--rotate-to-1:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-0>span {
     color: var(--mdc-theme-text-primary-on-primary);
 }
-
 
 .mdc-timepicker-circular--rotate-to-4.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-5>span {
     color: var(--mdc-theme-text-primary-on-primary);
