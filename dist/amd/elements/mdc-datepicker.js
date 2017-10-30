@@ -214,7 +214,7 @@ define(['exports', 'aurelia-framework', 'material-components-web'], function (ex
             }
         };
 
-        MdcDatepicker.prototype.show = function show() {
+        MdcDatepicker.prototype.show = function show(evt) {
             this.selected.locale = this.locale;
             this.selected.date = this._value ? this._value : new Date();
 
@@ -225,12 +225,16 @@ define(['exports', 'aurelia-framework', 'material-components-web'], function (ex
             this.mdcDatepickerDialog.show();
         };
 
-        MdcDatepicker.prototype.cancel = function cancel() {
+        MdcDatepicker.prototype.cancel = function cancel(evt) {
+            evt.preventDefault();
+            evt.stopPropagation();
             this.value = this.selected.originalDate;
             this.mdcDatepickerDialog.close();
         };
 
-        MdcDatepicker.prototype.ok = function ok() {
+        MdcDatepicker.prototype.ok = function ok(evt) {
+            evt.preventDefault();
+            evt.stopPropagation();
             this.value = this.selected.date;
             this.mdcDatepickerDialog.close();
         };

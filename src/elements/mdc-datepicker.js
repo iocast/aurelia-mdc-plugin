@@ -168,7 +168,7 @@ export class MdcDatepicker {
         }
     }
 
-    show() {
+    show(evt) {
         this.selected.locale = this.locale;
         this.selected.date = (this._value) ? this._value : new Date();
 
@@ -179,12 +179,16 @@ export class MdcDatepicker {
         this.mdcDatepickerDialog.show();
     }
 
-    cancel() {
+    cancel(evt) {
+        evt.preventDefault();
+        evt.stopPropagation();
         this.value = this.selected.originalDate;
         this.mdcDatepickerDialog.close();
     }
 
-    ok() {
+    ok(evt) {
+        evt.preventDefault();
+        evt.stopPropagation();
         this.value = this.selected.date;
         this.mdcDatepickerDialog.close();
     }

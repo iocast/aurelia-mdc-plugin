@@ -197,7 +197,7 @@ var MdcDatepicker = exports.MdcDatepicker = (_dec = (0, _aureliaFramework.custom
         }
     };
 
-    MdcDatepicker.prototype.show = function show() {
+    MdcDatepicker.prototype.show = function show(evt) {
         this.selected.locale = this.locale;
         this.selected.date = this._value ? this._value : new Date();
 
@@ -208,12 +208,16 @@ var MdcDatepicker = exports.MdcDatepicker = (_dec = (0, _aureliaFramework.custom
         this.mdcDatepickerDialog.show();
     };
 
-    MdcDatepicker.prototype.cancel = function cancel() {
+    MdcDatepicker.prototype.cancel = function cancel(evt) {
+        evt.preventDefault();
+        evt.stopPropagation();
         this.value = this.selected.originalDate;
         this.mdcDatepickerDialog.close();
     };
 
-    MdcDatepicker.prototype.ok = function ok() {
+    MdcDatepicker.prototype.ok = function ok(evt) {
+        evt.preventDefault();
+        evt.stopPropagation();
         this.value = this.selected.date;
         this.mdcDatepickerDialog.close();
     };

@@ -195,7 +195,7 @@ export let MdcDatepicker = (_dec = customElement('mdc-datepicker'), _dec2 = inje
         }
     }
 
-    show() {
+    show(evt) {
         this.selected.locale = this.locale;
         this.selected.date = this._value ? this._value : new Date();
 
@@ -206,12 +206,16 @@ export let MdcDatepicker = (_dec = customElement('mdc-datepicker'), _dec2 = inje
         this.mdcDatepickerDialog.show();
     }
 
-    cancel() {
+    cancel(evt) {
+        evt.preventDefault();
+        evt.stopPropagation();
         this.value = this.selected.originalDate;
         this.mdcDatepickerDialog.close();
     }
 
-    ok() {
+    ok(evt) {
+        evt.preventDefault();
+        evt.stopPropagation();
         this.value = this.selected.date;
         this.mdcDatepickerDialog.close();
     }
