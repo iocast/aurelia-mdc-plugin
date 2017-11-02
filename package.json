@@ -1,5 +1,5 @@
 {
-    "name": "aurelia-mdc-plugin",
+    "name": "@iocast/aurelia-mdc-plugin",
     "version": "0.4.7",
     "description": "Material Design Components plugin for Aurelia.",
     "keywords": [
@@ -14,16 +14,16 @@
         "push": "git add --all && git commit -m \"$(date)\" && git push origin master && npm publish",
         "test": "gulp test"
     },
-    "homepage": "https://github.com/arabsight/aurelia-mdc-plugin",
+    "homepage": "https://github.com/iocast/aurelia-mdc-plugin",
     "bugs": {
-        "url": "https://github.com/arabsight/aurelia-mdc-plugin/issues"
+        "url": "https://github.com/iocast/aurelia-mdc-plugin/issues"
     },
     "license": "MIT",
     "author": "Rabah Ghodbane <r-ghodbane@live.com>",
     "main": "dist/commonjs/index.js",
     "repository": {
         "type": "git",
-        "url": "https://github.com/arabsight/aurelia-mdc-plugin"
+        "url": "https://github.com/iocast/aurelia-mdc-plugin"
     },
     "peerDependencies": {
         "material-components-web": "*"
