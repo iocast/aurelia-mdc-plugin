@@ -59,7 +59,7 @@ export let MdcDatepicker = (_dec = customElement('mdc-datepicker'), _dec2 = inje
     attribute: 'value',
     defaultBindingMode: bindingMode.twoWay,
     changeHandler: 'valueChangeHandler'
-}), _dec6 = computedFrom("_value"), _dec(_class = _dec2(_class = (_class2 = class MdcDatepicker {
+}), _dec6 = computedFrom('_value'), _dec(_class = _dec2(_class = (_class2 = class MdcDatepicker {
 
     constructor(element) {
         _initDefineProp(this, 'locale', _descriptor, this);
@@ -94,9 +94,9 @@ export let MdcDatepicker = (_dec = customElement('mdc-datepicker'), _dec2 = inje
 
         this.selected = new DatepickerDate(this._value ? this._value : new Date(), this.locale, shift);
 
-        this.slideA = new DatepickerDate(new Date(), this.locale, shift, "current", this.selected);
-        this.slideB = new DatepickerDate(new Date(Date.UTC(this.slideA.date.getFullYear(), this.slideA.date.getMonth() - 1, 1)), this.locale, shift, "previous", this.selected);
-        this.slideC = new DatepickerDate(new Date(Date.UTC(this.slideA.date.getFullYear(), this.slideA.date.getMonth() + 1, 1)), this.locale, shift, "next", this.selected);
+        this.slideA = new DatepickerDate(new Date(), this.locale, shift, 'current', this.selected);
+        this.slideB = new DatepickerDate(new Date(Date.UTC(this.slideA.date.getFullYear(), this.slideA.date.getMonth() - 1, 1)), this.locale, shift, 'previous', this.selected);
+        this.slideC = new DatepickerDate(new Date(Date.UTC(this.slideA.date.getFullYear(), this.slideA.date.getMonth() + 1, 1)), this.locale, shift, 'next', this.selected);
 
         this.slideA.calculateCalendar({
             empty: true
@@ -108,7 +108,7 @@ export let MdcDatepicker = (_dec = customElement('mdc-datepicker'), _dec2 = inje
             empty: true
         });
 
-        this.trackDOM.addEventListener("transitionend", event => {
+        this.trackDOM.addEventListener('transitionend', event => {
             this.animating = false;
         }, false);
     }
@@ -116,14 +116,15 @@ export let MdcDatepicker = (_dec = customElement('mdc-datepicker'), _dec2 = inje
     get value() {
         if (this._value) {
             return this._value.toLocaleDateString(this.locale, {
-                weekday: "short",
-                year: "numeric",
-                month: "short",
-                day: "numeric"
+                weekday: 'short',
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
             });
         }
-        return "";
+        return '';
     }
+
     set value(value) {
         this._value = value;
     }
@@ -158,6 +159,7 @@ export let MdcDatepicker = (_dec = customElement('mdc-datepicker'), _dec2 = inje
         this.slideB = this.getNextPosition(this.slideB);
         this.slideC = this.getNextPosition(this.slideC);
     }
+
     previous() {
         if (this.animating) return;
 
@@ -171,26 +173,27 @@ export let MdcDatepicker = (_dec = customElement('mdc-datepicker'), _dec2 = inje
     getNextPosition(model) {
         if (model.position === 'previous') {
             model.date = new Date(Date.UTC(model.date.getFullYear(), model.date.getMonth() + 3, 1));
-            model.position = "next";
+            model.position = 'next';
             return model;
         } else if (model.position === 'current') {
-            model.position = "previous";
+            model.position = 'previous';
             return model;
         } else if (model.position === 'next') {
-            model.position = "current";
+            model.position = 'current';
             return model;
         }
     }
+
     getPreviousPosition(model) {
         if (model.position === 'previous') {
-            model.position = "current";
+            model.position = 'current';
             return model;
         } else if (model.position === 'current') {
-            model.position = "next";
+            model.position = 'next';
             return model;
         } else if (model.position === 'next') {
             model.date = new Date(Date.UTC(model.date.getFullYear(), model.date.getMonth() - 3, 1));
-            model.position = "previous";
+            model.position = 'previous';
             return model;
         }
     }
@@ -219,7 +222,6 @@ export let MdcDatepicker = (_dec = customElement('mdc-datepicker'), _dec2 = inje
         this.value = this.selected.date;
         this.mdcDatepickerDialog.close();
     }
-
 }, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'locale', [_dec3], {
     enumerable: true,
     initializer: null
@@ -231,7 +233,7 @@ export let MdcDatepicker = (_dec = customElement('mdc-datepicker'), _dec2 = inje
     initializer: null
 }), _applyDecoratedDescriptor(_class2.prototype, 'value', [_dec6], Object.getOwnPropertyDescriptor(_class2.prototype, 'value'), _class2.prototype)), _class2)) || _class) || _class);
 
-let DatepickerDate = (_dec7 = computedFrom("_date"), _dec8 = computedFrom("_position"), _dec9 = computedFrom("_locale"), (_class4 = class DatepickerDate {
+let DatepickerDate = (_dec7 = computedFrom('_date'), _dec8 = computedFrom('_position'), _dec9 = computedFrom('_locale'), (_class4 = class DatepickerDate {
 
     constructor(date, locale, shift, position, selected) {
         this.weekdays = [];
@@ -240,8 +242,8 @@ let DatepickerDate = (_dec7 = computedFrom("_date"), _dec8 = computedFrom("_posi
         this.matrixOptions = {
             empty: false
         };
-        this._position = "";
-        this.styleClasses = "";
+        this._position = '';
+        this.styleClasses = '';
 
         this.locale = locale ? locale : 'en';
         this.shift = shift ? shift : 0;
@@ -258,6 +260,7 @@ let DatepickerDate = (_dec7 = computedFrom("_date"), _dec8 = computedFrom("_posi
         this._date.setUTCMilliseconds(this.originalDate.getUTCMilliseconds());
         return this._date;
     }
+
     set date(value) {
         this._origDate = value;
         this._date = new Date(value.getTime());
@@ -279,6 +282,7 @@ let DatepickerDate = (_dec7 = computedFrom("_date"), _dec8 = computedFrom("_posi
     get position() {
         return this._position;
     }
+
     set position(value) {
         this._calculateStyles(value);
         this._position = value;
@@ -287,6 +291,7 @@ let DatepickerDate = (_dec7 = computedFrom("_date"), _dec8 = computedFrom("_posi
     get locale() {
         return this._locale;
     }
+
     set locale(value) {
         this._locale = value;
     }
@@ -352,11 +357,11 @@ let DatepickerDate = (_dec7 = computedFrom("_date"), _dec8 = computedFrom("_posi
             day: 'numeric'
         }).formatToParts(this.date)) {
             if (value.type === 'year') {
-                this.year = parseInt(value.value);
+                this.year = parseInt(value.value, 10);
             } else if (value.type === 'month') {
-                this.month = parseInt(value.value);
+                this.month = parseInt(value.value, 10);
             } else if (value.type === 'day') {
-                this.day = parseInt(value.value);
+                this.day = parseInt(value.value, 10);
             } else if (value.type === 'weekday') {
                 this.weekdayLong = value.value;
             }
@@ -419,7 +424,7 @@ let DatepickerDate = (_dec7 = computedFrom("_date"), _dec8 = computedFrom("_posi
             }
 
             if (this.matrixOptions.empty && (currentDate < startDate || currentDate > endDate)) {
-                week.push("");
+                week.push('');
             } else {
                 week.push(currentDate.getDate());
             }
@@ -440,7 +445,7 @@ let DatepickerDate = (_dec7 = computedFrom("_date"), _dec8 = computedFrom("_posi
         date.setUTCDate(date.getUTCDate() - date.getUTCDay() - 1);
         this.weekdays = Array(7).fill().map(i => {
             date.setUTCDate(date.getUTCDate() + 1);
-            return Intl.DateTimeFormat(this.locale, {
+            return new Intl.DateTimeFormat(this.locale, {
                 weekday: 'narrow'
             }).format(date);
         });
@@ -453,5 +458,4 @@ let DatepickerDate = (_dec7 = computedFrom("_date"), _dec8 = computedFrom("_posi
     _mod(a, n) {
         return a - n * Math.floor(a / n);
     }
-
 }, (_applyDecoratedDescriptor(_class4.prototype, 'date', [_dec7], Object.getOwnPropertyDescriptor(_class4.prototype, 'date'), _class4.prototype), _applyDecoratedDescriptor(_class4.prototype, 'position', [_dec8], Object.getOwnPropertyDescriptor(_class4.prototype, 'position'), _class4.prototype), _applyDecoratedDescriptor(_class4.prototype, 'locale', [_dec9], Object.getOwnPropertyDescriptor(_class4.prototype, 'locale'), _class4.prototype)), _class4));

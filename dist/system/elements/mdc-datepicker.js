@@ -98,7 +98,7 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                 attribute: 'value',
                 defaultBindingMode: bindingMode.twoWay,
                 changeHandler: 'valueChangeHandler'
-            }), _dec6 = computedFrom("_value"), _dec(_class = _dec2(_class = (_class2 = function () {
+            }), _dec6 = computedFrom('_value'), _dec(_class = _dec2(_class = (_class2 = function () {
                 function MdcDatepicker(element) {
                     _classCallCheck(this, MdcDatepicker);
 
@@ -136,9 +136,9 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
 
                     this.selected = new DatepickerDate(this._value ? this._value : new Date(), this.locale, shift);
 
-                    this.slideA = new DatepickerDate(new Date(), this.locale, shift, "current", this.selected);
-                    this.slideB = new DatepickerDate(new Date(Date.UTC(this.slideA.date.getFullYear(), this.slideA.date.getMonth() - 1, 1)), this.locale, shift, "previous", this.selected);
-                    this.slideC = new DatepickerDate(new Date(Date.UTC(this.slideA.date.getFullYear(), this.slideA.date.getMonth() + 1, 1)), this.locale, shift, "next", this.selected);
+                    this.slideA = new DatepickerDate(new Date(), this.locale, shift, 'current', this.selected);
+                    this.slideB = new DatepickerDate(new Date(Date.UTC(this.slideA.date.getFullYear(), this.slideA.date.getMonth() - 1, 1)), this.locale, shift, 'previous', this.selected);
+                    this.slideC = new DatepickerDate(new Date(Date.UTC(this.slideA.date.getFullYear(), this.slideA.date.getMonth() + 1, 1)), this.locale, shift, 'next', this.selected);
 
                     this.slideA.calculateCalendar({
                         empty: true
@@ -150,7 +150,7 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                         empty: true
                     });
 
-                    this.trackDOM.addEventListener("transitionend", function (event) {
+                    this.trackDOM.addEventListener('transitionend', function (event) {
                         _this.animating = false;
                     }, false);
                 };
@@ -199,27 +199,27 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                 MdcDatepicker.prototype.getNextPosition = function getNextPosition(model) {
                     if (model.position === 'previous') {
                         model.date = new Date(Date.UTC(model.date.getFullYear(), model.date.getMonth() + 3, 1));
-                        model.position = "next";
+                        model.position = 'next';
                         return model;
                     } else if (model.position === 'current') {
-                        model.position = "previous";
+                        model.position = 'previous';
                         return model;
                     } else if (model.position === 'next') {
-                        model.position = "current";
+                        model.position = 'current';
                         return model;
                     }
                 };
 
                 MdcDatepicker.prototype.getPreviousPosition = function getPreviousPosition(model) {
                     if (model.position === 'previous') {
-                        model.position = "current";
+                        model.position = 'current';
                         return model;
                     } else if (model.position === 'current') {
-                        model.position = "next";
+                        model.position = 'next';
                         return model;
                     } else if (model.position === 'next') {
                         model.date = new Date(Date.UTC(model.date.getFullYear(), model.date.getMonth() - 3, 1));
-                        model.position = "previous";
+                        model.position = 'previous';
                         return model;
                     }
                 };
@@ -254,13 +254,13 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                     get: function get() {
                         if (this._value) {
                             return this._value.toLocaleDateString(this.locale, {
-                                weekday: "short",
-                                year: "numeric",
-                                month: "short",
-                                day: "numeric"
+                                weekday: 'short',
+                                year: 'numeric',
+                                month: 'short',
+                                day: 'numeric'
                             });
                         }
-                        return "";
+                        return '';
                     },
                     set: function set(value) {
                         this._value = value;
@@ -281,7 +281,7 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
 
             _export('MdcDatepicker', MdcDatepicker);
 
-            DatepickerDate = (_dec7 = computedFrom("_date"), _dec8 = computedFrom("_position"), _dec9 = computedFrom("_locale"), (_class4 = function () {
+            DatepickerDate = (_dec7 = computedFrom('_date'), _dec8 = computedFrom('_position'), _dec9 = computedFrom('_locale'), (_class4 = function () {
                 function DatepickerDate(date, locale, shift, position, selected) {
                     _classCallCheck(this, DatepickerDate);
 
@@ -291,8 +291,8 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                     this.matrixOptions = {
                         empty: false
                     };
-                    this._position = "";
-                    this.styleClasses = "";
+                    this._position = '';
+                    this.styleClasses = '';
 
                     this.locale = locale ? locale : 'en';
                     this.shift = shift ? shift : 0;
@@ -384,11 +384,11 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                         var value = _ref;
 
                         if (value.type === 'year') {
-                            this.year = parseInt(value.value);
+                            this.year = parseInt(value.value, 10);
                         } else if (value.type === 'month') {
-                            this.month = parseInt(value.value);
+                            this.month = parseInt(value.value, 10);
                         } else if (value.type === 'day') {
-                            this.day = parseInt(value.value);
+                            this.day = parseInt(value.value, 10);
                         } else if (value.type === 'weekday') {
                             this.weekdayLong = value.value;
                         }
@@ -490,7 +490,7 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                         }
 
                         if (this.matrixOptions.empty && (currentDate < startDate || currentDate > endDate)) {
-                            week.push("");
+                            week.push('');
                         } else {
                             week.push(currentDate.getDate());
                         }
@@ -515,7 +515,7 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                     date.setUTCDate(date.getUTCDate() - date.getUTCDay() - 1);
                     this.weekdays = Array(7).fill().map(function (i) {
                         date.setUTCDate(date.getUTCDate() + 1);
-                        return Intl.DateTimeFormat(_this2.locale, {
+                        return new Intl.DateTimeFormat(_this2.locale, {
                             weekday: 'narrow'
                         }).format(date);
                     });

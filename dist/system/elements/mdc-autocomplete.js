@@ -124,7 +124,7 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                 attribute: 'value',
                 defaultBindingMode: bindingMode.twoWay,
                 changeHandler: 'valueChangeHandler'
-            }), _dec7 = computedFrom("_value"), _dec(_class = _dec2(_class = (_class2 = function () {
+            }), _dec7 = computedFrom('_value'), _dec(_class = _dec2(_class = (_class2 = function () {
                 function MdcAutocomplete(element) {
                     _classCallCheck(this, MdcAutocomplete);
 
@@ -176,10 +176,10 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
 
                                         if (this.listItems && this.listItems.length > 0) {
                                             this.simpleMenuDOM.classList.add('mdc-simple-menu--open');
-                                            this.simpleMenuDOM.style.transform = "scale(1, 1)";
+                                            this.simpleMenuDOM.style.transform = 'scale(1, 1)';
                                         } else {
                                             this.simpleMenuDOM.classList.remove('mdc-simple-menu--open');
-                                            this.simpleMenuDOM.style.transform = "scale(0, 0)";
+                                            this.simpleMenuDOM.style.transform = 'scale(0, 0)';
                                         }
 
                                     case 7:
@@ -210,7 +210,7 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                                         this.selectionEvent = true;
                                         this._value = this.renderItem({ item: value });
                                         this.simpleMenuDOM.classList.remove('mdc-simple-menu--open');
-                                        this.simpleMenuDOM.style.transform = "scale(0, 0)";
+                                        this.simpleMenuDOM.style.transform = 'scale(0, 0)';
 
                                         this.select({ item: value });
 

@@ -55,7 +55,7 @@ export let MdcTimepicker = (_dec = customElement('mdc-timepicker'), _dec2 = inje
     attribute: 'value',
     defaultBindingMode: bindingMode.twoWay,
     changeHandler: 'valueChangeHandler'
-}), _dec5 = computedFrom("_value"), _dec(_class = _dec2(_class = (_class2 = class MdcTimepicker {
+}), _dec5 = computedFrom('_value'), _dec(_class = _dec2(_class = (_class2 = class MdcTimepicker {
 
     constructor(element) {
         _initDefineProp(this, 'locale', _descriptor, this);
@@ -79,12 +79,13 @@ export let MdcTimepicker = (_dec = customElement('mdc-timepicker'), _dec2 = inje
     get value() {
         if (this._value) {
             return this._value.toLocaleTimeString(this.locale, {
-                hour: "numeric",
-                minute: "2-digit"
+                hour: 'numeric',
+                minute: '2-digit'
             });
         }
-        return "";
+        return '';
     }
+
     set value(value) {
         this._value = value;
     }
@@ -113,6 +114,7 @@ export let MdcTimepicker = (_dec = customElement('mdc-timepicker'), _dec2 = inje
     selectMinutes(minutes) {
         this.selected.selectMinutes(minutes);
     }
+
     selectHours(hours) {
         this.selected.selectHours(hours);
     }
@@ -137,6 +139,7 @@ export let MdcTimepicker = (_dec = customElement('mdc-timepicker'), _dec2 = inje
             this.dragger.start(evt);
         }
     }
+
     draggerMove(evt) {
         evt.preventDefault();
         evt.stopPropagation();
@@ -149,6 +152,7 @@ export let MdcTimepicker = (_dec = customElement('mdc-timepicker'), _dec2 = inje
             this.dragger.move(evt);
         }
     }
+
     draggerOut(evt) {
         evt.preventDefault();
         evt.stopPropagation();
@@ -161,6 +165,7 @@ export let MdcTimepicker = (_dec = customElement('mdc-timepicker'), _dec2 = inje
             this.dragger.out(evt);
         }
     }
+
     draggerStop(evt) {
         evt.preventDefault();
         evt.stopPropagation();
@@ -188,7 +193,6 @@ export let MdcTimepicker = (_dec = customElement('mdc-timepicker'), _dec2 = inje
         this.value = this.selected.date;
         this.mdcTimepickerDialog.close();
     }
-
 }, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'locale', [_dec3], {
     enumerable: true,
     initializer: null
@@ -207,14 +211,14 @@ let TimepickerDragger = class TimepickerDragger {
         this.dragger = dragger;
         this.time = time;
 
-        this.needle.addEventListener("transitionend", event => {
+        this.needle.addEventListener('transitionend', event => {
             this._setToNeedle();
         }, false);
     }
 
     start(evt) {
         this.needleTransition = this.needle.style.transition;
-        this.needle.style.transition = "unset";
+        this.needle.style.transition = 'unset';
         this.dragging = true;
     }
 
@@ -233,8 +237,8 @@ let TimepickerDragger = class TimepickerDragger {
         const xCurrent = evt.clientX - hOffset.left - hOffset.width / 2;
         const yCurrent = evt.clientY - hOffset.top - hOffset.height / 2;
 
-        const xDragger = parseInt(this.dragger.style.left);
-        const yDragger = parseInt(this.dragger.style.top);
+        const xDragger = parseInt(this.dragger.style.left, 10);
+        const yDragger = parseInt(this.dragger.style.top, 10);
 
         if (xCurrent > xDragger - offset && xCurrent < xDragger + offset && yCurrent > yDragger - offset && yCurrent < yDragger + offset) {
             this.dragger.setAttribute('style', `left:${xCurrent}px;top:${yCurrent}px`);
@@ -278,17 +282,16 @@ let TimepickerDragger = class TimepickerDragger {
         const cOffset = this.needle.querySelector('.mdc-timepicker__view-needle__circle').getBoundingClientRect();
         this.dragger.setAttribute('style', `left:${cOffset.left - hOffset.left}px;top:${cOffset.top - hOffset.top}px`);
     }
-
 };
-let TimepickerTime = (_dec6 = computedFrom("_date"), _dec7 = computedFrom("_locale"), (_class5 = class TimepickerTime {
+let TimepickerTime = (_dec6 = computedFrom('_date'), _dec7 = computedFrom('_locale'), (_class5 = class TimepickerTime {
 
     constructor(date, locale) {
         this.styles = {
-            surface: "",
-            needle: "",
+            surface: '',
+            needle: '',
             views: {
-                hour: "",
-                minute: ""
+                hour: '',
+                minute: ''
             }
         };
 
@@ -300,11 +303,12 @@ let TimepickerTime = (_dec6 = computedFrom("_date"), _dec7 = computedFrom("_loca
     get date() {
         return this._date;
     }
+
     set date(value) {
         this._origDate = value;
         this._date = new Date(value.getTime());
         this.refresh(this.locale);
-        this.setHours(parseInt(this.hour));
+        this.setHours(parseInt(this.hour, 10));
     }
 
     get originalDate() {
@@ -314,6 +318,7 @@ let TimepickerTime = (_dec6 = computedFrom("_date"), _dec7 = computedFrom("_loca
     get locale() {
         return this._locale;
     }
+
     set locale(value) {
         this._locale = value;
     }
@@ -329,6 +334,7 @@ let TimepickerTime = (_dec6 = computedFrom("_date"), _dec7 = computedFrom("_loca
             hour: true
         });
     }
+
     setMinutes(minutes) {
         this.date.setMinutes(minutes);
         this.refresh();
@@ -345,6 +351,7 @@ let TimepickerTime = (_dec6 = computedFrom("_date"), _dec7 = computedFrom("_loca
             hour: true
         });
     }
+
     selectMinutes(minutes) {
         this.setMinutes(minutes);
         this._calculateStyles({
@@ -377,11 +384,11 @@ let TimepickerTime = (_dec6 = computedFrom("_date"), _dec7 = computedFrom("_loca
 
     _calculateStyles(options) {
         if (options.hour && options.set || !options.hour && !options.set) {
-            let hourPosition = parseInt(this.hour) % 12 * 5;
+            let hourPosition = parseInt(this.hour, 10) % 12 * 5;
 
             this.styles.surface = `mdc-timepicker-circular--rotate-to-${hourPosition}`;
             this.styles.needle = `mdc-timepicker__view-circular__cell--rotate-to-${hourPosition}`;
-            if (!this.period && (parseInt(this.hour) > 12 || parseInt(this.hour) === 0)) {
+            if (!this.period && (parseInt(this.hour, 10) > 12 || parseInt(this.hour, 10) === 0)) {
                 this.styles.surface += ' mdc-timepicker__view-needle__pm';
                 this.styles.needle += ' mdc-timepicker__view-needle__pm';
             }
@@ -389,8 +396,8 @@ let TimepickerTime = (_dec6 = computedFrom("_date"), _dec7 = computedFrom("_loca
             this.styles.views.hour = '';
             this.styles.views.minute = 'mdc-timepicker--hidden';
         } else {
-            this.styles.surface = `mdc-timepicker-circular--rotate-to-${parseInt(this.minute)}`;
-            this.styles.needle = `mdc-timepicker__view-circular__cell--rotate-to-${parseInt(this.minute)}`;
+            this.styles.surface = `mdc-timepicker-circular--rotate-to-${parseInt(this.minute, 10)}`;
+            this.styles.needle = `mdc-timepicker__view-circular__cell--rotate-to-${parseInt(this.minute, 10)}`;
 
             this.styles.views.hour = 'mdc-timepicker--hidden';
             this.styles.views.minute = '';
@@ -400,8 +407,8 @@ let TimepickerTime = (_dec6 = computedFrom("_date"), _dec7 = computedFrom("_loca
     _format() {
         this.period = undefined;
         for (let value of new Intl.DateTimeFormat(this.locale, {
-            hour: "numeric",
-            minute: "2-digit"
+            hour: 'numeric',
+            minute: '2-digit'
         }).formatToParts(this.date)) {
             if (value.type === 'hour') {
                 this.hour = value.value;
@@ -412,5 +419,4 @@ let TimepickerTime = (_dec6 = computedFrom("_date"), _dec7 = computedFrom("_loca
             }
         }
     }
-
 }, (_applyDecoratedDescriptor(_class5.prototype, 'date', [_dec6], Object.getOwnPropertyDescriptor(_class5.prototype, 'date'), _class5.prototype), _applyDecoratedDescriptor(_class5.prototype, 'locale', [_dec7], Object.getOwnPropertyDescriptor(_class5.prototype, 'locale'), _class5.prototype)), _class5));

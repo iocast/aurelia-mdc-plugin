@@ -115,7 +115,7 @@ define(['exports', 'aurelia-framework', 'material-components-web'], function (ex
         attribute: 'value',
         defaultBindingMode: _aureliaFramework.bindingMode.twoWay,
         changeHandler: 'valueChangeHandler'
-    }), _dec7 = (0, _aureliaFramework.computedFrom)("_value"), _dec(_class = _dec2(_class = (_class2 = function () {
+    }), _dec7 = (0, _aureliaFramework.computedFrom)('_value'), _dec(_class = _dec2(_class = (_class2 = function () {
         function MdcAutocomplete(element) {
             _classCallCheck(this, MdcAutocomplete);
 
@@ -167,10 +167,10 @@ define(['exports', 'aurelia-framework', 'material-components-web'], function (ex
 
                                 if (this.listItems && this.listItems.length > 0) {
                                     this.simpleMenuDOM.classList.add('mdc-simple-menu--open');
-                                    this.simpleMenuDOM.style.transform = "scale(1, 1)";
+                                    this.simpleMenuDOM.style.transform = 'scale(1, 1)';
                                 } else {
                                     this.simpleMenuDOM.classList.remove('mdc-simple-menu--open');
-                                    this.simpleMenuDOM.style.transform = "scale(0, 0)";
+                                    this.simpleMenuDOM.style.transform = 'scale(0, 0)';
                                 }
 
                             case 7:
@@ -201,7 +201,7 @@ define(['exports', 'aurelia-framework', 'material-components-web'], function (ex
                                 this.selectionEvent = true;
                                 this._value = this.renderItem({ item: value });
                                 this.simpleMenuDOM.classList.remove('mdc-simple-menu--open');
-                                this.simpleMenuDOM.style.transform = "scale(0, 0)";
+                                this.simpleMenuDOM.style.transform = 'scale(0, 0)';
 
                                 this.select({ item: value });
 

@@ -4,7 +4,6 @@ import { textField } from 'material-components-web';
 @customElement('mdc-autocomplete')
 @inject(DOM.Element)
 export class MdcAutocomplete {
-
     @bindable({
         defaultBindingMode: bindingMode.twoWay
     }) lookup;
@@ -39,9 +38,8 @@ export class MdcAutocomplete {
         this.mdcValueDOM = new textField.MDCTextField(this.valueDOM);
 
         this.element.setValue = (value) => {
-          this.setValue(value);
-        }
-
+            this.setValue(value);
+        };
     }
 
     async valueChangeHandler(newValue, oldValue) {
@@ -54,10 +52,10 @@ export class MdcAutocomplete {
 
         if (this.listItems && this.listItems.length > 0) {
             this.simpleMenuDOM.classList.add('mdc-simple-menu--open');
-            this.simpleMenuDOM.style.transform = "scale(1, 1)";
+            this.simpleMenuDOM.style.transform = 'scale(1, 1)';
         } else {
             this.simpleMenuDOM.classList.remove('mdc-simple-menu--open');
-            this.simpleMenuDOM.style.transform = "scale(0, 0)";
+            this.simpleMenuDOM.style.transform = 'scale(0, 0)';
         }
     }
 
@@ -69,16 +67,17 @@ export class MdcAutocomplete {
         this.selectionEvent = true;
         this._value = this.renderItem({ item: value });
         this.simpleMenuDOM.classList.remove('mdc-simple-menu--open');
-        this.simpleMenuDOM.style.transform = "scale(0, 0)";
+        this.simpleMenuDOM.style.transform = 'scale(0, 0)';
 
         this.select({ item: value });
     }
 
 
-    @computedFrom("_value")
+    @computedFrom('_value')
     get value() {
         return this._value;
     }
+
     set value(value) {
         this._value = value;
     }
@@ -92,5 +91,4 @@ export class MdcAutocomplete {
             this.mdcValueDOM.getDefaultFoundation().adapter_.addClassToLabel('mdc-textfield__label--float-above');
         }
     }
-
 }

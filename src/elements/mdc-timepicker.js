@@ -1,11 +1,9 @@
 import { inject, bindable, bindingMode, computedFrom, DOM, customElement } from 'aurelia-framework';
 import { dialog, textField } from 'material-components-web';
 
-
 @customElement('mdc-timepicker')
 @inject(DOM.Element)
 export class MdcTimepicker {
-
     @bindable({
         attribute: 'locale',
         defaultBindingMode: bindingMode.twoWay,
@@ -47,21 +45,20 @@ export class MdcTimepicker {
     }
 
 
-    @computedFrom("_value")
+    @computedFrom('_value')
     get value() {
         if (this._value) {
             return this._value.toLocaleTimeString(this.locale, {
-                hour: "numeric",
-                minute: "2-digit"
+                hour: 'numeric',
+                minute: '2-digit'
             });
         }
-        return "";
-
+        return '';
     }
+
     set value(value) {
         this._value = value;
     }
-
 
     localeChangeHandler(newValue, oldValue) {
         if (this.selected) {
@@ -70,12 +67,6 @@ export class MdcTimepicker {
             this.mdcValueDOM.getDefaultFoundation().adapter_.getNativeInput().dispatchEvent(new Event('change', {
                 bubbles: true
             }));
-            /*
-            this.valueDOM.value = this.value;
-            this.valueDOM.dispatchEvent(new Event('change', {
-                bubbles: true
-            }));
-            */
         }
     }
 
@@ -93,6 +84,7 @@ export class MdcTimepicker {
     selectMinutes(minutes) {
         this.selected.selectMinutes(minutes);
     }
+
     selectHours(hours) {
         this.selected.selectHours(hours);
     }
@@ -111,52 +103,49 @@ export class MdcTimepicker {
 
         if (evt instanceof TouchEvent) {
             if (evt.touches.length === 1) {
-                this.dragger.start(evt.touches[0])
+                this.dragger.start(evt.touches[0]);
             }
-
         } else if (evt instanceof MouseEvent) {
             this.dragger.start(evt);
         }
-
     }
+
     draggerMove(evt) {
         evt.preventDefault();
         evt.stopPropagation();
 
         if (evt instanceof TouchEvent) {
             if (evt.touches.length === 1) {
-                this.dragger.move(evt.touches[0])
+                this.dragger.move(evt.touches[0]);
             }
-
         } else if (evt instanceof MouseEvent) {
             this.dragger.move(evt);
         }
     }
+
     draggerOut(evt) {
         evt.preventDefault();
         evt.stopPropagation();
 
         if (evt instanceof TouchEvent) {
             if (evt.touches.length === 1) {
-                this.dragger.out(evt.touches[0])
+                this.dragger.out(evt.touches[0]);
             }
-
         } else if (evt instanceof MouseEvent) {
             this.dragger.out(evt);
         }
     }
+
     draggerStop(evt) {
         evt.preventDefault();
         evt.stopPropagation();
 
         if (evt instanceof TouchEvent) {
-            this.dragger.stop()
-
+            this.dragger.stop();
         } else if (evt instanceof MouseEvent) {
             this.dragger.stop(evt);
         }
     }
-
 
     show() {
         this.selected.locale = this.locale;
@@ -174,11 +163,9 @@ export class MdcTimepicker {
         this.value = this.selected.date;
         this.mdcTimepickerDialog.close();
     }
-
 }
 
 class TimepickerDragger {
-
     dragging = false;
 
     constructor(surface, needle, dragger, time) {
@@ -187,16 +174,14 @@ class TimepickerDragger {
         this.dragger = dragger;
         this.time = time;
 
-
-        this.needle.addEventListener("transitionend", event => {
+        this.needle.addEventListener('transitionend', event => {
             this._setToNeedle();
         }, false);
-
     }
 
     start(evt) {
         this.needleTransition = this.needle.style.transition;
-        this.needle.style.transition = "unset";
+        this.needle.style.transition = 'unset';
         this.dragging = true;
     }
 
@@ -212,14 +197,14 @@ class TimepickerDragger {
         const offset = 20;
         const hOffset = this.surface.getBoundingClientRect();
 
-        const xCurrent = evt.clientX - hOffset.left - (hOffset.width / 2)
-        const yCurrent = evt.clientY - hOffset.top - (hOffset.height / 2)
+        const xCurrent = evt.clientX - hOffset.left - (hOffset.width / 2);
+        const yCurrent = evt.clientY - hOffset.top - (hOffset.height / 2);
 
-        const xDragger = parseInt(this.dragger.style.left);
-        const yDragger = parseInt(this.dragger.style.top);
+        const xDragger = parseInt(this.dragger.style.left, 10);
+        const yDragger = parseInt(this.dragger.style.top, 10);
 
         if (xCurrent > xDragger - offset && xCurrent < xDragger + offset && yCurrent > yDragger - offset && yCurrent < yDragger + offset) {
-            this.dragger.setAttribute('style', `left:${xCurrent}px;top:${yCurrent}px`)
+            this.dragger.setAttribute('style', `left:${xCurrent}px;top:${yCurrent}px`);
             this.move(evt);
             return;
         }
@@ -233,11 +218,11 @@ class TimepickerDragger {
         window.requestAnimationFrame(() => {
             const hOffset = this.surface.getBoundingClientRect();
 
-            const xPos = evt.clientX - hOffset.left - (hOffset.width / 2)
-            const yPos = evt.clientY - hOffset.top - (hOffset.height / 2)
+            const xPos = evt.clientX - hOffset.left - (hOffset.width / 2);
+            const yPos = evt.clientY - hOffset.top - (hOffset.height / 2);
 
             const cOffset = this.needle.querySelector('.mdc-timepicker__view-needle__circle').getBoundingClientRect();
-            this.dragger.setAttribute('style', `left:${evt.clientX - hOffset.left - cOffset.width / 2}px;top:${evt.clientY - hOffset.top - cOffset.height / 2}px`)
+            this.dragger.setAttribute('style', `left:${evt.clientX - hOffset.left - cOffset.width / 2}px;top:${evt.clientY - hOffset.top - cOffset.height / 2}px`);
 
 
             let angle = Math.atan2(-yPos, xPos) * (180 / Math.PI) - 90;
@@ -253,34 +238,28 @@ class TimepickerDragger {
             }
 
             this.time.setMinutes(min);
-
         });
-
     }
 
     _setToNeedle() {
-        const hOffset = this.surface.getBoundingClientRect()
+        const hOffset = this.surface.getBoundingClientRect();
         const cOffset = this.needle.querySelector('.mdc-timepicker__view-needle__circle').getBoundingClientRect();
-        this.dragger.setAttribute('style', `left:${cOffset.left - hOffset.left}px;top:${cOffset.top - hOffset.top}px`)
-
+        this.dragger.setAttribute('style', `left:${cOffset.left - hOffset.left}px;top:${cOffset.top - hOffset.top}px`);
     }
-
-
-
 }
 
-class TimepickerTime {
 
+class TimepickerTime {
     _origDate;
     _date;
     _locale;
 
     styles = {
-        surface: "",
-        needle: "",
+        surface: '',
+        needle: '',
         views: {
-            hour: "",
-            minute: ""
+            hour: '',
+            minute: ''
         }
     }
 
@@ -290,25 +269,27 @@ class TimepickerTime {
         this.locale = (locale) ? locale : 'en';
     }
 
-    @computedFrom("_date")
+    @computedFrom('_date')
     get date() {
         return this._date;
     }
+
     set date(value) {
         this._origDate = value;
         this._date = new Date(value.getTime());
         this.refresh(this.locale);
-        this.setHours(parseInt(this.hour));
+        this.setHours(parseInt(this.hour, 10));
     }
 
     get originalDate() {
         return this._origDate;
     }
 
-    @computedFrom("_locale")
+    @computedFrom('_locale')
     get locale() {
         return this._locale;
     }
+
     set locale(value) {
         this._locale = value;
     }
@@ -324,6 +305,7 @@ class TimepickerTime {
             hour: true
         });
     }
+
     setMinutes(minutes) {
         this.date.setMinutes(minutes);
         this.refresh();
@@ -340,6 +322,7 @@ class TimepickerTime {
             hour: true
         });
     }
+
     selectMinutes(minutes) {
         this.setMinutes(minutes);
         this._calculateStyles({
@@ -372,21 +355,20 @@ class TimepickerTime {
 
     _calculateStyles(options) {
         if (options.hour && options.set || !options.hour && !options.set) {
-            let hourPosition = (parseInt(this.hour) % 12) * 5;
+            let hourPosition = (parseInt(this.hour, 10) % 12) * 5;
 
             this.styles.surface = `mdc-timepicker-circular--rotate-to-${hourPosition}`;
             this.styles.needle = `mdc-timepicker__view-circular__cell--rotate-to-${hourPosition}`;
-            if (!this.period && (parseInt(this.hour) > 12 || parseInt(this.hour) === 0)) {
+            if (!this.period && (parseInt(this.hour, 10) > 12 || parseInt(this.hour, 10) === 0)) {
                 this.styles.surface += ' mdc-timepicker__view-needle__pm';
                 this.styles.needle += ' mdc-timepicker__view-needle__pm';
             }
 
             this.styles.views.hour = '';
             this.styles.views.minute = 'mdc-timepicker--hidden';
-
         } else {
-            this.styles.surface = `mdc-timepicker-circular--rotate-to-${parseInt(this.minute)}`;
-            this.styles.needle = `mdc-timepicker__view-circular__cell--rotate-to-${parseInt(this.minute)}`;
+            this.styles.surface = `mdc-timepicker-circular--rotate-to-${parseInt(this.minute, 10)}`;
+            this.styles.needle = `mdc-timepicker__view-circular__cell--rotate-to-${parseInt(this.minute, 10)}`;
 
             this.styles.views.hour = 'mdc-timepicker--hidden';
             this.styles.views.minute = '';
@@ -396,8 +378,8 @@ class TimepickerTime {
     _format() {
         this.period = undefined;
         for (let value of new Intl.DateTimeFormat(this.locale, {
-                hour: "numeric",
-                minute: "2-digit"
+                hour: 'numeric',
+                minute: '2-digit'
             }).formatToParts(this.date)) {
             if (value.type === 'hour') {
                 this.hour = value.value;
@@ -408,5 +390,4 @@ class TimepickerTime {
             }
         }
     }
-
 }

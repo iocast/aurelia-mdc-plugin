@@ -94,7 +94,7 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                 attribute: 'value',
                 defaultBindingMode: bindingMode.twoWay,
                 changeHandler: 'valueChangeHandler'
-            }), _dec5 = computedFrom("_value"), _dec(_class = _dec2(_class = (_class2 = function () {
+            }), _dec5 = computedFrom('_value'), _dec(_class = _dec2(_class = (_class2 = function () {
                 function MdcTimepicker(element) {
                     _classCallCheck(this, MdcTimepicker);
 
@@ -225,11 +225,11 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                     get: function get() {
                         if (this._value) {
                             return this._value.toLocaleTimeString(this.locale, {
-                                hour: "numeric",
-                                minute: "2-digit"
+                                hour: 'numeric',
+                                minute: '2-digit'
                             });
                         }
-                        return "";
+                        return '';
                     },
                     set: function set(value) {
                         this._value = value;
@@ -260,14 +260,14 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                     this.dragger = dragger;
                     this.time = time;
 
-                    this.needle.addEventListener("transitionend", function (event) {
+                    this.needle.addEventListener('transitionend', function (event) {
                         _this._setToNeedle();
                     }, false);
                 }
 
                 TimepickerDragger.prototype.start = function start(evt) {
                     this.needleTransition = this.needle.style.transition;
-                    this.needle.style.transition = "unset";
+                    this.needle.style.transition = 'unset';
                     this.dragging = true;
                 };
 
@@ -286,8 +286,8 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                     var xCurrent = evt.clientX - hOffset.left - hOffset.width / 2;
                     var yCurrent = evt.clientY - hOffset.top - hOffset.height / 2;
 
-                    var xDragger = parseInt(this.dragger.style.left);
-                    var yDragger = parseInt(this.dragger.style.top);
+                    var xDragger = parseInt(this.dragger.style.left, 10);
+                    var yDragger = parseInt(this.dragger.style.top, 10);
 
                     if (xCurrent > xDragger - offset && xCurrent < xDragger + offset && yCurrent > yDragger - offset && yCurrent < yDragger + offset) {
                         this.dragger.setAttribute('style', 'left:' + xCurrent + 'px;top:' + yCurrent + 'px');
@@ -337,16 +337,16 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                 return TimepickerDragger;
             }();
 
-            TimepickerTime = (_dec6 = computedFrom("_date"), _dec7 = computedFrom("_locale"), (_class5 = function () {
+            TimepickerTime = (_dec6 = computedFrom('_date'), _dec7 = computedFrom('_locale'), (_class5 = function () {
                 function TimepickerTime(date, locale) {
                     _classCallCheck(this, TimepickerTime);
 
                     this.styles = {
-                        surface: "",
-                        needle: "",
+                        surface: '',
+                        needle: '',
                         views: {
-                            hour: "",
-                            minute: ""
+                            hour: '',
+                            minute: ''
                         }
                     };
 
@@ -416,11 +416,11 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
 
                 TimepickerTime.prototype._calculateStyles = function _calculateStyles(options) {
                     if (options.hour && options.set || !options.hour && !options.set) {
-                        var hourPosition = parseInt(this.hour) % 12 * 5;
+                        var hourPosition = parseInt(this.hour, 10) % 12 * 5;
 
                         this.styles.surface = 'mdc-timepicker-circular--rotate-to-' + hourPosition;
                         this.styles.needle = 'mdc-timepicker__view-circular__cell--rotate-to-' + hourPosition;
-                        if (!this.period && (parseInt(this.hour) > 12 || parseInt(this.hour) === 0)) {
+                        if (!this.period && (parseInt(this.hour, 10) > 12 || parseInt(this.hour, 10) === 0)) {
                             this.styles.surface += ' mdc-timepicker__view-needle__pm';
                             this.styles.needle += ' mdc-timepicker__view-needle__pm';
                         }
@@ -428,8 +428,8 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                         this.styles.views.hour = '';
                         this.styles.views.minute = 'mdc-timepicker--hidden';
                     } else {
-                        this.styles.surface = 'mdc-timepicker-circular--rotate-to-' + parseInt(this.minute);
-                        this.styles.needle = 'mdc-timepicker__view-circular__cell--rotate-to-' + parseInt(this.minute);
+                        this.styles.surface = 'mdc-timepicker-circular--rotate-to-' + parseInt(this.minute, 10);
+                        this.styles.needle = 'mdc-timepicker__view-circular__cell--rotate-to-' + parseInt(this.minute, 10);
 
                         this.styles.views.hour = 'mdc-timepicker--hidden';
                         this.styles.views.minute = '';
@@ -439,8 +439,8 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                 TimepickerTime.prototype._format = function _format() {
                     this.period = undefined;
                     for (var _iterator = new Intl.DateTimeFormat(this.locale, {
-                        hour: "numeric",
-                        minute: "2-digit"
+                        hour: 'numeric',
+                        minute: '2-digit'
                     }).formatToParts(this.date), _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
                         var _ref;
 
@@ -474,7 +474,7 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                         this._origDate = value;
                         this._date = new Date(value.getTime());
                         this.refresh(this.locale);
-                        this.setHours(parseInt(this.hour));
+                        this.setHours(parseInt(this.hour, 10));
                     }
                 }, {
                     key: 'originalDate',

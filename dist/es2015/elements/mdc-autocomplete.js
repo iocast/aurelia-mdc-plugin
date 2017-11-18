@@ -59,7 +59,7 @@ export let MdcAutocomplete = (_dec = customElement('mdc-autocomplete'), _dec2 = 
     attribute: 'value',
     defaultBindingMode: bindingMode.twoWay,
     changeHandler: 'valueChangeHandler'
-}), _dec7 = computedFrom("_value"), _dec(_class = _dec2(_class = (_class2 = class MdcAutocomplete {
+}), _dec7 = computedFrom('_value'), _dec(_class = _dec2(_class = (_class2 = class MdcAutocomplete {
 
     constructor(element) {
         _initDefineProp(this, 'lookup', _descriptor, this);
@@ -97,10 +97,10 @@ export let MdcAutocomplete = (_dec = customElement('mdc-autocomplete'), _dec2 = 
 
             if (_this.listItems && _this.listItems.length > 0) {
                 _this.simpleMenuDOM.classList.add('mdc-simple-menu--open');
-                _this.simpleMenuDOM.style.transform = "scale(1, 1)";
+                _this.simpleMenuDOM.style.transform = 'scale(1, 1)';
             } else {
                 _this.simpleMenuDOM.classList.remove('mdc-simple-menu--open');
-                _this.simpleMenuDOM.style.transform = "scale(0, 0)";
+                _this.simpleMenuDOM.style.transform = 'scale(0, 0)';
             }
         })();
     }
@@ -116,7 +116,7 @@ export let MdcAutocomplete = (_dec = customElement('mdc-autocomplete'), _dec2 = 
             _this2.selectionEvent = true;
             _this2._value = _this2.renderItem({ item: value });
             _this2.simpleMenuDOM.classList.remove('mdc-simple-menu--open');
-            _this2.simpleMenuDOM.style.transform = "scale(0, 0)";
+            _this2.simpleMenuDOM.style.transform = 'scale(0, 0)';
 
             _this2.select({ item: value });
         })();
@@ -125,6 +125,7 @@ export let MdcAutocomplete = (_dec = customElement('mdc-autocomplete'), _dec2 = 
     get value() {
         return this._value;
     }
+
     set value(value) {
         this._value = value;
     }
@@ -138,7 +139,6 @@ export let MdcAutocomplete = (_dec = customElement('mdc-autocomplete'), _dec2 = 
             this.mdcValueDOM.getDefaultFoundation().adapter_.addClassToLabel('mdc-textfield__label--float-above');
         }
     }
-
 }, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'lookup', [_dec3], {
     enumerable: true,
     initializer: null
