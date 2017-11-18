@@ -44,7 +44,7 @@ function _initializerWarningHelper(descriptor, context) {
 }
 
 import { inject, bindable, bindingMode, computedFrom, DOM, customElement } from 'aurelia-framework';
-import { dialog, textfield } from 'material-components-web';
+import { dialog, textField } from 'material-components-web';
 
 export let MdcTimepicker = (_dec = customElement('mdc-timepicker'), _dec2 = inject(DOM.Element), _dec3 = bindable({
     attribute: 'locale',
@@ -69,7 +69,7 @@ export let MdcTimepicker = (_dec = customElement('mdc-timepicker'), _dec2 = inje
 
     attached() {
         this.mdcTimepickerDialog = new dialog.MDCDialog(this.timepickerDialog);
-        this.mdcValueDOM = new textfield.MDCTextfield(this.valueDOM);
+        this.mdcValueDOM = new textField.MDCTextField(this.valueDOM);
 
         this.selected = new TimepickerTime(this._value ? this._value : new Date(), this.locale);
 

@@ -3,16 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.MdcAutocomplete = exports.MdcTimepicker = exports.MdcDatepicker = exports.MdcCheckbox = exports.MdcTarget = exports.ensureAttached = undefined;
-
-var _helpers = require('./helpers');
-
-Object.defineProperty(exports, 'ensureAttached', {
-    enumerable: true,
-    get: function get() {
-        return _helpers.ensureAttached;
-    }
-});
+exports.MdcAutocomplete = exports.MdcTimepicker = exports.MdcDatepicker = exports.MdcCheckbox = exports.MdcTarget = undefined;
 exports.configure = configure;
 
 var _aureliaPal = require('aurelia-pal');

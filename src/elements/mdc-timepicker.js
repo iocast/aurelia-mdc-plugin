@@ -1,5 +1,5 @@
 import { inject, bindable, bindingMode, computedFrom, DOM, customElement } from 'aurelia-framework';
-import { dialog, textfield } from 'material-components-web';
+import { dialog, textField } from 'material-components-web';
 
 
 @customElement('mdc-timepicker')
@@ -39,7 +39,7 @@ export class MdcTimepicker {
 
     attached() {
         this.mdcTimepickerDialog = new dialog.MDCDialog(this.timepickerDialog);
-        this.mdcValueDOM = new textfield.MDCTextfield(this.valueDOM);
+        this.mdcValueDOM = new textField.MDCTextField(this.valueDOM);
 
         this.selected = new TimepickerTime((this._value) ? this._value : new Date(), this.locale);
 

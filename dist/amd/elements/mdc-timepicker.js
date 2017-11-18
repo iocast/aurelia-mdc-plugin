@@ -99,7 +99,7 @@ define(['exports', 'aurelia-framework', 'material-components-web'], function (ex
 
         MdcTimepicker.prototype.attached = function attached() {
             this.mdcTimepickerDialog = new _materialComponentsWeb.dialog.MDCDialog(this.timepickerDialog);
-            this.mdcValueDOM = new _materialComponentsWeb.textfield.MDCTextfield(this.valueDOM);
+            this.mdcValueDOM = new _materialComponentsWeb.textField.MDCTextField(this.valueDOM);
 
             this.selected = new TimepickerTime(this._value ? this._value : new Date(), this.locale);
 

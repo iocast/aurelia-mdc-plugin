@@ -61,6 +61,14 @@ export function configure(aurelia) {
 </button>
 ```
 
+### Add new or 3rd party MDC-web components:
+
+```js
+aurelia.use.plugin('aurelia-mdc-plugin', mdc => mdc.addComponents({
+    'mdc-selector': 'MDCClassName'
+}));
+```
+
 The plugin automaticaly adds `data-mdc-auto-init="MDCRipple"` to the button above and initializes it, so you do not have to add it to any of the components available.
 
 ### Custom Elements

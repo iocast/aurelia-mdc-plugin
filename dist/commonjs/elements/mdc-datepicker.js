@@ -90,7 +90,7 @@ var MdcDatepicker = exports.MdcDatepicker = (_dec = (0, _aureliaFramework.custom
         var _this = this;
 
         this.mdcDatepickerDialog = new _materialComponentsWeb.dialog.MDCDialog(this.datepickerDialog);
-        this.mdcValueDOM = new _materialComponentsWeb.textfield.MDCTextfield(this.valueDOM);
+        this.mdcValueDOM = new _materialComponentsWeb.textField.MDCTextField(this.valueDOM);
 
         var shift = 0;
         if (this.startWeekOn === 'monday') {

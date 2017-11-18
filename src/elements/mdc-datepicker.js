@@ -1,5 +1,5 @@
 import { inject, bindable, bindingMode, computedFrom, DOM, customElement } from 'aurelia-framework';
-import { dialog, textfield } from 'material-components-web';
+import { dialog, textField } from 'material-components-web';
 
 
 @customElement('mdc-datepicker')
@@ -39,7 +39,7 @@ export class MdcDatepicker {
 
     attached() {
         this.mdcDatepickerDialog = new dialog.MDCDialog(this.datepickerDialog);
-        this.mdcValueDOM = new textfield.MDCTextfield(this.valueDOM);
+        this.mdcValueDOM = new textField.MDCTextField(this.valueDOM);
 
         let shift = 0;
         if (this.startWeekOn === 'monday') {

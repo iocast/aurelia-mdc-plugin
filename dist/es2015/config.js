@@ -6,6 +6,7 @@ let MDC_COMPONENTS = {
     'mdc-dialog': 'MDCDialog',
     'mdc-persistent-drawer': 'MDCPersistentDrawer',
     'mdc-temporary-drawer': 'MDCTemporaryDrawer',
+    'mdc-form-field': 'MDCFormField',
     'mdc-ripple-surface': 'MDCRipple',
     'mdc-grid-list': 'MDCGridList',
     'mdc-icon-toggle': 'MDCIconToggle',
@@ -13,9 +14,10 @@ let MDC_COMPONENTS = {
     'mdc-radio': 'MDCRadio',
     'mdc-snackbar': 'MDCSnackbar',
     'mdc-tab-bar': 'MDCTabBar',
-    'mdc-textfield': 'MDCTextfield',
+    'mdc-text-field': 'MDCTextField',
     'mdc-simple-menu': 'MDCSimpleMenu',
     'mdc-select': 'MDCSelect',
+    'mdc-slider': 'MDCSlider',
     'mdc-toolbar': 'MDCToolbar'
 };
 

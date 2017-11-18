@@ -3,7 +3,7 @@
 System.register(['aurelia-framework', 'material-components-web'], function (_export, _context) {
     "use strict";
 
-    var inject, bindable, bindingMode, DOM, customElement, computedFrom, textfield, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, MdcAutocomplete;
+    var inject, bindable, bindingMode, DOM, customElement, computedFrom, textField, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, MdcAutocomplete;
 
     function _asyncToGenerator(fn) {
         return function () {
@@ -92,7 +92,7 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
             customElement = _aureliaFramework.customElement;
             computedFrom = _aureliaFramework.computedFrom;
         }, function (_materialComponentsWeb) {
-            textfield = _materialComponentsWeb.textfield;
+            textField = _materialComponentsWeb.textField;
         }],
         execute: function () {
             _createClass = function () {
@@ -145,7 +145,7 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                 MdcAutocomplete.prototype.attached = function attached() {
                     var _this = this;
 
-                    this.mdcValueDOM = new textfield.MDCTextfield(this.valueDOM);
+                    this.mdcValueDOM = new textField.MDCTextField(this.valueDOM);
 
                     this.element.setValue = function (value) {
                         _this.setValue(value);

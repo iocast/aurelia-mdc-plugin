@@ -1,5 +1,5 @@
 import { inject, bindable, bindingMode, DOM, customElement, computedFrom } from 'aurelia-framework';
-import { textfield } from 'material-components-web';
+import { textField } from 'material-components-web';
 
 @customElement('mdc-autocomplete')
 @inject(DOM.Element)
@@ -23,7 +23,7 @@ export class MdcAutocomplete {
         defaultBindingMode: bindingMode.twoWay,
         changeHandler: 'valueChangeHandler'
     }) _value;
-    
+
     listItems = [];
     selectionEvent = false;
 
@@ -36,7 +36,7 @@ export class MdcAutocomplete {
     }
 
     attached() {
-        this.mdcValueDOM = new textfield.MDCTextfield(this.valueDOM);
+        this.mdcValueDOM = new textField.MDCTextField(this.valueDOM);
 
         this.element.setValue = (value) => {
           this.setValue(value);

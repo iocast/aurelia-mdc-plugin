@@ -7,8 +7,6 @@ import { MdcDatepicker } from './elements/mdc-datepicker';
 import { MdcTimepicker } from './elements/mdc-timepicker';
 import { MdcAutocomplete } from './elements/mdc-autocomplete';
 
-export { ensureAttached } from './helpers';
-
 let pluginConfig;
 
 export function configure(config, callback) {

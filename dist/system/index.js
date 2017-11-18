@@ -1,6 +1,6 @@
 'use strict';
 
-System.register(['aurelia-pal', './config', './mdc-target', './elements/mdc-checkbox', './elements/mdc-datepicker', './elements/mdc-timepicker', './elements/mdc-autocomplete', './helpers'], function (_export, _context) {
+System.register(['aurelia-pal', './config', './mdc-target', './elements/mdc-checkbox', './elements/mdc-datepicker', './elements/mdc-timepicker', './elements/mdc-autocomplete'], function (_export, _context) {
     "use strict";
 
     var PLATFORM, MdcConfig, MDC_TARGET_ATTR, MDC_INIT_ATTR, MdcTarget, MdcCheckbox, MdcDatepicker, MdcTimepicker, MdcAutocomplete, pluginConfig;
@@ -53,11 +53,6 @@ System.register(['aurelia-pal', './config', './mdc-target', './elements/mdc-chec
             MdcTimepicker = _elementsMdcTimepicker.MdcTimepicker;
         }, function (_elementsMdcAutocomplete) {
             MdcAutocomplete = _elementsMdcAutocomplete.MdcAutocomplete;
-        }, function (_helpers) {
-            var _exportObj = {};
-            _exportObj.ensureAttached = _helpers.ensureAttached;
-
-            _export(_exportObj);
         }],
         execute: function () {
             pluginConfig = void 0;

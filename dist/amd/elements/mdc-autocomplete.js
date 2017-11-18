@@ -136,7 +136,7 @@ define(['exports', 'aurelia-framework', 'material-components-web'], function (ex
         MdcAutocomplete.prototype.attached = function attached() {
             var _this = this;
 
-            this.mdcValueDOM = new _materialComponentsWeb.textfield.MDCTextfield(this.valueDOM);
+            this.mdcValueDOM = new _materialComponentsWeb.textField.MDCTextField(this.valueDOM);
 
             this.element.setValue = function (value) {
                 _this.setValue(value);

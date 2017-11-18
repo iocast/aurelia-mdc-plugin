@@ -46,7 +46,7 @@ function _initializerWarningHelper(descriptor, context) {
 }
 
 import { inject, bindable, bindingMode, DOM, customElement, computedFrom } from 'aurelia-framework';
-import { textfield } from 'material-components-web';
+import { textField } from 'material-components-web';
 
 export let MdcAutocomplete = (_dec = customElement('mdc-autocomplete'), _dec2 = inject(DOM.Element), _dec3 = bindable({
     defaultBindingMode: bindingMode.twoWay
@@ -77,7 +77,7 @@ export let MdcAutocomplete = (_dec = customElement('mdc-autocomplete'), _dec2 = 
     }
 
     attached() {
-        this.mdcValueDOM = new textfield.MDCTextfield(this.valueDOM);
+        this.mdcValueDOM = new textField.MDCTextField(this.valueDOM);
 
         this.element.setValue = value => {
             this.setValue(value);

@@ -92,7 +92,7 @@ var MdcAutocomplete = exports.MdcAutocomplete = (_dec = (0, _aureliaFramework.cu
     MdcAutocomplete.prototype.attached = function attached() {
         var _this = this;
 
-        this.mdcValueDOM = new _materialComponentsWeb.textfield.MDCTextfield(this.valueDOM);
+        this.mdcValueDOM = new _materialComponentsWeb.textField.MDCTextField(this.valueDOM);
 
         this.element.setValue = function (value) {
             _this.setValue(value);

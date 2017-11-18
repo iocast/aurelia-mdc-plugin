@@ -3,7 +3,7 @@
 System.register(['aurelia-framework', 'material-components-web'], function (_export, _context) {
     "use strict";
 
-    var inject, bindable, bindingMode, computedFrom, DOM, customElement, dialog, textfield, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _dec7, _dec8, _dec9, _desc2, _value2, _class4, MdcDatepicker, DatepickerDate;
+    var inject, bindable, bindingMode, computedFrom, DOM, customElement, dialog, textField, _createClass, _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _dec7, _dec8, _dec9, _desc2, _value2, _class4, MdcDatepicker, DatepickerDate;
 
     function _initDefineProp(target, property, descriptor, context) {
         if (!descriptor) return;
@@ -64,7 +64,7 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
             customElement = _aureliaFramework.customElement;
         }, function (_materialComponentsWeb) {
             dialog = _materialComponentsWeb.dialog;
-            textfield = _materialComponentsWeb.textfield;
+            textField = _materialComponentsWeb.textField;
         }],
         execute: function () {
             _createClass = function () {
@@ -117,7 +117,7 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                     var _this = this;
 
                     this.mdcDatepickerDialog = new dialog.MDCDialog(this.datepickerDialog);
-                    this.mdcValueDOM = new textfield.MDCTextfield(this.valueDOM);
+                    this.mdcValueDOM = new textField.MDCTextField(this.valueDOM);
 
                     var shift = 0;
                     if (this.startWeekOn === 'monday') {
