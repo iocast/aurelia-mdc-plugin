@@ -6,6 +6,7 @@ import { MdcCheckbox } from './elements/mdc-checkbox';
 import { MdcDatepicker } from './elements/mdc-datepicker';
 import { MdcTimepicker } from './elements/mdc-timepicker';
 import { MdcAutocomplete } from './elements/mdc-autocomplete';
+import { MdcChip } from './elements/mdc-chip';
 
 let pluginConfig;
 
@@ -21,6 +22,7 @@ export function configure(config, callback) {
     config.globalResources('./elements/mdc-datepicker');
     config.globalResources('./elements/mdc-timepicker');
     config.globalResources('./elements/mdc-autocomplete');
+    config.globalResources('./elements/mdc-chip');
 
     config.aurelia.resources.registerViewEngineHooks({
         beforeCompile: beforeViewCompiled
@@ -39,4 +41,4 @@ function beforeViewCompiled(content) {
     }
 }
 
-export { MdcTarget, MdcCheckbox, MdcDatepicker, MdcTimepicker, MdcAutocomplete };
+export { MdcTarget, MdcCheckbox, MdcDatepicker, MdcTimepicker, MdcAutocomplete, MdcChip };

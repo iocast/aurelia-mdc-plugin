@@ -1,9 +1,9 @@
 'use strict';
 
-System.register(['aurelia-pal', './config', './mdc-target', './elements/mdc-checkbox', './elements/mdc-datepicker', './elements/mdc-timepicker', './elements/mdc-autocomplete'], function (_export, _context) {
+System.register(['aurelia-pal', './config', './mdc-target', './elements/mdc-checkbox', './elements/mdc-datepicker', './elements/mdc-timepicker', './elements/mdc-autocomplete', './elements/mdc-chip'], function (_export, _context) {
     "use strict";
 
-    var PLATFORM, MdcConfig, MDC_TARGET_ATTR, MDC_INIT_ATTR, MdcTarget, MdcCheckbox, MdcDatepicker, MdcTimepicker, MdcAutocomplete, pluginConfig;
+    var PLATFORM, MdcConfig, MDC_TARGET_ATTR, MDC_INIT_ATTR, MdcTarget, MdcCheckbox, MdcDatepicker, MdcTimepicker, MdcAutocomplete, MdcChip, pluginConfig;
     function configure(config, callback) {
         pluginConfig = config.container.get(MdcConfig);
 
@@ -16,6 +16,7 @@ System.register(['aurelia-pal', './config', './mdc-target', './elements/mdc-chec
         config.globalResources('./elements/mdc-datepicker');
         config.globalResources('./elements/mdc-timepicker');
         config.globalResources('./elements/mdc-autocomplete');
+        config.globalResources('./elements/mdc-chip');
 
         config.aurelia.resources.registerViewEngineHooks({
             beforeCompile: beforeViewCompiled
@@ -53,6 +54,8 @@ System.register(['aurelia-pal', './config', './mdc-target', './elements/mdc-chec
             MdcTimepicker = _elementsMdcTimepicker.MdcTimepicker;
         }, function (_elementsMdcAutocomplete) {
             MdcAutocomplete = _elementsMdcAutocomplete.MdcAutocomplete;
+        }, function (_elementsMdcChip) {
+            MdcChip = _elementsMdcChip.MdcChip;
         }],
         execute: function () {
             pluginConfig = void 0;
@@ -66,6 +69,8 @@ System.register(['aurelia-pal', './config', './mdc-target', './elements/mdc-chec
             _export('MdcTimepicker', MdcTimepicker);
 
             _export('MdcAutocomplete', MdcAutocomplete);
+
+            _export('MdcChip', MdcChip);
         }
     };
 });

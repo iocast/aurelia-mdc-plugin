@@ -1,10 +1,10 @@
-define(['exports', 'aurelia-pal', './config', './mdc-target', './elements/mdc-checkbox', './elements/mdc-datepicker', './elements/mdc-timepicker', './elements/mdc-autocomplete'], function (exports, _aureliaPal, _config, _mdcTarget, _mdcCheckbox, _mdcDatepicker, _mdcTimepicker, _mdcAutocomplete) {
+define(['exports', 'aurelia-pal', './config', './mdc-target', './elements/mdc-checkbox', './elements/mdc-datepicker', './elements/mdc-timepicker', './elements/mdc-autocomplete', './elements/mdc-chip'], function (exports, _aureliaPal, _config, _mdcTarget, _mdcCheckbox, _mdcDatepicker, _mdcTimepicker, _mdcAutocomplete, _mdcChip) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.MdcAutocomplete = exports.MdcTimepicker = exports.MdcDatepicker = exports.MdcCheckbox = exports.MdcTarget = undefined;
+    exports.MdcChip = exports.MdcAutocomplete = exports.MdcTimepicker = exports.MdcDatepicker = exports.MdcCheckbox = exports.MdcTarget = undefined;
     exports.configure = configure;
 
 
@@ -22,6 +22,7 @@ define(['exports', 'aurelia-pal', './config', './mdc-target', './elements/mdc-ch
         config.globalResources('./elements/mdc-datepicker');
         config.globalResources('./elements/mdc-timepicker');
         config.globalResources('./elements/mdc-autocomplete');
+        config.globalResources('./elements/mdc-chip');
 
         config.aurelia.resources.registerViewEngineHooks({
             beforeCompile: beforeViewCompiled
@@ -45,4 +46,5 @@ define(['exports', 'aurelia-pal', './config', './mdc-target', './elements/mdc-ch
     exports.MdcDatepicker = _mdcDatepicker.MdcDatepicker;
     exports.MdcTimepicker = _mdcTimepicker.MdcTimepicker;
     exports.MdcAutocomplete = _mdcAutocomplete.MdcAutocomplete;
+    exports.MdcChip = _mdcChip.MdcChip;
 });

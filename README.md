@@ -165,3 +165,18 @@ export class YourModel {
 ```
 
 you can use `setValue(value)` on the element to set a value without triggering the lookup event.
+
+`mdc-chip`
+
+```html
+<mdc-chip remove.bind="removeMe()" hover="true" raised="true">
+    <!-- optional: if you want to have an icon -->
+    <div class="mdc-chip-icon">A</div>
+    <!-- your text -->
+    <span>This is my chip</span>
+</mdc-chip>
+```
+
+`remove` action is optional. if it is set, it will automatically add a remove icon at the end of the chip.
+
+`hover` and `raised` are optional parameters
