@@ -79,10 +79,6 @@
         }
     },
     "dependencies": {
-        "aurelia-framework": "^1.1.5",
-        "aurelia-pal": "^1.4.0",
-        "babel-types": "^6.26.0",
-        "globule": "^1.2.0",
-        "material-components-web": "^0.25.0"
+        "aurelia-framework": "^1.1.5"
     }
 }

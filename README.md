@@ -180,3 +180,11 @@ you can use `setValue(value)` on the element to set a value without triggering t
 `remove` action is optional. if it is set, it will automatically add a remove icon at the end of the chip.
 
 `hover` and `raised` are optional parameters
+
+# Example
+
+```bash
+cd ./example
+npm install
+./node_modules/.bin/au run --env dev
+```
