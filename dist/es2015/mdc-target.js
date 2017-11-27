@@ -1,24 +1,41 @@
+'use strict';
+
+exports.__esModule = true;
+exports.MdcTarget = undefined;
+
 var _dec, _dec2, _class;
 
-import { DOM } from 'aurelia-pal';
-import { autoInit } from 'material-components-web';
-import { customAttribute } from 'aurelia-templating';
-import { inject } from 'aurelia-dependency-injection';
-import { MdcConfig, MDC_TARGET_ATTR } from './config';
+var _aureliaPal = require('aurelia-pal');
 
-export let MdcTarget = (_dec = inject(DOM.Element, MdcConfig), _dec2 = customAttribute(MDC_TARGET_ATTR), _dec(_class = _dec2(_class = class MdcTarget {
-    constructor(element, config) {
+var _materialComponentsWeb = require('material-components-web');
+
+var _aureliaTemplating = require('aurelia-templating');
+
+var _aureliaDependencyInjection = require('aurelia-dependency-injection');
+
+var _config = require('./config');
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var MdcTarget = exports.MdcTarget = (_dec = (0, _aureliaDependencyInjection.inject)(_aureliaPal.DOM.Element, _config.MdcConfig), _dec2 = (0, _aureliaTemplating.customAttribute)(_config.MDC_TARGET_ATTR), _dec(_class = _dec2(_class = function () {
+    function MdcTarget(element, config) {
+        _classCallCheck(this, MdcTarget);
+
         this.element = element;
         this.config = config;
     }
 
-    attached() {
-        const hasMdcElements = this.config.mdcClasses.some(cls => {
-            return this.element.classList.contains(cls);
+    MdcTarget.prototype.attached = function attached() {
+        var _this = this;
+
+        var hasMdcElements = this.config.mdcClasses.some(function (cls) {
+            return _this.element.classList.contains(cls);
         });
 
         if (!hasMdcElements) return;
 
-        autoInit(this.element.parentNode, () => {});
-    }
-}) || _class) || _class);
+        (0, _materialComponentsWeb.autoInit)(this.element.parentNode, function () {});
+    };
+
+    return MdcTarget;
+}()) || _class) || _class);

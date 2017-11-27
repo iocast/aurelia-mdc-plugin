@@ -1,4 +1,15 @@
-var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4;
+'use strict';
+
+exports.__esModule = true;
+exports.MdcAutocomplete = undefined;
+
+var _dec, _dec2, _dec3, _dec4, _dec5, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
+
+var _aureliaFramework = require('aurelia-framework');
+
+var _aureliaPal = require('aurelia-pal');
+
+var _materialComponentsWeb = require('material-components-web');
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
@@ -11,6 +22,8 @@ function _initDefineProp(target, property, descriptor, context) {
         value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
     });
 }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
     var desc = {};
@@ -45,110 +58,112 @@ function _initializerWarningHelper(descriptor, context) {
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-import { inject, bindable, bindingMode, DOM, customElement, computedFrom } from 'aurelia-framework';
-import { textField } from 'material-components-web';
+var MdcAutocomplete = exports.MdcAutocomplete = (_dec = (0, _aureliaFramework.customElement)('mdc-autocomplete'), _dec2 = (0, _aureliaFramework.inject)(_aureliaFramework.DOM.Element), _dec3 = (0, _aureliaFramework.bindable)({
+    defaultBindingMode: _aureliaFramework.bindingMode.twoWay
+}), _dec4 = (0, _aureliaFramework.bindable)({
+    defaultBindingMode: _aureliaFramework.bindingMode.twoWay
+}), _dec5 = (0, _aureliaFramework.bindable)({
+    attribute: 'items',
+    defaultBindingMode: _aureliaFramework.bindingMode.twoWay,
+    changeHandler: 'itemsChanged'
+}), _dec(_class = _dec2(_class = (_class2 = function () {
+    function MdcAutocomplete(element) {
+        _classCallCheck(this, MdcAutocomplete);
 
-export let MdcAutocomplete = (_dec = customElement('mdc-autocomplete'), _dec2 = inject(DOM.Element), _dec3 = bindable({
-    defaultBindingMode: bindingMode.twoWay
-}), _dec4 = bindable({
-    attribute: 'render-item',
-    defaultBindingMode: bindingMode.twoWay
-}), _dec5 = bindable({
-    defaultBindingMode: bindingMode.twoWay
-}), _dec6 = bindable({
-    attribute: 'value',
-    defaultBindingMode: bindingMode.twoWay,
-    changeHandler: 'valueChangeHandler'
-}), _dec7 = computedFrom('_value'), _dec(_class = _dec2(_class = (_class2 = class MdcAutocomplete {
-
-    constructor(element) {
         _initDefineProp(this, 'lookup', _descriptor, this);
 
-        _initDefineProp(this, 'renderItem', _descriptor2, this);
+        _initDefineProp(this, 'select', _descriptor2, this);
 
-        _initDefineProp(this, 'select', _descriptor3, this);
+        _initDefineProp(this, 'items', _descriptor3, this);
 
-        _initDefineProp(this, '_value', _descriptor4, this);
-
-        this.listItems = [];
         this.selectionEvent = false;
 
         this.element = element;
     }
 
-    attached() {
-        this.mdcValueDOM = new textField.MDCTextField(this.valueDOM);
-
-        this.element.setValue = value => {
-            this.setValue(value);
-        };
-    }
-
-    valueChangeHandler(newValue, oldValue) {
+    MdcAutocomplete.prototype.attached = function attached() {
         var _this = this;
 
-        return _asyncToGenerator(function* () {
-            if (!_this.simpleMenuDOM || _this.selectionEvent) {
-                _this.selectionEvent = false;
-                return;
-            }
+        this.mdcValueDOM = new _materialComponentsWeb.textField.MDCTextField(this.valueDOM);
 
-            _this.listItems = yield _this.lookup({ newValue: newValue, oldValue: oldValue });
+        this.oldValue = this.mdcValueDOM.value;
 
-            if (_this.listItems && _this.listItems.length > 0) {
-                _this.simpleMenuDOM.classList.add('mdc-simple-menu--open');
-                _this.simpleMenuDOM.style.transform = 'scale(1, 1)';
-            } else {
-                _this.simpleMenuDOM.classList.remove('mdc-simple-menu--open');
-                _this.simpleMenuDOM.style.transform = 'scale(0, 0)';
-            }
-        })();
-    }
+        this.mdcValueDOM.listen('change', function (event) {});
+        this.mdcValueDOM.listen('input', function (event) {
+            _this.valueChangeHandler(event.target.value, _this.oldValue);
+            _this.oldValue = event.target.value;
+        });
+    };
 
-    renderListItem(value) {
-        return this.renderItem({ item: value });
-    }
-
-    selectItem(value) {
-        var _this2 = this;
-
-        return _asyncToGenerator(function* () {
-            _this2.selectionEvent = true;
-            _this2._value = _this2.renderItem({ item: value });
-            _this2.simpleMenuDOM.classList.remove('mdc-simple-menu--open');
-            _this2.simpleMenuDOM.style.transform = 'scale(0, 0)';
-
-            _this2.select({ item: value });
-        })();
-    }
-
-    get value() {
-        return this._value;
-    }
-
-    set value(value) {
-        this._value = value;
-    }
-
-    setValue(value) {
-        this.selectionEvent = true;
-        this._value = value;
-        this.mdcValueDOM.getDefaultFoundation().adapter_.removeClassFromLabel('mdc-textfield__label--float-above');
-
-        if (this._value) {
-            this.mdcValueDOM.getDefaultFoundation().adapter_.addClassToLabel('mdc-textfield__label--float-above');
+    MdcAutocomplete.prototype.itemsChanged = function itemsChanged() {
+        if (!this.simpleMenuDOM) return;
+        if (this.items && this.items.length > 0) {
+            this.simpleMenuDOM.classList.add('mdc-simple-menu--open');
+            this.simpleMenuDOM.style.transform = 'scale(1, 1)';
+        } else {
+            this.simpleMenuDOM.classList.remove('mdc-simple-menu--open');
+            this.simpleMenuDOM.style.transform = 'scale(0, 0)';
         }
-    }
-}, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'lookup', [_dec3], {
+    };
+
+    MdcAutocomplete.prototype.valueChangeHandler = function () {
+        var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(newValue, oldValue) {
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+                while (1) {
+                    switch (_context.prev = _context.next) {
+                        case 0:
+                            _context.next = 2;
+                            return this.lookup({ newValue: newValue, oldValue: oldValue });
+
+                        case 2:
+                        case 'end':
+                            return _context.stop();
+                    }
+                }
+            }, _callee, this);
+        }));
+
+        function valueChangeHandler(_x, _x2) {
+            return _ref.apply(this, arguments);
+        }
+
+        return valueChangeHandler;
+    }();
+
+    MdcAutocomplete.prototype.selectItem = function () {
+        var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(item) {
+            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+                while (1) {
+                    switch (_context2.prev = _context2.next) {
+                        case 0:
+                            this.simpleMenuDOM.classList.remove('mdc-simple-menu--open');
+                            this.simpleMenuDOM.style.transform = 'scale(0, 0)';
+
+                            this.select({ item: item });
+
+                        case 3:
+                        case 'end':
+                            return _context2.stop();
+                    }
+                }
+            }, _callee2, this);
+        }));
+
+        function selectItem(_x3) {
+            return _ref2.apply(this, arguments);
+        }
+
+        return selectItem;
+    }();
+
+    return MdcAutocomplete;
+}(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'lookup', [_dec3], {
     enumerable: true,
     initializer: null
-}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'renderItem', [_dec4], {
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'select', [_dec4], {
     enumerable: true,
     initializer: null
-}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'select', [_dec5], {
+}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'items', [_dec5], {
     enumerable: true,
     initializer: null
-}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, '_value', [_dec6], {
-    enumerable: true,
-    initializer: null
-}), _applyDecoratedDescriptor(_class2.prototype, 'value', [_dec7], Object.getOwnPropertyDescriptor(_class2.prototype, 'value'), _class2.prototype)), _class2)) || _class) || _class);
+})), _class2)) || _class) || _class);

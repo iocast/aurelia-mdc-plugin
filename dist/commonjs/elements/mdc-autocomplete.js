@@ -5,11 +5,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.MdcAutocomplete = undefined;
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4;
+var _dec, _dec2, _dec3, _dec4, _dec5, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
 
 var _aureliaFramework = require('aurelia-framework');
+
+var _aureliaPal = require('aurelia-pal');
 
 var _materialComponentsWeb = require('material-components-web');
 
@@ -63,27 +63,21 @@ function _initializerWarningHelper(descriptor, context) {
 var MdcAutocomplete = exports.MdcAutocomplete = (_dec = (0, _aureliaFramework.customElement)('mdc-autocomplete'), _dec2 = (0, _aureliaFramework.inject)(_aureliaFramework.DOM.Element), _dec3 = (0, _aureliaFramework.bindable)({
     defaultBindingMode: _aureliaFramework.bindingMode.twoWay
 }), _dec4 = (0, _aureliaFramework.bindable)({
-    attribute: 'render-item',
     defaultBindingMode: _aureliaFramework.bindingMode.twoWay
 }), _dec5 = (0, _aureliaFramework.bindable)({
-    defaultBindingMode: _aureliaFramework.bindingMode.twoWay
-}), _dec6 = (0, _aureliaFramework.bindable)({
-    attribute: 'value',
+    attribute: 'items',
     defaultBindingMode: _aureliaFramework.bindingMode.twoWay,
-    changeHandler: 'valueChangeHandler'
-}), _dec7 = (0, _aureliaFramework.computedFrom)('_value'), _dec(_class = _dec2(_class = (_class2 = function () {
+    changeHandler: 'itemsChanged'
+}), _dec(_class = _dec2(_class = (_class2 = function () {
     function MdcAutocomplete(element) {
         _classCallCheck(this, MdcAutocomplete);
 
         _initDefineProp(this, 'lookup', _descriptor, this);
 
-        _initDefineProp(this, 'renderItem', _descriptor2, this);
+        _initDefineProp(this, 'select', _descriptor2, this);
 
-        _initDefineProp(this, 'select', _descriptor3, this);
+        _initDefineProp(this, 'items', _descriptor3, this);
 
-        _initDefineProp(this, '_value', _descriptor4, this);
-
-        this.listItems = [];
         this.selectionEvent = false;
 
         this.element = element;
@@ -94,9 +88,24 @@ var MdcAutocomplete = exports.MdcAutocomplete = (_dec = (0, _aureliaFramework.cu
 
         this.mdcValueDOM = new _materialComponentsWeb.textField.MDCTextField(this.valueDOM);
 
-        this.element.setValue = function (value) {
-            _this.setValue(value);
-        };
+        this.oldValue = this.mdcValueDOM.value;
+
+        this.mdcValueDOM.listen('change', function (event) {});
+        this.mdcValueDOM.listen('input', function (event) {
+            _this.valueChangeHandler(event.target.value, _this.oldValue);
+            _this.oldValue = event.target.value;
+        });
+    };
+
+    MdcAutocomplete.prototype.itemsChanged = function itemsChanged() {
+        if (!this.simpleMenuDOM) return;
+        if (this.items && this.items.length > 0) {
+            this.simpleMenuDOM.classList.add('mdc-simple-menu--open');
+            this.simpleMenuDOM.style.transform = 'scale(1, 1)';
+        } else {
+            this.simpleMenuDOM.classList.remove('mdc-simple-menu--open');
+            this.simpleMenuDOM.style.transform = 'scale(0, 0)';
+        }
     };
 
     MdcAutocomplete.prototype.valueChangeHandler = function () {
@@ -105,31 +114,10 @@ var MdcAutocomplete = exports.MdcAutocomplete = (_dec = (0, _aureliaFramework.cu
                 while (1) {
                     switch (_context.prev = _context.next) {
                         case 0:
-                            if (!(!this.simpleMenuDOM || this.selectionEvent)) {
-                                _context.next = 3;
-                                break;
-                            }
-
-                            this.selectionEvent = false;
-                            return _context.abrupt('return');
-
-                        case 3:
-                            _context.next = 5;
+                            _context.next = 2;
                             return this.lookup({ newValue: newValue, oldValue: oldValue });
 
-                        case 5:
-                            this.listItems = _context.sent;
-
-
-                            if (this.listItems && this.listItems.length > 0) {
-                                this.simpleMenuDOM.classList.add('mdc-simple-menu--open');
-                                this.simpleMenuDOM.style.transform = 'scale(1, 1)';
-                            } else {
-                                this.simpleMenuDOM.classList.remove('mdc-simple-menu--open');
-                                this.simpleMenuDOM.style.transform = 'scale(0, 0)';
-                            }
-
-                        case 7:
+                        case 2:
                         case 'end':
                             return _context.stop();
                     }
@@ -144,24 +132,18 @@ var MdcAutocomplete = exports.MdcAutocomplete = (_dec = (0, _aureliaFramework.cu
         return valueChangeHandler;
     }();
 
-    MdcAutocomplete.prototype.renderListItem = function renderListItem(value) {
-        return this.renderItem({ item: value });
-    };
-
     MdcAutocomplete.prototype.selectItem = function () {
-        var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(value) {
+        var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(item) {
             return regeneratorRuntime.wrap(function _callee2$(_context2) {
                 while (1) {
                     switch (_context2.prev = _context2.next) {
                         case 0:
-                            this.selectionEvent = true;
-                            this._value = this.renderItem({ item: value });
                             this.simpleMenuDOM.classList.remove('mdc-simple-menu--open');
                             this.simpleMenuDOM.style.transform = 'scale(0, 0)';
 
-                            this.select({ item: value });
+                            this.select({ item: item });
 
-                        case 5:
+                        case 3:
                         case 'end':
                             return _context2.stop();
                     }
@@ -176,37 +158,14 @@ var MdcAutocomplete = exports.MdcAutocomplete = (_dec = (0, _aureliaFramework.cu
         return selectItem;
     }();
 
-    MdcAutocomplete.prototype.setValue = function setValue(value) {
-        this.selectionEvent = true;
-        this._value = value;
-        this.mdcValueDOM.getDefaultFoundation().adapter_.removeClassFromLabel('mdc-textfield__label--float-above');
-
-        if (this._value) {
-            this.mdcValueDOM.getDefaultFoundation().adapter_.addClassToLabel('mdc-textfield__label--float-above');
-        }
-    };
-
-    _createClass(MdcAutocomplete, [{
-        key: 'value',
-        get: function get() {
-            return this._value;
-        },
-        set: function set(value) {
-            this._value = value;
-        }
-    }]);
-
     return MdcAutocomplete;
 }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'lookup', [_dec3], {
     enumerable: true,
     initializer: null
-}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'renderItem', [_dec4], {
+}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'select', [_dec4], {
     enumerable: true,
     initializer: null
-}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'select', [_dec5], {
+}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'items', [_dec5], {
     enumerable: true,
     initializer: null
-}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, '_value', [_dec6], {
-    enumerable: true,
-    initializer: null
-}), _applyDecoratedDescriptor(_class2.prototype, 'value', [_dec7], Object.getOwnPropertyDescriptor(_class2.prototype, 'value'), _class2.prototype)), _class2)) || _class) || _class);
+})), _class2)) || _class) || _class);

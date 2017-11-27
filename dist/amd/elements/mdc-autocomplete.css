@@ -1,3 +1,7 @@
 .mdc-autocomplete {
     width: inherit;
 }
+
+.mdc-autocomplete-menu {
+    display: inline-block;
+}

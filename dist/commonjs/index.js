@@ -32,11 +32,11 @@ function configure(config, callback) {
     }
 
     config.globalResources(_aureliaPal.PLATFORM.moduleName('./mdc-target'));
-    config.globalResources('./elements/mdc-checkbox');
-    config.globalResources('./elements/mdc-datepicker');
-    config.globalResources('./elements/mdc-timepicker');
-    config.globalResources('./elements/mdc-autocomplete');
-    config.globalResources('./elements/mdc-chip');
+    config.globalResources(_aureliaPal.PLATFORM.moduleName('./elements/mdc-checkbox'));
+    config.globalResources(_aureliaPal.PLATFORM.moduleName('./elements/mdc-datepicker'));
+    config.globalResources(_aureliaPal.PLATFORM.moduleName('./elements/mdc-timepicker'));
+    config.globalResources(_aureliaPal.PLATFORM.moduleName('./elements/mdc-autocomplete'));
+    config.globalResources(_aureliaPal.PLATFORM.moduleName('./elements/mdc-chip'));
 
     config.aurelia.resources.registerViewEngineHooks({
         beforeCompile: beforeViewCompiled

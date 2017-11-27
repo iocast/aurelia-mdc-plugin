@@ -1,4 +1,15 @@
+'use strict';
+
+exports.__esModule = true;
+exports.MdcTimepicker = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _dec, _dec2, _dec3, _dec4, _dec5, _class, _desc, _value, _class2, _descriptor, _descriptor2, _dec6, _dec7, _desc2, _value2, _class5;
+
+var _aureliaFramework = require('aurelia-framework');
+
+var _materialComponentsWeb = require('material-components-web');
 
 function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -9,6 +20,8 @@ function _initDefineProp(target, property, descriptor, context) {
         value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
     });
 }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
     var desc = {};
@@ -43,21 +56,19 @@ function _initializerWarningHelper(descriptor, context) {
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-import { inject, bindable, bindingMode, computedFrom, DOM, customElement } from 'aurelia-framework';
-import { dialog, textField } from 'material-components-web';
-
-export let MdcTimepicker = (_dec = customElement('mdc-timepicker'), _dec2 = inject(DOM.Element), _dec3 = bindable({
+var MdcTimepicker = exports.MdcTimepicker = (_dec = (0, _aureliaFramework.customElement)('mdc-timepicker'), _dec2 = (0, _aureliaFramework.inject)(_aureliaFramework.DOM.Element), _dec3 = (0, _aureliaFramework.bindable)({
     attribute: 'locale',
-    defaultBindingMode: bindingMode.twoWay,
+    defaultBindingMode: _aureliaFramework.bindingMode.twoWay,
     changeHandler: 'localeChangeHandler',
     defaultValue: 'en'
-}), _dec4 = bindable({
+}), _dec4 = (0, _aureliaFramework.bindable)({
     attribute: 'value',
-    defaultBindingMode: bindingMode.twoWay,
+    defaultBindingMode: _aureliaFramework.bindingMode.twoWay,
     changeHandler: 'valueChangeHandler'
-}), _dec5 = computedFrom('_value'), _dec(_class = _dec2(_class = (_class2 = class MdcTimepicker {
+}), _dec5 = (0, _aureliaFramework.computedFrom)('_value'), _dec(_class = _dec2(_class = (_class2 = function () {
+    function MdcTimepicker(element) {
+        _classCallCheck(this, MdcTimepicker);
 
-    constructor(element) {
         _initDefineProp(this, 'locale', _descriptor, this);
 
         _initDefineProp(this, '_value', _descriptor2, this);
@@ -67,30 +78,16 @@ export let MdcTimepicker = (_dec = customElement('mdc-timepicker'), _dec2 = inje
         this.element = element;
     }
 
-    attached() {
-        this.mdcTimepickerDialog = new dialog.MDCDialog(this.timepickerDialog);
-        this.mdcValueDOM = new textField.MDCTextField(this.valueDOM);
+    MdcTimepicker.prototype.attached = function attached() {
+        this.mdcTimepickerDialog = new _materialComponentsWeb.dialog.MDCDialog(this.timepickerDialog);
+        this.mdcValueDOM = new _materialComponentsWeb.textField.MDCTextField(this.valueDOM);
 
         this.selected = new TimepickerTime(this._value ? this._value : new Date(), this.locale);
 
         this.dragger = new TimepickerDragger(this.domCircularSurface, this.domNeedle, this.domNeedleDragger, this.selected);
-    }
+    };
 
-    get value() {
-        if (this._value) {
-            return this._value.toLocaleTimeString(this.locale, {
-                hour: 'numeric',
-                minute: '2-digit'
-            });
-        }
-        return '';
-    }
-
-    set value(value) {
-        this._value = value;
-    }
-
-    localeChangeHandler(newValue, oldValue) {
+    MdcTimepicker.prototype.localeChangeHandler = function localeChangeHandler(newValue, oldValue) {
         if (this.selected) {
             this.selected.refresh(newValue);
             this.mdcValueDOM.getDefaultFoundation().adapter_.getNativeInput().value = this.value;
@@ -98,9 +95,9 @@ export let MdcTimepicker = (_dec = customElement('mdc-timepicker'), _dec2 = inje
                 bubbles: true
             }));
         }
-    }
+    };
 
-    valueChangeHandler(newValue, oldValue) {
+    MdcTimepicker.prototype.valueChangeHandler = function valueChangeHandler(newValue, oldValue) {
         this._value = newValue;
 
         if (this.mdcValueDOM) {
@@ -109,25 +106,25 @@ export let MdcTimepicker = (_dec = customElement('mdc-timepicker'), _dec2 = inje
                 this.mdcValueDOM.getDefaultFoundation().adapter_.addClassToLabel('mdc-textfield__label--float-above');
             }
         }
-    }
+    };
 
-    selectMinutes(minutes) {
+    MdcTimepicker.prototype.selectMinutes = function selectMinutes(minutes) {
         this.selected.selectMinutes(minutes);
-    }
+    };
 
-    selectHours(hours) {
+    MdcTimepicker.prototype.selectHours = function selectHours(hours) {
         this.selected.selectHours(hours);
-    }
+    };
 
-    toggleView() {
+    MdcTimepicker.prototype.toggleView = function toggleView() {
         this.selected.toggleView();
-    }
+    };
 
-    togglePeriod() {
+    MdcTimepicker.prototype.togglePeriod = function togglePeriod() {
         this.selected.togglePeriod();
-    }
+    };
 
-    draggerStart(evt) {
+    MdcTimepicker.prototype.draggerStart = function draggerStart(evt) {
         evt.preventDefault();
         evt.stopPropagation();
 
@@ -138,9 +135,9 @@ export let MdcTimepicker = (_dec = customElement('mdc-timepicker'), _dec2 = inje
         } else if (evt instanceof MouseEvent) {
             this.dragger.start(evt);
         }
-    }
+    };
 
-    draggerMove(evt) {
+    MdcTimepicker.prototype.draggerMove = function draggerMove(evt) {
         evt.preventDefault();
         evt.stopPropagation();
 
@@ -151,9 +148,9 @@ export let MdcTimepicker = (_dec = customElement('mdc-timepicker'), _dec2 = inje
         } else if (evt instanceof MouseEvent) {
             this.dragger.move(evt);
         }
-    }
+    };
 
-    draggerOut(evt) {
+    MdcTimepicker.prototype.draggerOut = function draggerOut(evt) {
         evt.preventDefault();
         evt.stopPropagation();
 
@@ -164,9 +161,9 @@ export let MdcTimepicker = (_dec = customElement('mdc-timepicker'), _dec2 = inje
         } else if (evt instanceof MouseEvent) {
             this.dragger.out(evt);
         }
-    }
+    };
 
-    draggerStop(evt) {
+    MdcTimepicker.prototype.draggerStop = function draggerStop(evt) {
         evt.preventDefault();
         evt.stopPropagation();
 
@@ -175,25 +172,43 @@ export let MdcTimepicker = (_dec = customElement('mdc-timepicker'), _dec2 = inje
         } else if (evt instanceof MouseEvent) {
             this.dragger.stop(evt);
         }
-    }
+    };
 
-    show() {
+    MdcTimepicker.prototype.show = function show() {
         this.selected.locale = this.locale;
         this.selected.date = this._value ? this._value : new Date();
 
         this.mdcTimepickerDialog.show();
-    }
+    };
 
-    cancel() {
+    MdcTimepicker.prototype.cancel = function cancel() {
         this.value = this.selected.originalDate;
         this.mdcTimepickerDialog.close();
-    }
+    };
 
-    ok() {
+    MdcTimepicker.prototype.ok = function ok() {
         this.value = this.selected.date;
         this.mdcTimepickerDialog.close();
-    }
-}, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'locale', [_dec3], {
+    };
+
+    _createClass(MdcTimepicker, [{
+        key: 'value',
+        get: function get() {
+            if (this._value) {
+                return this._value.toLocaleTimeString(this.locale, {
+                    hour: 'numeric',
+                    minute: '2-digit'
+                });
+            }
+            return '';
+        },
+        set: function set(value) {
+            this._value = value;
+        }
+    }]);
+
+    return MdcTimepicker;
+}(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'locale', [_dec3], {
     enumerable: true,
     initializer: null
 }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, '_value', [_dec4], {
@@ -201,9 +216,12 @@ export let MdcTimepicker = (_dec = customElement('mdc-timepicker'), _dec2 = inje
     initializer: null
 }), _applyDecoratedDescriptor(_class2.prototype, 'value', [_dec5], Object.getOwnPropertyDescriptor(_class2.prototype, 'value'), _class2.prototype)), _class2)) || _class) || _class);
 
-let TimepickerDragger = class TimepickerDragger {
+var TimepickerDragger = function () {
+    function TimepickerDragger(surface, needle, dragger, time) {
+        var _this = this;
 
-    constructor(surface, needle, dragger, time) {
+        _classCallCheck(this, TimepickerDragger);
+
         this.dragging = false;
 
         this.surface = surface;
@@ -211,81 +229,87 @@ let TimepickerDragger = class TimepickerDragger {
         this.dragger = dragger;
         this.time = time;
 
-        this.needle.addEventListener('transitionend', event => {
-            this._setToNeedle();
+        this.needle.addEventListener('transitionend', function (event) {
+            _this._setToNeedle();
         }, false);
     }
 
-    start(evt) {
+    TimepickerDragger.prototype.start = function start(evt) {
         this.needleTransition = this.needle.style.transition;
         this.needle.style.transition = 'unset';
         this.dragging = true;
-    }
+    };
 
-    stop() {
+    TimepickerDragger.prototype.stop = function stop() {
         this.needle.style.transition = this.needleTransition;
 
         this._setToNeedle();
 
         this.dragging = false;
-    }
+    };
 
-    out(evt) {
-        const offset = 20;
-        const hOffset = this.surface.getBoundingClientRect();
+    TimepickerDragger.prototype.out = function out(evt) {
+        var offset = 20;
+        var hOffset = this.surface.getBoundingClientRect();
 
-        const xCurrent = evt.clientX - hOffset.left - hOffset.width / 2;
-        const yCurrent = evt.clientY - hOffset.top - hOffset.height / 2;
+        var xCurrent = evt.clientX - hOffset.left - hOffset.width / 2;
+        var yCurrent = evt.clientY - hOffset.top - hOffset.height / 2;
 
-        const xDragger = parseInt(this.dragger.style.left, 10);
-        const yDragger = parseInt(this.dragger.style.top, 10);
+        var xDragger = parseInt(this.dragger.style.left, 10);
+        var yDragger = parseInt(this.dragger.style.top, 10);
 
         if (xCurrent > xDragger - offset && xCurrent < xDragger + offset && yCurrent > yDragger - offset && yCurrent < yDragger + offset) {
-            this.dragger.setAttribute('style', `left:${xCurrent}px;top:${yCurrent}px`);
+            this.dragger.setAttribute('style', 'left:' + xCurrent + 'px;top:' + yCurrent + 'px');
             this.move(evt);
             return;
         }
 
         this.stop(evt);
-    }
+    };
 
-    move(evt) {
+    TimepickerDragger.prototype.move = function move(evt) {
+        var _this2 = this;
+
         if (!this.dragging) return;
 
-        window.requestAnimationFrame(() => {
-            const hOffset = this.surface.getBoundingClientRect();
+        window.requestAnimationFrame(function () {
+            var hOffset = _this2.surface.getBoundingClientRect();
 
-            const xPos = evt.clientX - hOffset.left - hOffset.width / 2;
-            const yPos = evt.clientY - hOffset.top - hOffset.height / 2;
+            var xPos = evt.clientX - hOffset.left - hOffset.width / 2;
+            var yPos = evt.clientY - hOffset.top - hOffset.height / 2;
 
-            const cOffset = this.needle.querySelector('.mdc-timepicker__view-needle__circle').getBoundingClientRect();
-            this.dragger.setAttribute('style', `left:${evt.clientX - hOffset.left - cOffset.width / 2}px;top:${evt.clientY - hOffset.top - cOffset.height / 2}px`);
+            var cOffset = _this2.needle.querySelector('.mdc-timepicker__view-needle__circle').getBoundingClientRect();
+            _this2.dragger.setAttribute('style', 'left:' + (evt.clientX - hOffset.left - cOffset.width / 2) + 'px;top:' + (evt.clientY - hOffset.top - cOffset.height / 2) + 'px');
 
-            let angle = Math.atan2(-yPos, xPos) * (180 / Math.PI) - 90;
+            var angle = Math.atan2(-yPos, xPos) * (180 / Math.PI) - 90;
 
             if (angle < 0) {
                 angle = 360 + angle;
             }
 
-            let min = Math.round((360 - angle) / 6);
+            var min = Math.round((360 - angle) / 6);
 
             if (min > 59) {
                 min = 0;
             }
 
-            this.time.setMinutes(min);
+            _this2.time.setMinutes(min);
         });
-    }
+    };
 
-    _setToNeedle() {
-        const hOffset = this.surface.getBoundingClientRect();
-        const cOffset = this.needle.querySelector('.mdc-timepicker__view-needle__circle').getBoundingClientRect();
-        this.dragger.setAttribute('style', `left:${cOffset.left - hOffset.left}px;top:${cOffset.top - hOffset.top}px`);
-    }
-};
-let TimepickerTime = (_dec6 = computedFrom('_date'), _dec7 = computedFrom('_locale'), (_class5 = class TimepickerTime {
+    TimepickerDragger.prototype._setToNeedle = function _setToNeedle() {
+        var hOffset = this.surface.getBoundingClientRect();
+        var cOffset = this.needle.querySelector('.mdc-timepicker__view-needle__circle').getBoundingClientRect();
+        this.dragger.setAttribute('style', 'left:' + (cOffset.left - hOffset.left) + 'px;top:' + (cOffset.top - hOffset.top) + 'px');
+    };
 
-    constructor(date, locale) {
+    return TimepickerDragger;
+}();
+
+var TimepickerTime = (_dec6 = (0, _aureliaFramework.computedFrom)('_date'), _dec7 = (0, _aureliaFramework.computedFrom)('_locale'), (_class5 = function () {
+    function TimepickerTime(date, locale) {
+        _classCallCheck(this, TimepickerTime);
+
         this.styles = {
             surface: '',
             needle: '',
@@ -300,30 +324,7 @@ let TimepickerTime = (_dec6 = computedFrom('_date'), _dec7 = computedFrom('_loca
         this.locale = locale ? locale : 'en';
     }
 
-    get date() {
-        return this._date;
-    }
-
-    set date(value) {
-        this._origDate = value;
-        this._date = new Date(value.getTime());
-        this.refresh(this.locale);
-        this.setHours(parseInt(this.hour, 10));
-    }
-
-    get originalDate() {
-        return this._origDate;
-    }
-
-    get locale() {
-        return this._locale;
-    }
-
-    set locale(value) {
-        this._locale = value;
-    }
-
-    setHours(hours) {
+    TimepickerTime.prototype.setHours = function setHours(hours) {
         if (hours < 12 && this.period && this.period.toLowerCase() === 'pm') {
             hours += 12;
         }
@@ -333,61 +334,61 @@ let TimepickerTime = (_dec6 = computedFrom('_date'), _dec7 = computedFrom('_loca
             set: true,
             hour: true
         });
-    }
+    };
 
-    setMinutes(minutes) {
+    TimepickerTime.prototype.setMinutes = function setMinutes(minutes) {
         this.date.setMinutes(minutes);
         this.refresh();
         this._calculateStyles({
             set: true,
             hour: false
         });
-    }
+    };
 
-    selectHours(hours) {
+    TimepickerTime.prototype.selectHours = function selectHours(hours) {
         this.setHours(hours);
         this._calculateStyles({
             set: false,
             hour: true
         });
-    }
+    };
 
-    selectMinutes(minutes) {
+    TimepickerTime.prototype.selectMinutes = function selectMinutes(minutes) {
         this.setMinutes(minutes);
         this._calculateStyles({
             set: false,
             hour: false
         });
-    }
+    };
 
-    togglePeriod() {
+    TimepickerTime.prototype.togglePeriod = function togglePeriod() {
         if (this.period.toLowerCase() === 'am') {
             this.date.setUTCHours(this.date.getUTCHours() + 12);
         } else {
             this.date.setUTCHours(this.date.getUTCHours() - 12);
         }
         this.refresh();
-    }
+    };
 
-    toggleView() {
+    TimepickerTime.prototype.toggleView = function toggleView() {
         this._calculateStyles({
             set: false,
             hour: this.styles.views.hour ? false : true
         });
-    }
+    };
 
-    refresh(locale) {
+    TimepickerTime.prototype.refresh = function refresh(locale) {
         this.locale = locale ? locale : this.locale;
 
         this._format();
-    }
+    };
 
-    _calculateStyles(options) {
+    TimepickerTime.prototype._calculateStyles = function _calculateStyles(options) {
         if (options.hour && options.set || !options.hour && !options.set) {
-            let hourPosition = parseInt(this.hour, 10) % 12 * 5;
+            var hourPosition = parseInt(this.hour, 10) % 12 * 5;
 
-            this.styles.surface = `mdc-timepicker-circular--rotate-to-${hourPosition}`;
-            this.styles.needle = `mdc-timepicker__view-circular__cell--rotate-to-${hourPosition}`;
+            this.styles.surface = 'mdc-timepicker-circular--rotate-to-' + hourPosition;
+            this.styles.needle = 'mdc-timepicker__view-circular__cell--rotate-to-' + hourPosition;
             if (!this.period && (parseInt(this.hour, 10) > 12 || parseInt(this.hour, 10) === 0)) {
                 this.styles.surface += ' mdc-timepicker__view-needle__pm';
                 this.styles.needle += ' mdc-timepicker__view-needle__pm';
@@ -396,20 +397,33 @@ let TimepickerTime = (_dec6 = computedFrom('_date'), _dec7 = computedFrom('_loca
             this.styles.views.hour = '';
             this.styles.views.minute = 'mdc-timepicker--hidden';
         } else {
-            this.styles.surface = `mdc-timepicker-circular--rotate-to-${parseInt(this.minute, 10)}`;
-            this.styles.needle = `mdc-timepicker__view-circular__cell--rotate-to-${parseInt(this.minute, 10)}`;
+            this.styles.surface = 'mdc-timepicker-circular--rotate-to-' + parseInt(this.minute, 10);
+            this.styles.needle = 'mdc-timepicker__view-circular__cell--rotate-to-' + parseInt(this.minute, 10);
 
             this.styles.views.hour = 'mdc-timepicker--hidden';
             this.styles.views.minute = '';
         }
-    }
+    };
 
-    _format() {
+    TimepickerTime.prototype._format = function _format() {
         this.period = undefined;
-        for (let value of new Intl.DateTimeFormat(this.locale, {
+        for (var _iterator = new Intl.DateTimeFormat(this.locale, {
             hour: 'numeric',
             minute: '2-digit'
-        }).formatToParts(this.date)) {
+        }).formatToParts(this.date), _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+            var _ref;
+
+            if (_isArray) {
+                if (_i >= _iterator.length) break;
+                _ref = _iterator[_i++];
+            } else {
+                _i = _iterator.next();
+                if (_i.done) break;
+                _ref = _i.value;
+            }
+
+            var value = _ref;
+
             if (value.type === 'hour') {
                 this.hour = value.value;
             } else if (value.type === 'minute') {
@@ -418,5 +432,33 @@ let TimepickerTime = (_dec6 = computedFrom('_date'), _dec7 = computedFrom('_loca
                 this.period = value.value;
             }
         }
-    }
-}, (_applyDecoratedDescriptor(_class5.prototype, 'date', [_dec6], Object.getOwnPropertyDescriptor(_class5.prototype, 'date'), _class5.prototype), _applyDecoratedDescriptor(_class5.prototype, 'locale', [_dec7], Object.getOwnPropertyDescriptor(_class5.prototype, 'locale'), _class5.prototype)), _class5));
+    };
+
+    _createClass(TimepickerTime, [{
+        key: 'date',
+        get: function get() {
+            return this._date;
+        },
+        set: function set(value) {
+            this._origDate = value;
+            this._date = new Date(value.getTime());
+            this.refresh(this.locale);
+            this.setHours(parseInt(this.hour, 10));
+        }
+    }, {
+        key: 'originalDate',
+        get: function get() {
+            return this._origDate;
+        }
+    }, {
+        key: 'locale',
+        get: function get() {
+            return this._locale;
+        },
+        set: function set(value) {
+            this._locale = value;
+        }
+    }]);
+
+    return TimepickerTime;
+}(), (_applyDecoratedDescriptor(_class5.prototype, 'date', [_dec6], Object.getOwnPropertyDescriptor(_class5.prototype, 'date'), _class5.prototype), _applyDecoratedDescriptor(_class5.prototype, 'locale', [_dec7], Object.getOwnPropertyDescriptor(_class5.prototype, 'locale'), _class5.prototype)), _class5));

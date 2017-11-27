@@ -2,16 +2,20 @@
 
     <require from="./mdc-autocomplete.css"></require>
 
-    <div ref="valueDOM" class="mdc-text-field mdc-text-field--upgraded mdc-autocomplete">
-        <input type="text" class="mdc-textfield__input" value.bind="value">
-        <slot></slot>
-    </div>
-    <div class="mdc-menu-anchor">
-        <div ref="simpleMenuDOM" class="mdc-simple-menu" style="top: -10px;">
-            <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
-                <li repeat.for="item of listItems" class="mdc-list-item" role="menuitem" tabindex="0" click.delegate="selectItem(item)">${renderListItem(item)}</li>
-            </ul>
+    <div class="mdc-autocomplete-menu">
+        <div ref="valueDOM" class="mdc-text-field mdc-text-field--upgraded mdc-autocomplete">
+            <slot></slot>
         </div>
+        <div class="mdc-menu-anchor">
+            <div ref="simpleMenuDOM" class="mdc-simple-menu">
+                <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
+                    <li repeat.for="item of items" class="mdc-list-item" role="menuitem" tabindex="0" click.delegate="selectItem(item)">
+                        <template replaceable part="item-template">${item}</template>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
     </div>
 
 </template>
