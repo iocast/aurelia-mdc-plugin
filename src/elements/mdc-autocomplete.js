@@ -17,12 +17,10 @@ export class MdcAutocomplete {
 
     @bindable({
         attribute: 'items',
-        defaultBindingMode: bindingMode.twoWay,
+        defaultBindingMode: bindingMode.oneWay,
         changeHandler: 'itemsChanged'
     }) items;
 
-
-    //items = [];
     selectionEvent = false;
 
     valueDOM;
@@ -48,7 +46,7 @@ export class MdcAutocomplete {
     }
 
     itemsChanged() {
-        if(!this.simpleMenuDOM) return;
+        if (!this.simpleMenuDOM && !this.changed) return;
         if (this.items && this.items.length > 0) {
             this.simpleMenuDOM.classList.add('mdc-simple-menu--open');
             this.simpleMenuDOM.style.transform = 'scale(1, 1)';
@@ -56,17 +54,24 @@ export class MdcAutocomplete {
             this.simpleMenuDOM.classList.remove('mdc-simple-menu--open');
             this.simpleMenuDOM.style.transform = 'scale(0, 0)';
         }
+        this.changed = false
     }
 
     async valueChangeHandler(newValue, oldValue) {
         await this.lookup({ newValue: newValue, oldValue: oldValue });
+        this.changed = true;
     }
 
     async selectItem(item) {
         this.simpleMenuDOM.classList.remove('mdc-simple-menu--open');
         this.simpleMenuDOM.style.transform = 'scale(0, 0)';
 
-        this.select({ item: item });
+        let selection = {};
+        for (let [key, value] of Object.entries(item)) {
+            selection[key] = value;
+        }
+
+        this.select({ item: selection });
     }
 
 }

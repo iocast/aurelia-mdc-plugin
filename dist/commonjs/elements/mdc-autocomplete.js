@@ -66,7 +66,7 @@ var MdcAutocomplete = exports.MdcAutocomplete = (_dec = (0, _aureliaFramework.cu
     defaultBindingMode: _aureliaFramework.bindingMode.twoWay
 }), _dec5 = (0, _aureliaFramework.bindable)({
     attribute: 'items',
-    defaultBindingMode: _aureliaFramework.bindingMode.twoWay,
+    defaultBindingMode: _aureliaFramework.bindingMode.oneWay,
     changeHandler: 'itemsChanged'
 }), _dec(_class = _dec2(_class = (_class2 = function () {
     function MdcAutocomplete(element) {
@@ -98,7 +98,7 @@ var MdcAutocomplete = exports.MdcAutocomplete = (_dec = (0, _aureliaFramework.cu
     };
 
     MdcAutocomplete.prototype.itemsChanged = function itemsChanged() {
-        if (!this.simpleMenuDOM) return;
+        if (!this.simpleMenuDOM && !this.changed) return;
         if (this.items && this.items.length > 0) {
             this.simpleMenuDOM.classList.add('mdc-simple-menu--open');
             this.simpleMenuDOM.style.transform = 'scale(1, 1)';
@@ -106,6 +106,7 @@ var MdcAutocomplete = exports.MdcAutocomplete = (_dec = (0, _aureliaFramework.cu
             this.simpleMenuDOM.classList.remove('mdc-simple-menu--open');
             this.simpleMenuDOM.style.transform = 'scale(0, 0)';
         }
+        this.changed = false;
     };
 
     MdcAutocomplete.prototype.valueChangeHandler = function () {
@@ -118,6 +119,9 @@ var MdcAutocomplete = exports.MdcAutocomplete = (_dec = (0, _aureliaFramework.cu
                             return this.lookup({ newValue: newValue, oldValue: oldValue });
 
                         case 2:
+                            this.changed = true;
+
+                        case 3:
                         case 'end':
                             return _context.stop();
                     }
@@ -134,6 +138,8 @@ var MdcAutocomplete = exports.MdcAutocomplete = (_dec = (0, _aureliaFramework.cu
 
     MdcAutocomplete.prototype.selectItem = function () {
         var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(item) {
+            var selection, _iterator, _isArray, _i, _ref3, _ref4, key, value;
+
             return regeneratorRuntime.wrap(function _callee2$(_context2) {
                 while (1) {
                     switch (_context2.prev = _context2.next) {
@@ -141,9 +147,54 @@ var MdcAutocomplete = exports.MdcAutocomplete = (_dec = (0, _aureliaFramework.cu
                             this.simpleMenuDOM.classList.remove('mdc-simple-menu--open');
                             this.simpleMenuDOM.style.transform = 'scale(0, 0)';
 
-                            this.select({ item: item });
+                            selection = {};
+                            _iterator = Object.entries(item), _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();
 
-                        case 3:
+                        case 4:
+                            if (!_isArray) {
+                                _context2.next = 10;
+                                break;
+                            }
+
+                            if (!(_i >= _iterator.length)) {
+                                _context2.next = 7;
+                                break;
+                            }
+
+                            return _context2.abrupt('break', 18);
+
+                        case 7:
+                            _ref3 = _iterator[_i++];
+                            _context2.next = 14;
+                            break;
+
+                        case 10:
+                            _i = _iterator.next();
+
+                            if (!_i.done) {
+                                _context2.next = 13;
+                                break;
+                            }
+
+                            return _context2.abrupt('break', 18);
+
+                        case 13:
+                            _ref3 = _i.value;
+
+                        case 14:
+                            _ref4 = _ref3, key = _ref4[0], value = _ref4[1];
+
+                            selection[key] = value;
+
+                        case 16:
+                            _context2.next = 4;
+                            break;
+
+                        case 18:
+
+                            this.select({ item: selection });
+
+                        case 19:
                         case 'end':
                             return _context2.stop();
                     }
