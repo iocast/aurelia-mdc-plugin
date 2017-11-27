@@ -3,7 +3,7 @@
 System.register(['aurelia-framework', 'aurelia-pal', 'material-components-web'], function (_export, _context) {
     "use strict";
 
-    var inject, bindable, bindingMode, DOM, customElement, computedFrom, processContent, FEATURE, textField, _dec, _dec2, _dec3, _dec4, _dec5, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, MdcAutocomplete;
+    var inject, bindable, bindingMode, DOM, customElement, FEATURE, textField, _dec, _dec2, _dec3, _dec4, _dec5, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, MdcAutocomplete;
 
     function _asyncToGenerator(fn) {
         return function () {
@@ -90,8 +90,6 @@ System.register(['aurelia-framework', 'aurelia-pal', 'material-components-web'],
             bindingMode = _aureliaFramework.bindingMode;
             DOM = _aureliaFramework.DOM;
             customElement = _aureliaFramework.customElement;
-            computedFrom = _aureliaFramework.computedFrom;
-            processContent = _aureliaFramework.processContent;
         }, function (_aureliaPal) {
             FEATURE = _aureliaPal.FEATURE;
         }, function (_materialComponentsWeb) {

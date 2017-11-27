@@ -1,9 +1,8 @@
-import { inject, bindable, bindingMode, DOM, customElement, computedFrom, processContent } from 'aurelia-framework';
+import { inject, bindable, bindingMode, DOM, customElement } from 'aurelia-framework';
 import { FEATURE } from 'aurelia-pal';
 
 import { textField } from 'material-components-web';
 
-//@processContent(makePartReplacementFromContent)
 @customElement('mdc-autocomplete')
 @inject(DOM.Element)
 export class MdcAutocomplete {
