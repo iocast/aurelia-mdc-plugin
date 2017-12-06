@@ -1,4 +1,4 @@
-define(['exports', 'aurelia-framework', 'aurelia-pal', 'material-components-web'], function (exports, _aureliaFramework, _aureliaPal, _materialComponentsWeb) {
+define(['exports', 'aurelia-framework', 'material-components-web'], function (exports, _aureliaFramework, _materialComponentsWeb) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
