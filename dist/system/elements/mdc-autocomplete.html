@@ -8,11 +8,28 @@
         </div>
         <div class="mdc-menu-anchor">
             <div ref="simpleMenuDOM" class="mdc-simple-menu">
-                <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
-                    <li repeat.for="item of items" class="mdc-list-item" role="menuitem" tabindex="0" click.delegate="selectItem(item)">
-                        <template replaceable part="item-template">${item}</template>
-                    </li>
-                </ul>
+
+
+                <!-- <div class="mdc-list-divider"></div> -->
+                <!-- <div class="mdc-list-group"> -->
+                    <!-- <span>test</span> -->
+                    <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
+                        <li repeat.for="item of items" class="mdc-list-item" role="menuitem" tabindex="0" click.delegate="selectItem(item)">
+                            <template replaceable part="item-template">${item}</template>
+                        </li>
+                    </ul>
+                <!-- </div> -->
+
+                <!--<select multiple="" size="8" class="mdc-multi-select mdc-list">-->
+
+                <!--
+                          <optgroup class="mdc-list-group" label="Fats, Oils, &amp; Sweets">
+                            <option class="mdc-list-item">Olive Oil</option>
+                            <option class="mdc-list-item">Brown Sugar</option>
+                            <option class="mdc-list-item">Ice Cream</option>
+                      </optgroup>
+                          <option class="mdc-list-divider" role="presentation" disabled="">
+                -->
             </div>
         </div>
 
