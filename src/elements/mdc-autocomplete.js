@@ -1,5 +1,4 @@
 import { inject, bindable, bindingMode, DOM, customElement } from 'aurelia-framework';
-import { FEATURE } from 'aurelia-pal';
 
 import { textField } from 'material-components-web';
 
@@ -53,7 +52,7 @@ export class MdcAutocomplete {
             this.simpleMenuDOM.classList.remove('mdc-simple-menu--open');
             this.simpleMenuDOM.style.transform = 'scale(0, 0)';
         }
-        this.changed = false
+        this.changed = false;
     }
 
     async valueChangeHandler(newValue, oldValue) {
@@ -72,5 +71,4 @@ export class MdcAutocomplete {
 
         this.select({ item: selection });
     }
-
 }
