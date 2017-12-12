@@ -25,6 +25,9 @@
     display: grid !important;
     grid-template-areas: "head main" "head foot";
     grid-template-columns: 200px 1fr;
+    width: auto !important;
+    min-width: auto !important;
+    max-width: auto !important;
     width: fit-content !important;
 }
 
@@ -926,7 +929,6 @@
 .mdc-timepicker__view-circular__cell--rotate-to-59>span:not(.mdc-timepicker__view-needle__line) {
     transform: rotate(-264deg);
 }
-
 
 /* phone */
 

@@ -1,6 +1,8 @@
 let gulp = require('gulp');
 let runSequence = require('run-sequence');
 let to5 = require('gulp-babel');
+let postcss = require('gulp-postcss');
+let autoprefixer = require('autoprefixer');
 let paths = require('../paths');
 let compilerOptions = require('../babel-options');
 let assign = Object.assign || require('object.assign');
@@ -14,7 +16,15 @@ gulp.task('build-html', function() {
 });
 
 gulp.task('build-css', function() {
+    let plugins = [autoprefixer({
+        browsers: ['last 2 versions'],
+        cascade: true,
+        flexbox: true,
+        grid: true
+    })];
+
     return gulp.src(paths.css)
+        .pipe(postcss(plugins))
         .pipe(gulp.dest(paths.output + 'es2015'))
         .pipe(gulp.dest(paths.output + 'commonjs'))
         .pipe(gulp.dest(paths.output + 'amd'))

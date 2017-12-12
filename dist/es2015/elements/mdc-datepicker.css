@@ -6,7 +6,6 @@
     cursor: pointer;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
-    -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
@@ -21,23 +20,41 @@
 }
 
 .mdc-datepicker__surface {
+    display: -ms-grid !important;
     display: grid !important;
-    grid-template-areas: "head main" "head foot";
-    grid-template-columns: 200px 1fr;
+        grid-template-areas: "head main" "head foot";
+    -ms-grid-columns: 200px 1fr;
+        grid-template-columns: 200px 1fr;
+    width: auto !important;
+    /*min-width: auto !important;*/
+    /*max-width: auto !important;*/
+    width: -webkit-fit-content !important;
+    width: -moz-fit-content !important;
     width: fit-content !important;
 }
 
 .mdc-datepicker__header {
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 2;
+    -ms-grid-column: 1;
     grid-area: head;
     background-color: var(--mdc-theme-primary);
 }
 
 .mdc-datepicker__header--text {
     color: var(--mdc-theme-text-primary-on-primary);
-    align-self: flex-start;
-    align-items: start;
+    -ms-flex-item-align: start;
+        align-self: flex-start;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: start;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-flow: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column;
+            flex-flow: column;
 }
 
 .mdc-datapicker-weekend {
@@ -45,35 +62,57 @@
 }
 
 .mdc-datepicker__body {
+    -ms-grid-row: 1;
+    -ms-grid-column: 2;
     grid-area: main;
     padding: 0 !important;
 }
 
 .mdc-datepicker__footer {
+    -ms-grid-row: 2;
+    -ms-grid-column: 2;
     grid-area: foot;
 }
 
 .mdc-datepicker__body--header {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    align-items: center
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center
 }
 
 .mdc-typography--title {
-    flex: 1;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
     text-align: center;
 }
 
 .mdc-datepicker__body-content {
+    display: -ms-grid !important;
     display: grid !important;
-    grid-template-columns: repeat(7, 1fr);
+    -ms-grid-columns: (1fr)[7];
+        grid-template-columns: repeat(7, 1fr);
     text-align: center;
 }
 
 .mdc-datapicker-carousel {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
     overflow: hidden;
     text-align: center;
     position: relative;
@@ -112,11 +151,18 @@
 }
 
 .mdc-datapicker-carousel__track .mdc-datapicker-carousel__slide {
+    display: -ms-grid;
     display: grid;
-    grid-template-areas: "head" "main";
-    grid-template-rows: 50px 1fr;
-    align-items: center;
+        grid-template-areas: "head" "main";
+    -ms-grid-rows: 50px 1fr;
+        grid-template-rows: 50px 1fr;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-transition: -webkit-transform 0.5s ease 0s;
+    transition: -webkit-transform 0.5s ease 0s;
     transition: transform 0.5s ease 0s;
+    transition: transform 0.5s ease 0s, -webkit-transform 0.5s ease 0s;
     top: 0;
     left: 0;
     right: 0;
@@ -129,7 +175,8 @@
 
 .mdc-datepicker__body-content {
     grid-area: main;
-    align-self: flex-start;
+    -ms-flex-item-align: start;
+        align-self: flex-start;
 }
 
 .mdc-datepicker__body-content span {
@@ -148,15 +195,18 @@
 }
 
 .previous {
-    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
 }
 
 .current {
-    transform: translateX(0%);
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
 }
 
 .next {
-    transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
 }
 
 .hidden {
@@ -174,21 +224,40 @@
 
 @media (max-width: 479px) {
     .mdc-datepicker__surface {
+        display: -ms-grid !important;
         display: grid !important;
-        grid-template-areas: "head" "main" "foot";
-        grid-template-columns: 1fr;
-        grid-template-rows: 110px 1fr 50px;
+            grid-template-areas: "head" "main" "foot";
+        -ms-grid-columns: 1fr;
+            grid-template-columns: 1fr;
+        -ms-grid-rows: 110px 1fr 50px;
+            grid-template-rows: 110px 1fr 50px;
+        width: -webkit-fit-content !important;
+        width: -moz-fit-content !important;
         width: fit-content !important;
     }
     .mdc-datapicker-carousel {
         height: 316px;
     }
     .mdc-datepicker__header--text {
-        flex-flow: row;
-        flex-wrap: wrap;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+            -ms-flex-flow: row;
+                flex-flow: row;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
     }
     .mdc-datepicker__header--text :first-child {
-        flex-basis: 100%;
+        -ms-flex-preferred-size: 100%;
+            flex-basis: 100%;
+    }
+}
+
+@-webkit-keyframes carousel-show-slide {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
 

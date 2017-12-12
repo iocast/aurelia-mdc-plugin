@@ -24,6 +24,9 @@
     display: grid !important;
     grid-template-areas: "head main" "head foot";
     grid-template-columns: 200px 1fr;
+    width: auto !important;
+    /*min-width: auto !important;*/
+    /*max-width: auto !important;*/
     width: fit-content !important;
 }
 
