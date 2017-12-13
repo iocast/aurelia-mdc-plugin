@@ -220,6 +220,14 @@ var MdcDatepicker = exports.MdcDatepicker = (_dec = (0, _aureliaFramework.custom
         this.mdcDatepickerDialog.close();
     };
 
+    MdcDatepicker.prototype.modulo = function modulo(num, mod) {
+        return (num % mod + mod) % mod;
+    };
+
+    MdcDatepicker.prototype.row = function row(idx, div) {
+        return Math.floor(idx / div);
+    };
+
     _createClass(MdcDatepicker, [{
         key: 'value',
         get: function get() {
@@ -495,10 +503,6 @@ var DatepickerDate = (_dec7 = (0, _aureliaFramework.computedFrom)('_date'), _dec
 
     DatepickerDate.prototype._mod = function _mod(a, n) {
         return a - n * Math.floor(a / n);
-    };
-
-    DatepickerDate.prototype.mod = function mod(num, _mod2) {
-        return (num % _mod2 + _mod2) % _mod2;
     };
 
     _createClass(DatepickerDate, [{

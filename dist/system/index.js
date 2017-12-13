@@ -1,9 +1,9 @@
 'use strict';
 
-System.register(['aurelia-pal', './config', './mdc-target', './elements/mdc-checkbox', './elements/mdc-datepicker', './elements/mdc-datepicker-slide', './elements/mdc-timepicker', './elements/mdc-autocomplete', './elements/mdc-chip'], function (_export, _context) {
+System.register(['aurelia-pal', './config', './mdc-target', './elements/mdc-checkbox', './elements/mdc-datepicker', './elements/mdc-timepicker', './elements/mdc-autocomplete', './elements/mdc-chip'], function (_export, _context) {
     "use strict";
 
-    var PLATFORM, MdcConfig, MDC_TARGET_ATTR, MDC_INIT_ATTR, MdcTarget, MdcCheckbox, MdcDatepicker, MdcDatepickerSlide, MdcTimepicker, MdcAutocomplete, MdcChip, pluginConfig;
+    var PLATFORM, MdcConfig, MDC_TARGET_ATTR, MDC_INIT_ATTR, MdcTarget, MdcCheckbox, MdcDatepicker, MdcTimepicker, MdcAutocomplete, MdcChip, pluginConfig;
     function configure(config, callback) {
         pluginConfig = config.container.get(MdcConfig);
 
@@ -14,7 +14,6 @@ System.register(['aurelia-pal', './config', './mdc-target', './elements/mdc-chec
         config.globalResources(PLATFORM.moduleName('./mdc-target'));
         config.globalResources(PLATFORM.moduleName('./elements/mdc-checkbox'));
         config.globalResources(PLATFORM.moduleName('./elements/mdc-datepicker'));
-        config.globalResources(PLATFORM.moduleName('./elements/mdc-datepicker-slide'));
         config.globalResources(PLATFORM.moduleName('./elements/mdc-timepicker'));
         config.globalResources(PLATFORM.moduleName('./elements/mdc-autocomplete'));
         config.globalResources(PLATFORM.moduleName('./elements/mdc-chip'));
@@ -51,8 +50,6 @@ System.register(['aurelia-pal', './config', './mdc-target', './elements/mdc-chec
             MdcCheckbox = _elementsMdcCheckbox.MdcCheckbox;
         }, function (_elementsMdcDatepicker) {
             MdcDatepicker = _elementsMdcDatepicker.MdcDatepicker;
-        }, function (_elementsMdcDatepickerSlide) {
-            MdcDatepickerSlide = _elementsMdcDatepickerSlide.MdcDatepickerSlide;
         }, function (_elementsMdcTimepicker) {
             MdcTimepicker = _elementsMdcTimepicker.MdcTimepicker;
         }, function (_elementsMdcAutocomplete) {

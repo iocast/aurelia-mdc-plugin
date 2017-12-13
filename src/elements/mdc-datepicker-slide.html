@@ -1,4 +1,4 @@
-<template>
+<template bindable="slide,modulo,row">
 
     <div class="mdc-datapicker-carousel__slide" class.bind="slide.styleClasses">
 
@@ -14,7 +14,7 @@
                 <span>${value}</span>
             </div>
 
-            <div class="mdc-datapicker-typography--black" repeat.for="value of slide.matrixFlat" class.bind="$index % 7 === ( 7 - slide.shift ) % 7 || $index % 7 === 6 - slide.shift ? 'mdc-datapicker-weekend' : ''" css="-ms-grid-row: ${row($index, 7) + 2}; -ms-grid-column: ${mod($index, 7) + 1};">
+            <div class="mdc-datapicker-typography--black" repeat.for="value of slide.matrixFlat" class.bind="$index % 7 === ( 7 - slide.shift ) % 7 || $index % 7 === 6 - slide.shift ? 'mdc-datapicker-weekend' : ''" css="-ms-grid-row: ${row({idx: $index, div: 7}) + 2}; -ms-grid-column: ${modulo({num: $index, mod: 7}) + 1};">
                 <span class.bind="slide.selected.year === slide.year && slide.selected.month === slide.month && slide.selected.day === value ? 'mdc-datepicker-date__selected' : ''" click.delegate="slide.select(value)">${value}</span>
             </div>
         </div>

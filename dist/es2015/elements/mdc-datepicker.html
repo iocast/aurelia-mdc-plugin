@@ -1,6 +1,7 @@
 <template>
 
     <require from="./mdc-datepicker.css"></require>
+    <require from="./mdc-datepicker-slide.html"></require>
 
     <div class="mdc-typography mdc-datepicker">
 
@@ -24,9 +25,9 @@
 
                         <div ref="trackDOM" class="mdc-datapicker-carousel__track">
 
-                            <mdc-datepicker-slide slide.bind="slideB"></mdc-datepicker-slide>
-                            <mdc-datepicker-slide slide.bind="slideA"></mdc-datepicker-slide>
-                            <mdc-datepicker-slide slide.bind="slideC"></mdc-datepicker-slide>
+                            <mdc-datepicker-slide slide.bind="slideB" modulo.call="$this.modulo(num, mod)" row.call="$this.row(idx, div)"></mdc-datepicker-slide>
+                            <mdc-datepicker-slide slide.bind="slideA" modulo.call="$this.modulo(num, mod)" row.call="$this.row(idx, div)"></mdc-datepicker-slide>
+                            <mdc-datepicker-slide slide.bind="slideC" modulo.call="$this.modulo(num, mod)" row.call="$this.row(idx, div)"></mdc-datepicker-slide>
 
                         </div>
 

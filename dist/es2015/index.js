@@ -14,8 +14,6 @@ var _mdcCheckbox = require('./elements/mdc-checkbox');
 
 var _mdcDatepicker = require('./elements/mdc-datepicker');
 
-var _mdcDatepickerSlide = require('./elements/mdc-datepicker-slide');
-
 var _mdcTimepicker = require('./elements/mdc-timepicker');
 
 var _mdcAutocomplete = require('./elements/mdc-autocomplete');
@@ -34,7 +32,6 @@ function configure(config, callback) {
     config.globalResources(_aureliaPal.PLATFORM.moduleName('./mdc-target'));
     config.globalResources(_aureliaPal.PLATFORM.moduleName('./elements/mdc-checkbox'));
     config.globalResources(_aureliaPal.PLATFORM.moduleName('./elements/mdc-datepicker'));
-    config.globalResources(_aureliaPal.PLATFORM.moduleName('./elements/mdc-datepicker-slide'));
     config.globalResources(_aureliaPal.PLATFORM.moduleName('./elements/mdc-timepicker'));
     config.globalResources(_aureliaPal.PLATFORM.moduleName('./elements/mdc-autocomplete'));
     config.globalResources(_aureliaPal.PLATFORM.moduleName('./elements/mdc-chip'));

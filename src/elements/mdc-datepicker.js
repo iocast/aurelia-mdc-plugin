@@ -194,6 +194,15 @@ export class MdcDatepicker {
         this.value = this.selected.date;
         this.mdcDatepickerDialog.close();
     }
+
+    modulo(num, mod) {
+        return ((num % mod) + mod) % mod;
+    }
+
+    row(idx, div) {
+        return Math.floor(idx / div);
+    }
+
 }
 
 class DatepickerDate {
@@ -429,11 +438,6 @@ class DatepickerDate {
 
     _mod(a, n) {
         return a - (n * Math.floor(a / n));
-    }
-
-
-    mod(num, mod) {
-        return ((num % mod) + mod) % mod;
     }
 
 }

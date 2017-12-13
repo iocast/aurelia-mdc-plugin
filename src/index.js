@@ -4,7 +4,6 @@ import { MdcConfig, MDC_TARGET_ATTR, MDC_INIT_ATTR } from './config';
 import { MdcTarget } from './mdc-target';
 import { MdcCheckbox } from './elements/mdc-checkbox';
 import { MdcDatepicker } from './elements/mdc-datepicker';
-import { MdcDatepickerSlide } from './elements/mdc-datepicker-slide';
 import { MdcTimepicker } from './elements/mdc-timepicker';
 import { MdcAutocomplete } from './elements/mdc-autocomplete';
 import { MdcChip } from './elements/mdc-chip';
@@ -21,7 +20,6 @@ export function configure(config, callback) {
     config.globalResources(PLATFORM.moduleName('./mdc-target'));
     config.globalResources(PLATFORM.moduleName('./elements/mdc-checkbox'));
     config.globalResources(PLATFORM.moduleName('./elements/mdc-datepicker'));
-    config.globalResources(PLATFORM.moduleName('./elements/mdc-datepicker-slide'));
     config.globalResources(PLATFORM.moduleName('./elements/mdc-timepicker'));
     config.globalResources(PLATFORM.moduleName('./elements/mdc-autocomplete'));
     config.globalResources(PLATFORM.moduleName('./elements/mdc-chip'));

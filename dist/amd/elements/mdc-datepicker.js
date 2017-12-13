@@ -239,6 +239,14 @@ define(['exports', 'aurelia-framework', 'material-components-web'], function (ex
             this.mdcDatepickerDialog.close();
         };
 
+        MdcDatepicker.prototype.modulo = function modulo(num, mod) {
+            return (num % mod + mod) % mod;
+        };
+
+        MdcDatepicker.prototype.row = function row(idx, div) {
+            return Math.floor(idx / div);
+        };
+
         _createClass(MdcDatepicker, [{
             key: 'value',
             get: function get() {
@@ -514,10 +522,6 @@ define(['exports', 'aurelia-framework', 'material-components-web'], function (ex
 
         DatepickerDate.prototype._mod = function _mod(a, n) {
             return a - n * Math.floor(a / n);
-        };
-
-        DatepickerDate.prototype.mod = function mod(num, _mod2) {
-            return (num % _mod2 + _mod2) % _mod2;
         };
 
         _createClass(DatepickerDate, [{
