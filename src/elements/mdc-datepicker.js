@@ -430,4 +430,10 @@ class DatepickerDate {
     _mod(a, n) {
         return a - (n * Math.floor(a / n));
     }
+
+
+    mod(num, mod) {
+        return ((num % mod) + mod) % mod;
+    }
+
 }

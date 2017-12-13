@@ -153,7 +153,7 @@
 .mdc-datapicker-carousel__track .mdc-datapicker-carousel__slide {
     display: -ms-grid;
     display: grid;
-        grid-template-areas: "head" "main";
+        grid-template-areas: "carousel-head" "carousel-main";
     -ms-grid-rows: 50px 1fr;
         grid-template-rows: 50px 1fr;
     -webkit-box-align: center;
@@ -169,12 +169,16 @@
 }
 
 .mdc-datepicker__body--header {
-    grid-area: head;
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    grid-area: carousel-head;
     margin-bottom: 10px;
 }
 
 .mdc-datepicker__body-content {
-    grid-area: main;
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    grid-area: carousel-main;
     -ms-flex-item-align: start;
         align-self: flex-start;
 }

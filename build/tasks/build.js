@@ -17,7 +17,7 @@ gulp.task('build-html', function() {
 
 gulp.task('build-css', function() {
     let plugins = [autoprefixer({
-        browsers: ['last 2 versions'],
+        browsers: ['> 1%', 'last 2 versions', 'ie >= 11'],
         cascade: true,
         flexbox: true,
         grid: true

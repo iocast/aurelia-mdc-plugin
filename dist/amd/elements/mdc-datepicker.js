@@ -516,6 +516,10 @@ define(['exports', 'aurelia-framework', 'material-components-web'], function (ex
             return a - n * Math.floor(a / n);
         };
 
+        DatepickerDate.prototype.mod = function mod(num, _mod2) {
+            return (num % _mod2 + _mod2) % _mod2;
+        };
+
         _createClass(DatepickerDate, [{
             key: 'date',
             get: function get() {
