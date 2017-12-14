@@ -202,7 +202,6 @@ export class MdcDatepicker {
     row(idx, div) {
         return Math.floor(idx / div);
     }
-
 }
 
 class DatepickerDate {
@@ -420,7 +419,6 @@ class DatepickerDate {
         this.matrixFlat = [].concat(...this.matrix);
     }
 
-
     _weekdays() {
         let date = new Date();
         date.setUTCDate(date.getUTCDate() - date.getUTCDay() - 1);
@@ -439,5 +437,4 @@ class DatepickerDate {
     _mod(a, n) {
         return a - (n * Math.floor(a / n));
     }
-
 }
