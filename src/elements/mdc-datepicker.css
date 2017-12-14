@@ -176,17 +176,35 @@
     overflow-y: auto;
 }
 
-/* phone */
-@media (max-width: 479px) {
+/* tablet */
+@media (max-width: 640px) {
     .mdc-datepicker__surface {
+        min-width: 580px !important;
+    }
+}
+
+/* phone */
+@media (max-width: 599px) {
+    .mdc-datepicker__surface {
+        min-width: 280px !important;
         display: grid !important;
-        grid-template-areas: "head" "main" "foot";
+        grid-template-areas: "mobilehead" "mobilemain" "mobilefoot";
         grid-template-columns: 1fr;
         grid-template-rows: 110px 1fr 50px;
         width: fit-content !important;
     }
     .mdc-datapicker-carousel {
         height: 316px;
+    }
+    .mdc-datepicker__header {
+        grid-area: mobilehead;
+        grid-row: 1 / span 1;
+    }
+    .mdc-datepicker__body {
+        grid-area: mobilemain;
+    }
+    .mdc-datepicker__footer {
+        grid-area: mobilefoot;
     }
     .mdc-datepicker__header--text {
         flex-flow: row;
@@ -196,6 +214,8 @@
         flex-basis: 100%;
     }
 }
+
+
 
 @keyframes carousel-show-slide {
     from {

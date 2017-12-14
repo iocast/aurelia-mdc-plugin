@@ -1171,7 +1171,7 @@
     .mdc-timepicker__surface {
         display: -ms-grid !important;
         display: grid !important;
-            grid-template-areas: "head" "main" "foot";
+            grid-template-areas: "mobilehead" "mobilemain" "mobilefoot";
         -ms-grid-columns: 1fr;
             grid-template-columns: 1fr;
         -ms-grid-rows: 110px 1fr 50px;
@@ -1182,6 +1182,28 @@
         width: fit-content !important;
         min-width: fit-content !important; */
     }
+
+    .mdc-timepicker__header {
+        -ms-grid-row: 1;
+        -ms-grid-column: 1;
+        grid-area: mobilehead;
+        -ms-grid-row: 1;
+        -ms-grid-row-span: 1;
+        grid-row: 1 / span 1;
+    }
+
+    .mdc-timepicker__body {
+        -ms-grid-row: 2;
+        -ms-grid-column: 1;
+        grid-area: mobilemain;
+    }
+
+    .mdc-timepicker__footer {
+        -ms-grid-row: 3;
+        -ms-grid-column: 1;
+        grid-area: mobilefoot;
+    }
+
     .mdc-timepicker__header-period {
         margin-left: 1rem;
     }
