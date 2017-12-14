@@ -21,9 +21,6 @@
 }
 
 .mdc-timepicker__surface {
-    min-width: -webkit-fit-content !important;
-    min-width: -moz-fit-content !important;
-    min-width: fit-content !important;
     display: -ms-grid !important;
     display: grid !important;
         grid-template-areas: "head main" "head foot";
@@ -35,6 +32,9 @@
     width: -webkit-fit-content !important;
     width: -moz-fit-content !important;
     width: fit-content !important;
+    min-width: -webkit-fit-content !important;
+    min-width: -moz-fit-content !important;
+    min-width: fit-content !important;
 }
 
 .mdc-timepicker__header {
@@ -94,6 +94,9 @@
 }
 
 .mdc-timepicker__body {
+    -ms-grid-row: 1;
+    -ms-grid-column: 2;
+    grid-area: main;
     font-weight: 500;
 }
 
@@ -130,13 +133,13 @@
     border-radius: 50%;
     height: 36px;
     width: 36px;
-    cursor: grab;
     cursor: -webkit-grab;
+    cursor: grab;
 }
 
 .mdc-timepicker__view-needle-dragger:active {
-    cursor: grabbing;
     cursor: -webkit-grabbing;
+    cursor: grabbing;
 }
 
 .mdc-timepicker__view-needle {
@@ -1173,9 +1176,11 @@
             grid-template-columns: 1fr;
         -ms-grid-rows: 110px 1fr 50px;
             grid-template-rows: 110px 1fr 50px;
-        width: -webkit-fit-content !important;
-        width: -moz-fit-content !important;
+        /* width: auto !important;
+        min-width: auto !important;
+        max-width: auto !important;
         width: fit-content !important;
+        min-width: fit-content !important; */
     }
     .mdc-timepicker__header-period {
         margin-left: 1rem;

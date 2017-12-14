@@ -21,7 +21,6 @@
 }
 
 .mdc-timepicker__surface {
-    min-width: fit-content !important;
     display: grid !important;
     grid-template-areas: "head main" "head foot";
     grid-template-columns: 200px 1fr;
@@ -29,6 +28,7 @@
     min-width: auto !important;
     max-width: auto !important;
     width: fit-content !important;
+    min-width: fit-content !important;
 }
 
 .mdc-timepicker__header {
@@ -61,6 +61,7 @@
 }
 
 .mdc-timepicker__body {
+    grid-area: main;
     font-weight: 500;
 }
 
@@ -96,12 +97,10 @@
     height: 36px;
     width: 36px;
     cursor: grab;
-    cursor: -webkit-grab;
 }
 
 .mdc-timepicker__view-needle-dragger:active {
     cursor: grabbing;
-    cursor: -webkit-grabbing;
 }
 
 .mdc-timepicker__view-needle {
@@ -938,7 +937,11 @@
         grid-template-areas: "head" "main" "foot";
         grid-template-columns: 1fr;
         grid-template-rows: 110px 1fr 50px;
+        /* width: auto !important;
+        min-width: auto !important;
+        max-width: auto !important;
         width: fit-content !important;
+        min-width: fit-content !important; */
     }
     .mdc-timepicker__header-period {
         margin-left: 1rem;

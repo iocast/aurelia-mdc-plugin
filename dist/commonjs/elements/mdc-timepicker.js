@@ -130,12 +130,12 @@ var MdcTimepicker = exports.MdcTimepicker = (_dec = (0, _aureliaFramework.custom
         evt.preventDefault();
         evt.stopPropagation();
 
-        if (evt instanceof TouchEvent) {
+        if (evt instanceof MouseEvent) {
+            this.dragger.start(evt);
+        } else if (evt instanceof TouchEvent) {
             if (evt.touches.length === 1) {
                 this.dragger.start(evt.touches[0]);
             }
-        } else if (evt instanceof MouseEvent) {
-            this.dragger.start(evt);
         }
     };
 
@@ -143,12 +143,12 @@ var MdcTimepicker = exports.MdcTimepicker = (_dec = (0, _aureliaFramework.custom
         evt.preventDefault();
         evt.stopPropagation();
 
-        if (evt instanceof TouchEvent) {
+        if (evt instanceof MouseEvent) {
+            this.dragger.move(evt);
+        } else if (evt instanceof TouchEvent) {
             if (evt.touches.length === 1) {
                 this.dragger.move(evt.touches[0]);
             }
-        } else if (evt instanceof MouseEvent) {
-            this.dragger.move(evt);
         }
     };
 
@@ -156,12 +156,12 @@ var MdcTimepicker = exports.MdcTimepicker = (_dec = (0, _aureliaFramework.custom
         evt.preventDefault();
         evt.stopPropagation();
 
-        if (evt instanceof TouchEvent) {
+        if (evt instanceof MouseEvent) {
+            this.dragger.out(evt);
+        } else if (evt instanceof TouchEvent) {
             if (evt.touches.length === 1) {
                 this.dragger.out(evt.touches[0]);
             }
-        } else if (evt instanceof MouseEvent) {
-            this.dragger.out(evt);
         }
     };
 
@@ -169,10 +169,10 @@ var MdcTimepicker = exports.MdcTimepicker = (_dec = (0, _aureliaFramework.custom
         evt.preventDefault();
         evt.stopPropagation();
 
-        if (evt instanceof TouchEvent) {
-            this.dragger.stop();
-        } else if (evt instanceof MouseEvent) {
+        if (evt instanceof MouseEvent) {
             this.dragger.stop(evt);
+        } else if (evt instanceof TouchEvent) {
+            this.dragger.stop();
         }
     };
 
