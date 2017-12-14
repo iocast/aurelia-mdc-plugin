@@ -1,7 +1,7 @@
 .mdc-chip {
     display: inline-flex;
     align-items: center;
-    background: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.1);
     padding: 0 12px;
     border-radius: 32px;
     font-size: 13px;
@@ -20,7 +20,7 @@
 .mdc-chip-icon {
     display: block;
     float: left;
-    background: var(--mdc-theme-primary);
+    background-color: var(--mdc-theme-primary, #3f51b5);
     width: 32px;
     border-radius: 50%;
     text-align: center;
@@ -31,7 +31,7 @@
 .mdc-chip-remove {
     display: inline-block !important;
     border-radius: 50%;
-    background: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.3);
     font-size: 13px !important;
     margin: 0 -4px 0 4px;
     width: 13px;
@@ -42,12 +42,12 @@
 }
 
 .mdc-chip-hover:hover .mdc-chip-remove {
-    background: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.9);
     color: rgba(0, 0, 0, 0.38);
 }
 
 .mdc-chip-remove:hover {
-    background: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .mdc-chip-raised {
