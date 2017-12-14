@@ -25,6 +25,7 @@
     display: block;
     float: left;
     background: var(--mdc-theme-primary);
+    background: var(--mdc-theme-primary);
     width: 32px;
     border-radius: 50%;
     text-align: center;

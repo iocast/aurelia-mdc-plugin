@@ -2,10 +2,13 @@ let gulp = require('gulp');
 let runSequence = require('run-sequence');
 let to5 = require('gulp-babel');
 let postcss = require('gulp-postcss');
+let customProperties = require("postcss-custom-properties");
 let autoprefixer = require('autoprefixer');
 let paths = require('../paths');
 let compilerOptions = require('../babel-options');
 let assign = Object.assign || require('object.assign');
+
+let browsers = ['> 1%', 'last 2 versions', 'ie >= 11'];
 
 gulp.task('build-html', function() {
     return gulp.src(paths.html)
@@ -16,12 +19,14 @@ gulp.task('build-html', function() {
 });
 
 gulp.task('build-css', function() {
-    let plugins = [autoprefixer({
-        browsers: ['> 1%', 'last 2 versions', 'ie >= 11'],
-        cascade: true,
-        flexbox: true,
-        grid: true
-    })];
+    let plugins = [customProperties({ preserve: true }),
+        autoprefixer({
+            browsers: browsers,
+            cascade: true,
+            flexbox: true,
+            grid: true
+        })
+    ];
 
     return gulp.src(paths.css)
         .pipe(postcss(plugins))

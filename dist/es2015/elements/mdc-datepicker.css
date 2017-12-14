@@ -16,7 +16,8 @@
 }
 
 .mdc-datapicker-typography--black {
-    color: var(--mdc-theme-text-primary-on-background) !important;
+    color: rgba(0, 0, 0, 0.87) !important;
+    color: var(--mdc-theme-text-primary-on-background, rgba(0, 0, 0, 0.87)) !important;
 }
 
 .mdc-datepicker__surface {
@@ -38,11 +39,13 @@
     -ms-grid-row-span: 2;
     -ms-grid-column: 1;
     grid-area: head;
-    background-color: var(--mdc-theme-primary);
+    background-color: #3f51b5;
+    background-color: var(--mdc-theme-primary, #3f51b5);
 }
 
 .mdc-datepicker__header--text {
-    color: var(--mdc-theme-text-primary-on-primary);
+    color: #ffffff;
+    color: var(--mdc-theme-text-primary-on-primary, #ffffff);
     -ms-flex-item-align: start;
         align-self: flex-start;
     -webkit-box-align: start;
@@ -58,7 +61,8 @@
 }
 
 .mdc-datapicker-weekend {
-    background-color: var(--mdc-theme-primary-light);
+    background-color: #a4addf;
+    background-color: var(--mdc-theme-primary-light, #a4addf);
 }
 
 .mdc-datepicker__body {
@@ -120,10 +124,13 @@
 }
 
 .mdc-datapicker-carousel button {
-    color: var(--mdc-theme-text-icon-on-background);
-    background-color: var(--mdc-theme-background);
+    color: rgba(0, 0, 0, 0.38);
+    color: var(--mdc-theme-text-icon-on-background, rgba(0, 0, 0, 0.38));
+    background-color: #ffffff;
+    background-color: var(--mdc-theme-background, #ffffff);
     box-shadow: none;
     -webkit-box-shadow: none;
+    margin-left: 16px;
 }
 
 .mdc-datapicker-carousel button:last-child {
@@ -196,8 +203,10 @@
 }
 
 .mdc-datepicker-date__selected {
-    background-color: var(--mdc-theme-primary);
-    color: var(--mdc-theme-text-primary-on-primary);
+    background-color: #3f51b5;
+    background-color: var(--mdc-theme-primary, #3f51b5);
+    color: #ffffff;
+    color: var(--mdc-theme-text-primary-on-primary, #ffffff);
 }
 
 .previous {
@@ -226,7 +235,6 @@
 }
 
 /* phone */
-
 @media (max-width: 479px) {
     .mdc-datepicker__surface {
         display: -ms-grid !important;

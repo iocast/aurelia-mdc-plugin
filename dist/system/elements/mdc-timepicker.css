@@ -17,6 +17,7 @@
 
 .mdc-timepicker--deselected {
     color: var(--mdc-theme-primary-light);
+    color: var(--mdc-theme-primary-light);
 }
 
 .mdc-timepicker__surface {
@@ -42,6 +43,7 @@
     -ms-grid-column: 1;
     grid-area: head;
     background-color: var(--mdc-theme-primary);
+    background-color: var(--mdc-theme-primary);
 }
 
 .mdc-timepicker__header-text {
@@ -61,6 +63,7 @@
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
@@ -172,6 +175,7 @@
 .mdc-timepicker__view-needle span {
     display: inline-block;
     background-color: var(--mdc-theme-primary);
+    background-color: var(--mdc-theme-primary);
     vertical-align: middle;
 }
 
@@ -189,6 +193,7 @@
     display: inline-block;
     cursor: pointer;
     color: var(--mdc-theme-text-primary-on-background);
+    color: var(--mdc-theme-text-primary-on-background);
     border-radius: 50%;
     width: 36px;
     height: 36px;
@@ -199,289 +204,361 @@
 
 .mdc-timepicker-circular--rotate-to-59.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-0§>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-59:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-0>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-0.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-0>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-0:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-0>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-1.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-0>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-1:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-0>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-4.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-5>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-4:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-5>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-5.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-5>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-5:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-5>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-6.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-5>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-6:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-5>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-9.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-10>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-9:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-10>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-10.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-10>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-10:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-10>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-11.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-10>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-11:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-10>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-14.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-15>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-14:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-15>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-15.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-15>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-15:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-15>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-16.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-15>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-16:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-15>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-19.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-20>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-19:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-20>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-20.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-20>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-20:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-20>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-21.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-20>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-21:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-20>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-24.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-25>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-24:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-25>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-25.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-25>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-25:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-25>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-26.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-25>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-26:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-25>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-29.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-30>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-29:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-30>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-30.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-30>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-30:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-30>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-31.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-30>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-31:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-30>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-34.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-35>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-34:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-35>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-35.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-35>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-35:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-35>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-36.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-35>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-36:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-35>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-39.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-40>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-39:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-40>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-40.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-40>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-40:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-40>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-41.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-40>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-41:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-40>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-44.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-45>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-44:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-45>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-45.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-45>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-45:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-45>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-46.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-45>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-46:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-45>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-49.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-50>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-49:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-50>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-50.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-50>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-50:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-50>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-51.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-50>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-51:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-50>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-54.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-55>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-54:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-55>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-55.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-55>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-55:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-55>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-56.mdc-timepicker__view-needle__pm>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__inner>.mdc-timepicker__view-circular__cell--rotate-to-55>span {
     color: var(--mdc-theme-text-primary-on-primary);
+    color: var(--mdc-theme-text-primary-on-primary);
 }
 
 .mdc-timepicker-circular--rotate-to-56:not(.mdc-timepicker__view-needle__pm)>.mdc-timepicker__view-circular>.mdc-timepicker__view-circular__cell--rotate-to-55>span {
+    color: var(--mdc-theme-text-primary-on-primary);
     color: var(--mdc-theme-text-primary-on-primary);
 }
 
