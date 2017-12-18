@@ -1,5 +1,5 @@
 import { PLATFORM } from 'aurelia-pal';
-import { MdcConfig, MDC_TARGET_ATTR, MDC_INIT_ATTR, MDC_IGNORE_INIT_ATTR } from './config';
+import { MdcConfig, MDC_TARGET_ATTR, MDC_INIT_ATTR, MDC_DISABLE_INIT_ATTR } from './config';
 
 import { MdcTarget } from './mdc-target';
 import { MdcCheckbox } from './elements/mdc-checkbox';
@@ -38,7 +38,7 @@ function beforeViewCompiled(content) {
         const item = elements.item(i);
         const componentName = pluginConfig.getComponentName(item);
         item.setAttribute(MDC_TARGET_ATTR, componentName);
-        if (!item.hasAttribute(MDC_IGNORE_INIT_ATTR)) item.setAttribute(MDC_INIT_ATTR, componentName);
+        if (!item.hasAttribute(MDC_DISABLE_INIT_ATTR)) item.setAttribute(MDC_INIT_ATTR, componentName);
     }
 }
 

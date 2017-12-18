@@ -3,7 +3,7 @@
 System.register(['aurelia-pal', './config', './mdc-target', './elements/mdc-checkbox', './elements/mdc-datepicker', './elements/mdc-timepicker', './elements/mdc-autocomplete', './elements/mdc-chip'], function (_export, _context) {
     "use strict";
 
-    var PLATFORM, MdcConfig, MDC_TARGET_ATTR, MDC_INIT_ATTR, MDC_IGNORE_INIT_ATTR, MdcTarget, MdcCheckbox, MdcDatepicker, MdcTimepicker, MdcAutocomplete, MdcChip, pluginConfig;
+    var PLATFORM, MdcConfig, MDC_TARGET_ATTR, MDC_INIT_ATTR, MDC_DISABLE_INIT_ATTR, MdcTarget, MdcCheckbox, MdcDatepicker, MdcTimepicker, MdcAutocomplete, MdcChip, pluginConfig;
     function configure(config, callback) {
         pluginConfig = config.container.get(MdcConfig);
 
@@ -33,7 +33,7 @@ System.register(['aurelia-pal', './config', './mdc-target', './elements/mdc-chec
             var item = elements.item(i);
             var componentName = pluginConfig.getComponentName(item);
             item.setAttribute(MDC_TARGET_ATTR, componentName);
-            if (!item.hasAttribute(MDC_IGNORE_INIT_ATTR)) item.setAttribute(MDC_INIT_ATTR, componentName);
+            if (!item.hasAttribute(MDC_DISABLE_INIT_ATTR)) item.setAttribute(MDC_INIT_ATTR, componentName);
         }
     }
 
@@ -44,7 +44,7 @@ System.register(['aurelia-pal', './config', './mdc-target', './elements/mdc-chec
             MdcConfig = _config.MdcConfig;
             MDC_TARGET_ATTR = _config.MDC_TARGET_ATTR;
             MDC_INIT_ATTR = _config.MDC_INIT_ATTR;
-            MDC_IGNORE_INIT_ATTR = _config.MDC_IGNORE_INIT_ATTR;
+            MDC_DISABLE_INIT_ATTR = _config.MDC_DISABLE_INIT_ATTR;
         }, function (_mdcTarget) {
             MdcTarget = _mdcTarget.MdcTarget;
         }, function (_elementsMdcCheckbox) {

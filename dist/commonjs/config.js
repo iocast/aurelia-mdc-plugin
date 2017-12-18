@@ -12,7 +12,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var MDC_TARGET_ATTR = exports.MDC_TARGET_ATTR = 'mdc-target';
 var MDC_INIT_ATTR = exports.MDC_INIT_ATTR = 'data-mdc-auto-init';
-var MDC_IGNORE_INIT_ATTR = exports.MDC_IGNORE_INIT_ATTR = 'ignore-mdc-auto-init';
+var MDC_DISABLE_INIT_ATTR = exports.MDC_DISABLE_INIT_ATTR = 'disable-mdc-auto-init';
 
 var MDC_COMPONENTS = {
     'mdc-checkbox': 'MDCCheckbox',

@@ -1,6 +1,6 @@
 export const MDC_TARGET_ATTR = 'mdc-target';
 export const MDC_INIT_ATTR = 'data-mdc-auto-init';
-export const MDC_IGNORE_INIT_ATTR = 'ignore-mdc-auto-init';
+export const MDC_DISABLE_INIT_ATTR = 'disable-mdc-auto-init';
 
 let MDC_COMPONENTS = {
     'mdc-checkbox': 'MDCCheckbox',

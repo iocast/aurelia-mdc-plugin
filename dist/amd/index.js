@@ -37,7 +37,7 @@ define(['exports', 'aurelia-pal', './config', './mdc-target', './elements/mdc-ch
             var item = elements.item(i);
             var componentName = pluginConfig.getComponentName(item);
             item.setAttribute(_config.MDC_TARGET_ATTR, componentName);
-            if (!item.hasAttribute(_config.MDC_IGNORE_INIT_ATTR)) item.setAttribute(_config.MDC_INIT_ATTR, componentName);
+            if (!item.hasAttribute(_config.MDC_DISABLE_INIT_ATTR)) item.setAttribute(_config.MDC_INIT_ATTR, componentName);
         }
     }
 
