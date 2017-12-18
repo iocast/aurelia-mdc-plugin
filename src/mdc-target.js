@@ -12,13 +12,14 @@ export class MdcTarget {
         this.config = config;
     }
 
-    attached() {
+    // attached() {
+    created(owningView, myView) {
         const hasMdcElements = this.config.mdcClasses.some(cls => {
             return this.element.classList.contains(cls);
         });
 
-        if (!hasMdcElements) return;
+        if (!hasMdcElements && this.element[this.config.getComponentName(this.element)]) return;
 
-        autoInit(this.element.parentNode, () => { });
+        autoInit(this.element.parentNode, () => {});
     }
 }

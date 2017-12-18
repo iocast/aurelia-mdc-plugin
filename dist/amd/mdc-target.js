@@ -22,14 +22,14 @@ define(['exports', 'aurelia-pal', 'material-components-web', 'aurelia-templating
             this.config = config;
         }
 
-        MdcTarget.prototype.attached = function attached() {
+        MdcTarget.prototype.created = function created(owningView, myView) {
             var _this = this;
 
             var hasMdcElements = this.config.mdcClasses.some(function (cls) {
                 return _this.element.classList.contains(cls);
             });
 
-            if (!hasMdcElements) return;
+            if (!hasMdcElements && this.element[this.config.getComponentName(this.element)]) return;
 
             (0, _materialComponentsWeb.autoInit)(this.element.parentNode, function () {});
         };

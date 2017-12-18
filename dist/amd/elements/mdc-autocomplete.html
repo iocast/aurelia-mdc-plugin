@@ -3,7 +3,8 @@
     <require from="./mdc-autocomplete.css"></require>
 
     <div class="mdc-autocomplete-menu">
-        <div ref="valueDOM" class="mdc-text-field mdc-text-field--upgraded mdc-autocomplete">
+        <!-- mdc-text-field mdc-text-field--upgraded  -->
+        <div ref="valueDOM" ignore-mdc-auto-init class="mdc-text-field mdc-text-field--upgraded mdc-autocomplete">
             <slot></slot>
         </div>
         <div class="mdc-menu-anchor">
@@ -12,12 +13,12 @@
 
                 <!-- <div class="mdc-list-divider"></div> -->
                 <!-- <div class="mdc-list-group"> -->
-                    <!-- <span>test</span> -->
-                    <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
-                        <li repeat.for="item of items" class="mdc-list-item" role="menuitem" tabindex="0" click.delegate="selectItem(item)">
-                            <template replaceable part="item-template">${item}</template>
-                        </li>
-                    </ul>
+                <!-- <span>test</span> -->
+                <ul class="mdc-simple-menu__items mdc-list" role="menu" aria-hidden="true">
+                    <li repeat.for="item of items" class="mdc-list-item" role="menuitem" tabindex="0" click.delegate="selectItem(item)">
+                        <template replaceable part="item-template">${item}</template>
+                    </li>
+                </ul>
                 <!-- </div> -->
 
                 <!--<select multiple="" size="8" class="mdc-multi-select mdc-list">-->

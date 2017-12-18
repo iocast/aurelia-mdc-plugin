@@ -120,7 +120,7 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                 MdcAutocomplete.prototype.attached = function attached() {
                     var _this = this;
 
-                    this.mdcValueDOM = new textField.MDCTextField(this.valueDOM);
+                    this.mdcValueDOM = textField.MDCTextField.attachTo(this.valueDOM);
 
                     this.oldValue = this.mdcValueDOM.value;
 

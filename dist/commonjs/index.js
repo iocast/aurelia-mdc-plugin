@@ -51,7 +51,7 @@ function beforeViewCompiled(content) {
         var item = elements.item(i);
         var componentName = pluginConfig.getComponentName(item);
         item.setAttribute(_config.MDC_TARGET_ATTR, componentName);
-        item.setAttribute(_config.MDC_INIT_ATTR, componentName);
+        if (!item.hasAttribute(_config.MDC_IGNORE_INIT_ATTR)) item.setAttribute(_config.MDC_INIT_ATTR, componentName);
     }
 }
 

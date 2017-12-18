@@ -32,7 +32,7 @@ export class MdcAutocomplete {
     }
 
     attached() {
-        this.mdcValueDOM = new textField.MDCTextField(this.valueDOM);
+        this.mdcValueDOM = textField.MDCTextField.attachTo(this.valueDOM);
 
         this.oldValue = this.mdcValueDOM.value;
 
