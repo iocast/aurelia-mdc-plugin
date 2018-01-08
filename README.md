@@ -4,16 +4,18 @@
 
 # Aurelia CLI:
 
+[DEMO](https://iocast.github.io/aurelia-mdc-plugin-example/index.html)
+
 ## Install:
 
 ```bash
 npm i -S material-components-web
-npm i -S aurelia-mdc-plugin
+npm i -S @iocast/aurelia-mdc-plugin
 ```
 
 ### Bundle:
 
-add **material-components-web** and **aurelia-mdc-plugin** to one of your bundle's dependencies in _aurelia.json_.
+add **material-components-web** and **@iocast/aurelia-mdc-plugin** to one of your bundle's dependencies in _aurelia.json_.
 
 ```json
 {
@@ -25,8 +27,8 @@ add **material-components-web** and **aurelia-mdc-plugin** to one of your bundle
     ]
 },
 {
-    "name": "aurelia-mdc-plugin",
-    "path": "../node_modules/aurelia-mdc-plugin/dist/amd",
+    "name": "@iocast/aurelia-mdc-plugin",
+    "path": "../node_modules/@iocast/aurelia-mdc-plugin/dist/amd",
     "main": "index",
     "resources": ["**/*.{html,css}"]
 }
@@ -37,7 +39,7 @@ add **material-components-web** and **aurelia-mdc-plugin** to one of your bundle
 ```javascript
 export function configure(aurelia) {
     ...
-    aurelia.use.plugin('aurelia-mdc-plugin');
+    aurelia.use.plugin('@iocast/aurelia-mdc-plugin');
     ...
 }
 ```
