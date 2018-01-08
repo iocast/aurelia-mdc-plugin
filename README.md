@@ -66,7 +66,7 @@ export function configure(aurelia) {
 ### Add new or 3rd party MDC-web components:
 
 ```js
-aurelia.use.plugin('aurelia-mdc-plugin', mdc => mdc.addComponents({
+aurelia.use.plugin('@iocast/aurelia-mdc-plugin', mdc => mdc.addComponents({
     'mdc-selector': 'MDCClassName'
 }));
 ```
