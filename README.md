@@ -1,6 +1,6 @@
 # aurelia-mdc-plugin
 
-[![NPM](https://nodei.co/npm/aurelia-mdc-plugin.png?compact=true)](https://nodei.co/npm/aurelia-mdc-plugin/)
+[![NPM](https://nodei.co/npm/@iocast/aurelia-mdc-plugin.png?compact=true)](https://nodei.co/npm/@iocast/aurelia-mdc-plugin/)
 
 # Aurelia CLI:
 
