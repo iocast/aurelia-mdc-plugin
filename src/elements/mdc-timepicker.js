@@ -58,27 +58,19 @@ export class MdcTimepicker {
 
     set value(value) {
         this._value = value;
+
+        if (this.mdcValueDOM) {
+            this.mdcValueDOM.value = this.value;
+        }
     }
 
     localeChangeHandler(newValue, oldValue) {
-        if (this.selected) {
-            this.selected.refresh(newValue);
-            this.mdcValueDOM.getDefaultFoundation().adapter_.getNativeInput().value = this.value;
-            this.mdcValueDOM.getDefaultFoundation().adapter_.getNativeInput().dispatchEvent(new Event('change', {
-                bubbles: true
-            }));
-        }
+        if (this.selected) this.selected.refresh(newValue);
+        if (this.mdcValueDOM) this.mdcValueDOM.value = this.value;
     }
 
     valueChangeHandler(newValue, oldValue) {
-        this._value = newValue;
-
-        if (this.mdcValueDOM) {
-            this.mdcValueDOM.getDefaultFoundation().adapter_.removeClassFromLabel('mdc-textfield__label--float-above');
-            if (newValue instanceof Date) {
-                this.mdcValueDOM.getDefaultFoundation().adapter_.addClassToLabel('mdc-textfield__label--float-above');
-            }
-        }
+        this.value = newValue;
     }
 
     selectMinutes(minutes) {
@@ -128,8 +120,8 @@ export class MdcTimepicker {
         evt.stopPropagation();
 
         if (evt instanceof MouseEvent) {
-           this.dragger.out(evt);
-       } else if (evt instanceof TouchEvent) {
+            this.dragger.out(evt);
+        } else if (evt instanceof TouchEvent) {
             if (evt.touches.length === 1) {
                 this.dragger.out(evt.touches[0]);
             }

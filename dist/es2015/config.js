@@ -15,8 +15,8 @@ var MDC_DISABLE_INIT_ATTR = exports.MDC_DISABLE_INIT_ATTR = 'disable-mdc-auto-in
 var MDC_COMPONENTS = {
     'mdc-checkbox': 'MDCCheckbox',
     'mdc-dialog': 'MDCDialog',
-    'mdc-persistent-drawer': 'MDCPersistentDrawer',
-    'mdc-temporary-drawer': 'MDCTemporaryDrawer',
+    'mdc-drawer--permanent': 'MDCPersistentDrawer',
+    'mdc-drawer--temporary': 'MDCTemporaryDrawer',
     'mdc-form-field': 'MDCFormField',
     'mdc-ripple-surface': 'MDCRipple',
     'mdc-grid-list': 'MDCGridList',

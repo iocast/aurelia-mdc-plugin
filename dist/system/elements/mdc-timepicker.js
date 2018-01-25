@@ -117,24 +117,12 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                 };
 
                 MdcTimepicker.prototype.localeChangeHandler = function localeChangeHandler(newValue, oldValue) {
-                    if (this.selected) {
-                        this.selected.refresh(newValue);
-                        this.mdcValueDOM.getDefaultFoundation().adapter_.getNativeInput().value = this.value;
-                        this.mdcValueDOM.getDefaultFoundation().adapter_.getNativeInput().dispatchEvent(new Event('change', {
-                            bubbles: true
-                        }));
-                    }
+                    if (this.selected) this.selected.refresh(newValue);
+                    if (this.mdcValueDOM) this.mdcValueDOM.value = this.value;
                 };
 
                 MdcTimepicker.prototype.valueChangeHandler = function valueChangeHandler(newValue, oldValue) {
-                    this._value = newValue;
-
-                    if (this.mdcValueDOM) {
-                        this.mdcValueDOM.getDefaultFoundation().adapter_.removeClassFromLabel('mdc-textfield__label--float-above');
-                        if (newValue instanceof Date) {
-                            this.mdcValueDOM.getDefaultFoundation().adapter_.addClassToLabel('mdc-textfield__label--float-above');
-                        }
-                    }
+                    this.value = newValue;
                 };
 
                 MdcTimepicker.prototype.selectMinutes = function selectMinutes(minutes) {
@@ -233,6 +221,10 @@ System.register(['aurelia-framework', 'material-components-web'], function (_exp
                     },
                     set: function set(value) {
                         this._value = value;
+
+                        if (this.mdcValueDOM) {
+                            this.mdcValueDOM.value = this.value;
+                        }
                     }
                 }]);
 

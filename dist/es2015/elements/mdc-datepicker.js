@@ -127,24 +127,12 @@ var MdcDatepicker = exports.MdcDatepicker = (_dec = (0, _aureliaFramework.custom
     };
 
     MdcDatepicker.prototype.localeChangeHandler = function localeChangeHandler(newValue, oldValue) {
-        if (this.selected) {
-            this.selected.refresh(newValue);
-            this.mdcValueDOM.getDefaultFoundation().adapter_.getNativeInput().value = this.value;
-            this.mdcValueDOM.getDefaultFoundation().adapter_.getNativeInput().dispatchEvent(new Event('change', {
-                bubbles: true
-            }));
-        }
+        if (this.selected) this.selected.refresh(newValue);
+        if (this.mdcValueDOM) this.mdcValueDOM.value = this.value;
     };
 
     MdcDatepicker.prototype.valueChangeHandler = function valueChangeHandler(newValue, oldValue) {
-        this._value = newValue;
-
-        if (this.mdcValueDOM) {
-            this.mdcValueDOM.getDefaultFoundation().adapter_.removeClassFromLabel('mdc-textfield__label--float-above');
-            if (newValue instanceof Date) {
-                this.mdcValueDOM.getDefaultFoundation().adapter_.addClassToLabel('mdc-textfield__label--float-above');
-            }
-        }
+        this.value = newValue;
     };
 
     MdcDatepicker.prototype.next = function next() {

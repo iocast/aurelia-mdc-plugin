@@ -2,11 +2,12 @@ export const MDC_TARGET_ATTR = 'mdc-target';
 export const MDC_INIT_ATTR = 'data-mdc-auto-init';
 export const MDC_DISABLE_INIT_ATTR = 'disable-mdc-auto-init';
 
+// css class: JS class
 let MDC_COMPONENTS = {
     'mdc-checkbox': 'MDCCheckbox',
     'mdc-dialog': 'MDCDialog',
-    'mdc-persistent-drawer': 'MDCPersistentDrawer',
-    'mdc-temporary-drawer': 'MDCTemporaryDrawer',
+    'mdc-drawer--permanent': 'MDCPersistentDrawer',
+    'mdc-drawer--temporary': 'MDCTemporaryDrawer',
     'mdc-form-field': 'MDCFormField',
     'mdc-ripple-surface': 'MDCRipple',
     'mdc-grid-list': 'MDCGridList',
