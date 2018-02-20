@@ -1,7 +1,7 @@
 'use strict';
 
 exports.__esModule = true;
-exports.MdcChip = exports.MdcAutocomplete = exports.MdcTimepicker = exports.MdcDatepicker = exports.MdcCheckbox = exports.MdcTarget = undefined;
+exports.MdcAutocomplete = exports.MdcTimepicker = exports.MdcDatepicker = exports.MdcTarget = undefined;
 exports.configure = configure;
 
 var _aureliaPal = require('aurelia-pal');
@@ -10,15 +10,11 @@ var _config = require('./config');
 
 var _mdcTarget = require('./mdc-target');
 
-var _mdcCheckbox = require('./elements/mdc-checkbox');
-
 var _mdcDatepicker = require('./elements/mdc-datepicker');
 
 var _mdcTimepicker = require('./elements/mdc-timepicker');
 
 var _mdcAutocomplete = require('./elements/mdc-autocomplete');
-
-var _mdcChip = require('./elements/mdc-chip');
 
 var pluginConfig = void 0;
 
@@ -30,11 +26,11 @@ function configure(config, callback) {
     }
 
     config.globalResources(_aureliaPal.PLATFORM.moduleName('./mdc-target'));
-    config.globalResources(_aureliaPal.PLATFORM.moduleName('./elements/mdc-checkbox'));
+
     config.globalResources(_aureliaPal.PLATFORM.moduleName('./elements/mdc-datepicker'));
     config.globalResources(_aureliaPal.PLATFORM.moduleName('./elements/mdc-timepicker'));
     config.globalResources(_aureliaPal.PLATFORM.moduleName('./elements/mdc-autocomplete'));
-    config.globalResources(_aureliaPal.PLATFORM.moduleName('./elements/mdc-chip'));
+
 
     config.aurelia.resources.registerViewEngineHooks({
         beforeCompile: beforeViewCompiled
@@ -54,8 +50,6 @@ function beforeViewCompiled(content) {
 }
 
 exports.MdcTarget = _mdcTarget.MdcTarget;
-exports.MdcCheckbox = _mdcCheckbox.MdcCheckbox;
 exports.MdcDatepicker = _mdcDatepicker.MdcDatepicker;
 exports.MdcTimepicker = _mdcTimepicker.MdcTimepicker;
 exports.MdcAutocomplete = _mdcAutocomplete.MdcAutocomplete;
-exports.MdcChip = _mdcChip.MdcChip;

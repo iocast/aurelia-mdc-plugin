@@ -1,10 +1,10 @@
-define(['exports', 'aurelia-pal', './config', './mdc-target', './elements/mdc-checkbox', './elements/mdc-datepicker', './elements/mdc-timepicker', './elements/mdc-autocomplete', './elements/mdc-chip'], function (exports, _aureliaPal, _config, _mdcTarget, _mdcCheckbox, _mdcDatepicker, _mdcTimepicker, _mdcAutocomplete, _mdcChip) {
+define(['exports', 'aurelia-pal', './config', './mdc-target', './elements/mdc-datepicker', './elements/mdc-timepicker', './elements/mdc-autocomplete'], function (exports, _aureliaPal, _config, _mdcTarget, _mdcDatepicker, _mdcTimepicker, _mdcAutocomplete) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
-    exports.MdcChip = exports.MdcAutocomplete = exports.MdcTimepicker = exports.MdcDatepicker = exports.MdcCheckbox = exports.MdcTarget = undefined;
+    exports.MdcAutocomplete = exports.MdcTimepicker = exports.MdcDatepicker = exports.MdcTarget = undefined;
     exports.configure = configure;
 
 
@@ -18,11 +18,11 @@ define(['exports', 'aurelia-pal', './config', './mdc-target', './elements/mdc-ch
         }
 
         config.globalResources(_aureliaPal.PLATFORM.moduleName('./mdc-target'));
-        config.globalResources(_aureliaPal.PLATFORM.moduleName('./elements/mdc-checkbox'));
+
         config.globalResources(_aureliaPal.PLATFORM.moduleName('./elements/mdc-datepicker'));
         config.globalResources(_aureliaPal.PLATFORM.moduleName('./elements/mdc-timepicker'));
         config.globalResources(_aureliaPal.PLATFORM.moduleName('./elements/mdc-autocomplete'));
-        config.globalResources(_aureliaPal.PLATFORM.moduleName('./elements/mdc-chip'));
+
 
         config.aurelia.resources.registerViewEngineHooks({
             beforeCompile: beforeViewCompiled
@@ -42,9 +42,7 @@ define(['exports', 'aurelia-pal', './config', './mdc-target', './elements/mdc-ch
     }
 
     exports.MdcTarget = _mdcTarget.MdcTarget;
-    exports.MdcCheckbox = _mdcCheckbox.MdcCheckbox;
     exports.MdcDatepicker = _mdcDatepicker.MdcDatepicker;
     exports.MdcTimepicker = _mdcTimepicker.MdcTimepicker;
     exports.MdcAutocomplete = _mdcAutocomplete.MdcAutocomplete;
-    exports.MdcChip = _mdcChip.MdcChip;
 });

@@ -4,7 +4,10 @@ export const MDC_DISABLE_INIT_ATTR = 'disable-mdc-auto-init';
 
 // css class: JS class
 let MDC_COMPONENTS = {
+    'mdc-line-ripple': 'MDCLineRipple',
     'mdc-checkbox': 'MDCCheckbox',
+    'mdc-chip': 'MDCChip',
+    'mdc-chip-set': 'MDCChipSet',
     'mdc-dialog': 'MDCDialog',
     'mdc-drawer--permanent': 'MDCPersistentDrawer',
     'mdc-drawer--temporary': 'MDCTemporaryDrawer',
@@ -15,9 +18,10 @@ let MDC_COMPONENTS = {
     'mdc-linear-progress': 'MDCLinearProgress',
     'mdc-radio': 'MDCRadio',
     'mdc-snackbar': 'MDCSnackbar',
+    'mdc-tab': 'MDCTab',
     'mdc-tab-bar': 'MDCTabBar',
     'mdc-text-field': 'MDCTextField',
-    'mdc-simple-menu': 'MDCSimpleMenu',
+    'mdc-menu': 'MDCMenu',
     'mdc-select': 'MDCSelect',
     'mdc-slider': 'MDCSlider',
     'mdc-toolbar': 'MDCToolbar'

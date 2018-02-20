@@ -40,7 +40,10 @@ define(['exports'], function (exports) {
     var MDC_DISABLE_INIT_ATTR = exports.MDC_DISABLE_INIT_ATTR = 'disable-mdc-auto-init';
 
     var MDC_COMPONENTS = {
+        'mdc-line-ripple': 'MDCLineRipple',
         'mdc-checkbox': 'MDCCheckbox',
+        'mdc-chip': 'MDCChip',
+        'mdc-chip-set': 'MDCChipSet',
         'mdc-dialog': 'MDCDialog',
         'mdc-drawer--permanent': 'MDCPersistentDrawer',
         'mdc-drawer--temporary': 'MDCTemporaryDrawer',
@@ -51,9 +54,10 @@ define(['exports'], function (exports) {
         'mdc-linear-progress': 'MDCLinearProgress',
         'mdc-radio': 'MDCRadio',
         'mdc-snackbar': 'MDCSnackbar',
+        'mdc-tab': 'MDCTab',
         'mdc-tab-bar': 'MDCTabBar',
         'mdc-text-field': 'MDCTextField',
-        'mdc-simple-menu': 'MDCSimpleMenu',
+        'mdc-menu': 'MDCMenu',
         'mdc-select': 'MDCSelect',
         'mdc-slider': 'MDCSlider',
         'mdc-toolbar': 'MDCToolbar'
