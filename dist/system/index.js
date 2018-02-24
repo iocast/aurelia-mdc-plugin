@@ -12,11 +12,9 @@ System.register(['aurelia-pal', './config', './mdc-target', './elements/mdc-date
         }
 
         config.globalResources(PLATFORM.moduleName('./mdc-target'));
-
         config.globalResources(PLATFORM.moduleName('./elements/mdc-datepicker'));
         config.globalResources(PLATFORM.moduleName('./elements/mdc-timepicker'));
         config.globalResources(PLATFORM.moduleName('./elements/mdc-autocomplete'));
-
 
         config.aurelia.resources.registerViewEngineHooks({
             beforeCompile: beforeViewCompiled

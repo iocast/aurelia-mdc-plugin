@@ -26,7 +26,7 @@
         "url": "https://github.com/iocast/aurelia-mdc-plugin"
     },
     "peerDependencies": {
-        "material-components-web": "^0.30.0"
+        "material-components-web": "^0.31.0"
     },
     "devDependencies": {
         "aurelia-tools": "^2.0.0",

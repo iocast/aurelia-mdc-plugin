@@ -1,9 +1,0 @@
-<template>
-    <require from="./mdc-chip.css"></require>
-
-    <div class="mdc-typography mdc-chip ${hover ? 'mdc-chip-hover' : ''} ${raised ? 'mdc-chip-raised' : ''}">
-        <slot></slot>
-        <i if.bind="hasRemoveButton" class="material-icons mdc-chip-remove" click.delegate="handleRemove($event)">close</i>
-    </div>
-
-</template>

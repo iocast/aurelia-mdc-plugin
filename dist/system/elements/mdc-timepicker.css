@@ -1176,11 +1176,6 @@
             grid-template-columns: 1fr;
         -ms-grid-rows: 110px 1fr 50px;
             grid-template-rows: 110px 1fr 50px;
-        /* width: auto !important;
-        min-width: auto !important;
-        max-width: auto !important;
-        width: fit-content !important;
-        min-width: fit-content !important; */
     }
 
     .mdc-timepicker__header {

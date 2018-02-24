@@ -370,9 +370,9 @@ class TimepickerTime {
     _format() {
         this.period = undefined;
         for (let value of new Intl.DateTimeFormat(this.locale, {
-                hour: 'numeric',
-                minute: '2-digit'
-            }).formatToParts(this.date)) {
+            hour: 'numeric',
+            minute: '2-digit'
+        }).formatToParts(this.date)) {
             if (value.type === 'hour') {
                 this.hour = value.value;
             } else if (value.type === 'minute') {

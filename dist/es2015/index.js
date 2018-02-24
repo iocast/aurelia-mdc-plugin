@@ -26,11 +26,9 @@ function configure(config, callback) {
     }
 
     config.globalResources(_aureliaPal.PLATFORM.moduleName('./mdc-target'));
-
     config.globalResources(_aureliaPal.PLATFORM.moduleName('./elements/mdc-datepicker'));
     config.globalResources(_aureliaPal.PLATFORM.moduleName('./elements/mdc-timepicker'));
     config.globalResources(_aureliaPal.PLATFORM.moduleName('./elements/mdc-autocomplete'));
-
 
     config.aurelia.resources.registerViewEngineHooks({
         beforeCompile: beforeViewCompiled
