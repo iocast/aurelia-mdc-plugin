@@ -23,7 +23,7 @@ export class MdcAutocomplete {
 
     valueDOM;
     mdcValueDOM;
-    simpleMenuDOM
+    menuDOM
 
     oldValue;
 
@@ -44,13 +44,13 @@ export class MdcAutocomplete {
     }
 
     itemsChanged() {
-        if (!this.simpleMenuDOM && !this.changed) return;
+        if (!this.menuDOM && !this.changed) return;
         if (this.items && this.items.length > 0) {
-            this.simpleMenuDOM.classList.add('mdc-simple-menu--open');
-            this.simpleMenuDOM.style.transform = 'scale(1, 1)';
+            this.menuDOM.classList.add('mdc-menu--open');
+            this.menuDOM.style.transform = 'scale(1, 1)';
         } else {
-            this.simpleMenuDOM.classList.remove('mdc-simple-menu--open');
-            this.simpleMenuDOM.style.transform = 'scale(0, 0)';
+            this.menuDOM.classList.remove('mdc-menu--open');
+            this.menuDOM.style.transform = 'scale(0, 0)';
         }
         this.changed = false;
     }
@@ -61,8 +61,8 @@ export class MdcAutocomplete {
     }
 
     async selectItem(item) {
-        this.simpleMenuDOM.classList.remove('mdc-simple-menu--open');
-        this.simpleMenuDOM.style.transform = 'scale(0, 0)';
+        this.menuDOM.classList.remove('mdc-menu--open');
+        this.menuDOM.style.transform = 'scale(0, 0)';
 
         let selection = {};
         for (let [key, value] of Object.entries(item)) {
