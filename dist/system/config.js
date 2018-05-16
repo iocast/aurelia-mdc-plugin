@@ -51,18 +51,20 @@ System.register([], function (_export, _context) {
             _export('MDC_DISABLE_INIT_ATTR', MDC_DISABLE_INIT_ATTR);
 
             MDC_COMPONENTS = {
-                'mdc-line-ripple': 'MDCLineRipple',
                 'mdc-checkbox': 'MDCCheckbox',
                 'mdc-chip': 'MDCChip',
                 'mdc-chip-set': 'MDCChipSet',
                 'mdc-dialog': 'MDCDialog',
                 'mdc-drawer--permanent': 'MDCPersistentDrawer',
                 'mdc-drawer--temporary': 'MDCTemporaryDrawer',
+                'mdc-floating-label': 'MDCFloatingLabel',
                 'mdc-form-field': 'MDCFormField',
                 'mdc-ripple-surface': 'MDCRipple',
                 'mdc-grid-list': 'MDCGridList',
                 'mdc-icon-toggle': 'MDCIconToggle',
+                'mdc-line-ripple': 'MDCLineRipple',
                 'mdc-linear-progress': 'MDCLinearProgress',
+                'mdc-notched-outline': 'MDCNotchedOutline',
                 'mdc-radio': 'MDCRadio',
                 'mdc-snackbar': 'MDCSnackbar',
                 'mdc-tab': 'MDCTab',
@@ -71,7 +73,8 @@ System.register([], function (_export, _context) {
                 'mdc-menu': 'MDCMenu',
                 'mdc-select': 'MDCSelect',
                 'mdc-slider': 'MDCSlider',
-                'mdc-toolbar': 'MDCToolbar'
+                'mdc-toolbar': 'MDCToolbar',
+                'mdc-top-app-bar': 'MDCTopAppBar'
             };
 
             _export('MdcConfig', MdcConfig = function () {

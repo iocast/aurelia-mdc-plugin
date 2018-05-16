@@ -25,7 +25,7 @@
     display: grid !important;
         grid-template-areas: "head main" "head foot";
     -ms-grid-columns: 200px 1fr;
-        grid-template-columns: 200px 1fr;
+    grid-template-columns: 200px 1fr;
     width: auto !important;
     min-width: auto !important;
     max-width: auto !important;
@@ -1173,14 +1173,12 @@
         display: grid !important;
             grid-template-areas: "mobilehead" "mobilemain" "mobilefoot";
         -ms-grid-columns: 1fr;
-            grid-template-columns: 1fr;
+        grid-template-columns: 1fr;
         -ms-grid-rows: 110px 1fr 50px;
-            grid-template-rows: 110px 1fr 50px;
+        grid-template-rows: 110px 1fr 50px;
     }
 
     .mdc-timepicker__header {
-        -ms-grid-row: 1;
-        -ms-grid-column: 1;
         grid-area: mobilehead;
         -ms-grid-row: 1;
         -ms-grid-row-span: 1;
@@ -1188,14 +1186,10 @@
     }
 
     .mdc-timepicker__body {
-        -ms-grid-row: 2;
-        -ms-grid-column: 1;
         grid-area: mobilemain;
     }
 
     .mdc-timepicker__footer {
-        -ms-grid-row: 3;
-        -ms-grid-column: 1;
         grid-area: mobilefoot;
     }
 
