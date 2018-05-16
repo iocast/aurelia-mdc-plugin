@@ -10,7 +10,7 @@
     ],
     "scripts": {
         "build": "gulp build",
-        "prepush": "gulp prepare-release --bump=patch",
+        "prepush": "gulp prepare-release --bump=minor",
         "push": "git add --all && git commit -m \"$(date)\" && git push origin master && npm publish --access public",
         "test": "gulp test"
     },
