@@ -37,14 +37,18 @@ add **material-components-web** and **@iocast/aurelia-mdc-plugin** to one of you
 ### Register the plugin:
 
 ```javascript
+import { PLATFORM } from 'aurelia-pal';
+...
 export function configure(aurelia) {
     ...
-    aurelia.use.plugin('@iocast/aurelia-mdc-plugin');
+    aurelia.use.plugin(PLATFORM.moduleName('@iocast/aurelia-mdc-plugin'));
     ...
 }
 ```
 
 ### import the css:
+
+Inside `main.html` import the stylesheet.
 
 ```html
 <require from="material-components-web/material-components-web.css"></require>
@@ -55,13 +59,14 @@ export function configure(aurelia) {
 ### General usage
 
 ```html
-<button class="mdc-button
-               mdc-button--raised
-               mdc-button--primary
-               mdc-ripple-surface">
+<button class="mdc-button"
+        click.delegate="print()">
     Print Greeting
 </button>
 ```
+
+more example [here](https://iocast.github.io/aurelia-mdc-plugin-example/index.html)
+
 
 ### Add new or 3rd party MDC-web components:
 
@@ -75,41 +80,6 @@ The plugin automaticaly adds `data-mdc-auto-init="MDCRipple"` to the button abov
 
 ### Custom Elements
 
-`mdc-checkbox`
-
-Your view includes the checkbox. The plugin automatically adds the necessary _html_ and _svg_ snippets.
-
-```html
-<label>
-    <mdc-checkbox is-checked.bind="raisedButtons" is-indeterminate.bind="isIndeterminate" is-disabled.bind="isFirstCbDisabled" change.delegate="handleChange()"></mdc-checkbox>
-    Raised buttons
-</label>
-```
-
-Your model needs to provide the `boolean` flags
-
-```javascript
-export class Example {
-  // these flags are used
-  accentButtons = true;
-  raisedButtons = true;
-  isIndeterminate = true;
-  changeEventCount = 0;
-  isDisabled = true;
-
-  handleChange() {
-    this.changeEventCount++;
-  }
-
-  makeIndeterminate() {
-    this.isIndeterminate = true;
-  }
-
-  toggleCheckbox() {
-    this.raisedButtons = !this.raisedButtons;
-  }
-}
-```
 
 `mdc-datepicker`
 
@@ -168,17 +138,3 @@ export class YourModel {
 
 you can use `setValue(value)` on the element to set a value without triggering the lookup event.
 
-`mdc-chip`
-
-```html
-<mdc-chip remove.bind="removeMe()" hover="true" raised="true">
-    <!-- optional: if you want to have an icon -->
-    <div class="mdc-chip-icon">A</div>
-    <!-- your text -->
-    <span>This is my chip</span>
-</mdc-chip>
-```
-
-`remove` action is optional. if it is set, it will automatically add a remove icon at the end of the chip.
-
-`hover` and `raised` are optional parameters

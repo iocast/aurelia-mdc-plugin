@@ -3,7 +3,7 @@
 System.register([], function (_export, _context) {
     "use strict";
 
-    var _typeof, _createClass, MDC_TARGET_ATTR, MDC_INIT_ATTR, MDC_DISABLE_INIT_ATTR, MDC_COMPONENTS, MdcConfig;
+    var _typeof, _createClass, MDC_INIT_ATTR, MDC_DISABLE_INIT_ATTR, MDC_COMPONENTS, MdcConfig;
 
     function _classCallCheck(instance, Constructor) {
         if (!(instance instanceof Constructor)) {
@@ -37,10 +37,6 @@ System.register([], function (_export, _context) {
                     return Constructor;
                 };
             }();
-
-            _export('MDC_TARGET_ATTR', MDC_TARGET_ATTR = 'mdc-target');
-
-            _export('MDC_TARGET_ATTR', MDC_TARGET_ATTR);
 
             _export('MDC_INIT_ATTR', MDC_INIT_ATTR = 'data-mdc-auto-init');
 

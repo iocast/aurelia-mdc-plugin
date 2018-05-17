@@ -1,4 +1,3 @@
-export const MDC_TARGET_ATTR = 'mdc-target';
 export const MDC_INIT_ATTR = 'data-mdc-auto-init';
 export const MDC_DISABLE_INIT_ATTR = 'disable-mdc-auto-init';
 
