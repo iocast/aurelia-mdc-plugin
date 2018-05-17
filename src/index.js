@@ -7,7 +7,6 @@ import { MdcAutocomplete } from './elements/mdc-autocomplete';
 
 import { autoInit } from 'material-components-web';
 
-
 let pluginConfig;
 
 export function configure(config, callback) {
@@ -36,7 +35,6 @@ function afterViewCreated(view) {
         const componentName = pluginConfig.getComponentName(item);
 
         if (!item.hasAttribute(MDC_DISABLE_INIT_ATTR)) item.setAttribute(MDC_INIT_ATTR, componentName);
-
     }
     autoInit(view.fragment, () => { });
 }
