@@ -1,11 +1,11 @@
 import { PLATFORM } from 'aurelia-pal';
-import { MdcConfig, MDC_INIT_ATTR, MDC_DISABLE_INIT_ATTR } from './config';
+import { MdcConfig, MDC_TARGET_ATTR, MDC_INIT_ATTR, MDC_DISABLE_INIT_ATTR } from './config';
 
+
+import { MdcTarget } from './mdc-target';
 import { MdcDatepicker } from './elements/mdc-datepicker';
 import { MdcTimepicker } from './elements/mdc-timepicker';
 import { MdcAutocomplete } from './elements/mdc-autocomplete';
-
-import { autoInit } from 'material-components-web';
 
 let pluginConfig;
 
@@ -16,34 +16,31 @@ export function configure(config, callback) {
         callback(pluginConfig);
     }
 
+    config.globalResources(PLATFORM.moduleName('./mdc-target'));
     config.globalResources(PLATFORM.moduleName('./elements/mdc-datepicker'));
     config.globalResources(PLATFORM.moduleName('./elements/mdc-timepicker'));
     config.globalResources(PLATFORM.moduleName('./elements/mdc-autocomplete'));
 
     config.aurelia.resources
         .registerViewEngineHooks({
-            beforeCompile: beforeCompiled,
-            afterCreate: afterViewCreated
+            beforeCompile: beforeViewCompiled
         });
 }
 
-function beforeCompiled(content) {
+function beforeViewCompiled(content) {
     let elements = content.querySelectorAll(pluginConfig.mdcSelectors);
     if (elements.length === 0) return;
 
     for (let i = 0; i < elements.length; i++) {
         const item = elements.item(i);
         const componentName = pluginConfig.getComponentName(item);
-
+        item.setAttribute(MDC_TARGET_ATTR, componentName);
         if (!item.hasAttribute(MDC_DISABLE_INIT_ATTR)) item.setAttribute(MDC_INIT_ATTR, componentName);
     }
 }
 
-function afterViewCreated(view) {
-    autoInit(view.fragment, () => { });
-}
-
 export {
+    MdcTarget,
     MdcDatepicker,
     MdcTimepicker,
     MdcAutocomplete
