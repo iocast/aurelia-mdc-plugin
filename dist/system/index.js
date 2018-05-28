@@ -16,14 +16,15 @@ System.register(['aurelia-pal', './config', './elements/mdc-datepicker', './elem
         config.globalResources(PLATFORM.moduleName('./elements/mdc-autocomplete'));
 
         config.aurelia.resources.registerViewEngineHooks({
+            beforeCompile: beforeCompiled,
             afterCreate: afterViewCreated
         });
     }
 
     _export('configure', configure);
 
-    function afterViewCreated(view) {
-        var elements = view.fragment.querySelectorAll(pluginConfig.mdcSelectors);
+    function beforeCompiled(content) {
+        var elements = content.querySelectorAll(pluginConfig.mdcSelectors);
         if (elements.length === 0) return;
 
         for (var i = 0; i < elements.length; i++) {
@@ -32,6 +33,9 @@ System.register(['aurelia-pal', './config', './elements/mdc-datepicker', './elem
 
             if (!item.hasAttribute(MDC_DISABLE_INIT_ATTR)) item.setAttribute(MDC_INIT_ATTR, componentName);
         }
+    }
+
+    function afterViewCreated(view) {
         autoInit(view.fragment, function () {});
     }
 

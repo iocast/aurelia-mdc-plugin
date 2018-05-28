@@ -22,12 +22,13 @@ export function configure(config, callback) {
 
     config.aurelia.resources
         .registerViewEngineHooks({
+            beforeCompile: beforeCompiled,
             afterCreate: afterViewCreated
         });
 }
 
-function afterViewCreated(view) {
-    let elements = view.fragment.querySelectorAll(pluginConfig.mdcSelectors);
+function beforeCompiled(content) {
+    let elements = content.querySelectorAll(pluginConfig.mdcSelectors);
     if (elements.length === 0) return;
 
     for (let i = 0; i < elements.length; i++) {
@@ -36,6 +37,9 @@ function afterViewCreated(view) {
 
         if (!item.hasAttribute(MDC_DISABLE_INIT_ATTR)) item.setAttribute(MDC_INIT_ATTR, componentName);
     }
+}
+
+function afterViewCreated(view) {
     autoInit(view.fragment, () => { });
 }
 

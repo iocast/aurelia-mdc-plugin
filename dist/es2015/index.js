@@ -30,12 +30,13 @@ function configure(config, callback) {
     config.globalResources(_aureliaPal.PLATFORM.moduleName('./elements/mdc-autocomplete'));
 
     config.aurelia.resources.registerViewEngineHooks({
+        beforeCompile: beforeCompiled,
         afterCreate: afterViewCreated
     });
 }
 
-function afterViewCreated(view) {
-    var elements = view.fragment.querySelectorAll(pluginConfig.mdcSelectors);
+function beforeCompiled(content) {
+    var elements = content.querySelectorAll(pluginConfig.mdcSelectors);
     if (elements.length === 0) return;
 
     for (var i = 0; i < elements.length; i++) {
@@ -44,6 +45,9 @@ function afterViewCreated(view) {
 
         if (!item.hasAttribute(_config.MDC_DISABLE_INIT_ATTR)) item.setAttribute(_config.MDC_INIT_ATTR, componentName);
     }
+}
+
+function afterViewCreated(view) {
     (0, _materialComponentsWeb.autoInit)(view.fragment, function () {});
 }
 
