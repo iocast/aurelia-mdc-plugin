@@ -36,7 +36,7 @@ export class MdcAutocomplete {
 
         this.oldValue = this.mdcValueDOM.value;
 
-        this.mdcValueDOM.listen('change', (event) => {});
+        this.mdcValueDOM.listen('change', (event) => { });
         this.mdcValueDOM.listen('input', (event) => {
             this.valueChangeHandler(event.target.value, this.oldValue);
             this.oldValue = event.target.value;
