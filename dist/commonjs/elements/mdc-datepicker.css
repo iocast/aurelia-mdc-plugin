@@ -11,10 +11,6 @@
     user-select: none;
 }
 
-.md-datapicker-typography--bold {
-    font-weight: 500;
-}
-
 .mdc-datapicker-typography--black {
     color: rgba(0, 0, 0, 0.87) !important;
     color: var(--mdc-theme-text-primary-on-background, rgba(0, 0, 0, 0.87)) !important;
@@ -41,6 +37,14 @@
     grid-area: head;
     background-color: #3f51b5;
     background-color: var(--mdc-theme-primary, #3f51b5);
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    color: #ffffff;
+    color: var(--mdc-theme-on-primary, #ffffff);
 }
 
 .mdc-datepicker__header--text {

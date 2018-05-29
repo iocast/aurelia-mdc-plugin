@@ -12,10 +12,6 @@
     user-select: none;
 }
 
-.md-datapicker-typography--bold {
-    font-weight: 500;
-}
-
 .mdc-datapicker-typography--black {
     color: var(--mdc-theme-text-primary-on-background, rgba(0, 0, 0, 0.87)) !important;
 }
@@ -33,6 +29,9 @@
 .mdc-datepicker__header {
     grid-area: head;
     background-color: var(--mdc-theme-primary, #3f51b5);
+    display: inline-flex;
+    align-items: flex-start;
+    color: var(--mdc-theme-on-primary, #ffffff);
 }
 
 .mdc-datepicker__header--text {

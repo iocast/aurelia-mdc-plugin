@@ -13,13 +13,13 @@
         <aside ref="timepickerDialog" class="mdc-dialog" role="alertdialog" aria-labelledby="address-dialog-label" aria-describedby="mdc-timepicker-description">
             <div class="mdc-dialog__surface mdc-timepicker__surface">
                 <header class="mdc-dialog__header mdc-timepicker__header">
-                    <div class="mdc-datapicker-typography--bold mdc-timepicker__header-text">
-                        <div class="mdc-typography--display3 mdc-timepicker__header-time" click.delegate="toggleView()">
-                          <span class.bind="selected.styles.views.hour ? 'mdc-timepicker--deselected' : ''">${selected.hour}</span>
-                          <span class="mdc-timepicker--deselected">:</span>
-                          <span class.bind="selected.styles.views.minute ? 'mdc-timepicker--deselected' : ''">${selected.minute}</span>
+                    <div class="mdc-dialog__header__title mdc-timepicker__header-text">
+                        <div class="mdc-typography--headline3 mdc-timepicker__header-time" click.delegate="toggleView()">
+                            <span class.bind="selected.styles.views.hour ? 'mdc-timepicker--deselected' : ''">${selected.hour}</span>
+                            <span class="mdc-timepicker--deselected">:</span>
+                            <span class.bind="selected.styles.views.minute ? 'mdc-timepicker--deselected' : ''">${selected.minute}</span>
                         </div>
-                        <div class="mdc-typography--subheading2 mdc-timepicker-typography--bold mdc-timepicker__header-period" if.bind="selected.period" click.delegate="togglePeriod()">
+                        <div class="mdc-typography--subtitle1 mdc-timepicker__header-period" if.bind="selected.period" click.delegate="togglePeriod()">
                             <span class.bind="selected.period.toLowerCase() === 'pm' ? '' : 'mdc-timepicker--deselected'">PM</span>
                             <span class.bind="selected.period.toLowerCase() === 'am' ? '' : 'mdc-timepicker--deselected'">AM</span>
                         </div>
@@ -30,64 +30,129 @@
                     <div ref="domCircularSurface" class="mdc-timepicker-circular__surface" class.bind="selected.styles.surface">
 
                         <div ref="domNeedle" class="mdc-timepicker__view-needle" class.bind="selected.styles.needle">
-                          <span class="mdc-timepicker__view-needle__dot"></span>
-                          <span class="mdc-timepicker__view-needle__line"></span>
-                          <span class="mdc-timepicker__view-needle__circle"></span>
+                            <span class="mdc-timepicker__view-needle__dot"></span>
+                            <span class="mdc-timepicker__view-needle__line"></span>
+                            <span class="mdc-timepicker__view-needle__circle"></span>
                         </div>
 
                         <div ref="domMinuteView" class="mdc-timepicker__view-circular" class.bind="selected.styles.views.minute">
-                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-5"><span click.delegate="selectMinutes(5)">05</span></div>
-                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-10"><span click.delegate="selectMinutes(10)">10</span></div>
-                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-15"><span click.delegate="selectMinutes(15)">15</span></div>
-                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-20"><span click.delegate="selectMinutes(20)">20</span></div>
-                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-25"><span click.delegate="selectMinutes(25)">25</span></div>
-                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-30"><span click.delegate="selectMinutes(30)">30</span></div>
-                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-35"><span click.delegate="selectMinutes(35)">35</span></div>
-                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-40"><span click.delegate="selectMinutes(40)">40</span></div>
-                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-45"><span click.delegate="selectMinutes(45)">45</span></div>
-                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-50"><span click.delegate="selectMinutes(50)">50</span></div>
-                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-55"><span click.delegate="selectMinutes(55)">55</span></div>
-                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-0"><span click.delegate="selectMinutes(0)">00</span></div>
+                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-5">
+                                <span click.delegate="selectMinutes(5)">05</span>
+                            </div>
+                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-10">
+                                <span click.delegate="selectMinutes(10)">10</span>
+                            </div>
+                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-15">
+                                <span click.delegate="selectMinutes(15)">15</span>
+                            </div>
+                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-20">
+                                <span click.delegate="selectMinutes(20)">20</span>
+                            </div>
+                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-25">
+                                <span click.delegate="selectMinutes(25)">25</span>
+                            </div>
+                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-30">
+                                <span click.delegate="selectMinutes(30)">30</span>
+                            </div>
+                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-35">
+                                <span click.delegate="selectMinutes(35)">35</span>
+                            </div>
+                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-40">
+                                <span click.delegate="selectMinutes(40)">40</span>
+                            </div>
+                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-45">
+                                <span click.delegate="selectMinutes(45)">45</span>
+                            </div>
+                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-50">
+                                <span click.delegate="selectMinutes(50)">50</span>
+                            </div>
+                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-55">
+                                <span click.delegate="selectMinutes(55)">55</span>
+                            </div>
+                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-0">
+                                <span click.delegate="selectMinutes(0)">00</span>
+                            </div>
                         </div>
 
-                        <div ref="domNeedleDragger" class="mdc-timepicker__view-needle-dragger"
-                          mousedown.trigger="draggerStart($event)"
-                          touchstart.trigger="draggerStart($event)"
-                          mousemove.trigger="draggerMove($event)"
-                          touchmove.trigger="draggerMove($event)"
-                          mouseup.trigger="draggerStop($event)"
-                          touchend.trigger="draggerStop($event)"
-                          mouseleave.trigger="draggerOut($event)"
-                          touchleave.trigger="draggerOut($event)"
-                        ></div>
+                        <div ref="domNeedleDragger" class="mdc-timepicker__view-needle-dragger" mousedown.trigger="draggerStart($event)" touchstart.trigger="draggerStart($event)"
+                            mousemove.trigger="draggerMove($event)" touchmove.trigger="draggerMove($event)" mouseup.trigger="draggerStop($event)"
+                            touchend.trigger="draggerStop($event)" mouseleave.trigger="draggerOut($event)" touchleave.trigger="draggerOut($event)"></div>
 
                         <div ref="domHourView" class="mdc-timepicker__view-circular" class.bind="selected.styles.views.hour">
-                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-5"><span click.delegate="selectHours(1)">1</span></div>
-                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-10"><span click.delegate="selectHours(2)">2</span></div>
-                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-15"><span click.delegate="selectHours(3)">3</span></div>
-                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-20"><span click.delegate="selectHours(4)">4</span></div>
-                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-25"><span click.delegate="selectHours(5)">5</span></div>
-                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-30"><span click.delegate="selectHours(6)">6</span></div>
-                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-35"><span click.delegate="selectHours(7)">7</span></div>
-                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-40"><span click.delegate="selectHours(8)">8</span></div>
-                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-45"><span click.delegate="selectHours(9)">9</span></div>
-                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-50"><span click.delegate="selectHours(10)">10</span></div>
-                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-55"><span click.delegate="selectHours(11)">11</span></div>
-                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-0"><span click.delegate="selectHours(12)">12</span></div>
+                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-5">
+                                <span click.delegate="selectHours(1)">1</span>
+                            </div>
+                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-10">
+                                <span click.delegate="selectHours(2)">2</span>
+                            </div>
+                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-15">
+                                <span click.delegate="selectHours(3)">3</span>
+                            </div>
+                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-20">
+                                <span click.delegate="selectHours(4)">4</span>
+                            </div>
+                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-25">
+                                <span click.delegate="selectHours(5)">5</span>
+                            </div>
+                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-30">
+                                <span click.delegate="selectHours(6)">6</span>
+                            </div>
+                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-35">
+                                <span click.delegate="selectHours(7)">7</span>
+                            </div>
+                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-40">
+                                <span click.delegate="selectHours(8)">8</span>
+                            </div>
+                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-45">
+                                <span click.delegate="selectHours(9)">9</span>
+                            </div>
+                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-50">
+                                <span click.delegate="selectHours(10)">10</span>
+                            </div>
+                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-55">
+                                <span click.delegate="selectHours(11)">11</span>
+                            </div>
+                            <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-0">
+                                <span click.delegate="selectHours(12)">12</span>
+                            </div>
 
                             <div class="mdc-timepicker__view-circular__inner" if.bind="!selected.period">
-                              <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-5"><span click.delegate="selectHours(13)">13</span></div>
-                              <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-10"><span click.delegate="selectHours(14)">14</span></div>
-                              <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-15"><span click.delegate="selectHours(15)">15</span></div>
-                              <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-20"><span click.delegate="selectHours(16)">16</span></div>
-                              <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-25"><span click.delegate="selectHours(17)">17</span></div>
-                              <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-30"><span click.delegate="selectHours(18)">18</span></div>
-                              <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-35"><span click.delegate="selectHours(19)">19</span></div>
-                              <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-40"><span click.delegate="selectHours(20)">20</span></div>
-                              <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-45"><span click.delegate="selectHours(21)">21</span></div>
-                              <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-50"><span click.delegate="selectHours(22)">22</span></div>
-                              <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-55"><span click.delegate="selectHours(23)">23</span></div>
-                              <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-0"><span click.delegate="selectHours(24)">24</span></div>
+                                <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-5">
+                                    <span click.delegate="selectHours(13)">13</span>
+                                </div>
+                                <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-10">
+                                    <span click.delegate="selectHours(14)">14</span>
+                                </div>
+                                <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-15">
+                                    <span click.delegate="selectHours(15)">15</span>
+                                </div>
+                                <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-20">
+                                    <span click.delegate="selectHours(16)">16</span>
+                                </div>
+                                <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-25">
+                                    <span click.delegate="selectHours(17)">17</span>
+                                </div>
+                                <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-30">
+                                    <span click.delegate="selectHours(18)">18</span>
+                                </div>
+                                <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-35">
+                                    <span click.delegate="selectHours(19)">19</span>
+                                </div>
+                                <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-40">
+                                    <span click.delegate="selectHours(20)">20</span>
+                                </div>
+                                <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-45">
+                                    <span click.delegate="selectHours(21)">21</span>
+                                </div>
+                                <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-50">
+                                    <span click.delegate="selectHours(22)">22</span>
+                                </div>
+                                <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-55">
+                                    <span click.delegate="selectHours(23)">23</span>
+                                </div>
+                                <div class="mdc-timepicker__view-circular__cell mdc-timepicker__view-circular__cell--rotate-to-0">
+                                    <span click.delegate="selectHours(24)">24</span>
+                                </div>
                             </div>
                         </div>
 
