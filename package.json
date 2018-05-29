@@ -1,6 +1,6 @@
 {
     "name": "@iocast/aurelia-mdc-plugin",
-    "version": "0.7.3",
+    "version": "0.7.4",
     "description": "Material Design Components plugin for Aurelia.",
     "keywords": [
         "aurelia",
