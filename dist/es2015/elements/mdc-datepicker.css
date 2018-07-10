@@ -275,6 +275,20 @@
     .mdc-datepicker__footer {
         grid-area: mobilefoot;
     }
+@media (max-width: 599px) {
+    .mdc-datepicker__header {
+            -ms-grid-row: 1;
+            -ms-grid-column: 1;
+    }
+    .mdc-datepicker__body {
+            -ms-grid-row: 2;
+            -ms-grid-column: 1;
+    }
+    .mdc-datepicker__footer {
+            -ms-grid-row: 3;
+            -ms-grid-column: 1;
+    }
+}
     .mdc-datepicker__header--text {
         -webkit-box-orient: horizontal;
         -webkit-box-direction: normal;

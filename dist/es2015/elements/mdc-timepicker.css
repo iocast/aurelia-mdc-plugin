@@ -1193,6 +1193,21 @@
         grid-area: mobilefoot;
     }
 
+@media (max-width: 479px) {
+    .mdc-timepicker__header {
+            -ms-grid-row: 1;
+            -ms-grid-column: 1;
+    }
+    .mdc-timepicker__body {
+            -ms-grid-row: 2;
+            -ms-grid-column: 1;
+    }
+    .mdc-timepicker__footer {
+            -ms-grid-row: 3;
+            -ms-grid-column: 1;
+    }
+}
+
     .mdc-timepicker__header-period {
         margin-left: 1rem;
     }
